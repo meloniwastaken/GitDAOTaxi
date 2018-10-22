@@ -2,6 +2,8 @@ package ats.controllo.servlet;
 
 import java.io.IOException;
 import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,21 +35,26 @@ public class RegistrazioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IDAOUtente idaoUtente = new DAOUtente();
 		Cliente c = new Cliente();
+		
 		c.setNome(request.getParameter("nome"));
 		c.setCognome(request.getParameter("cognome"));
 		c.setCodiceFiscale(request.getParameter("codFiscale"));
-		c.setDataDiNascita((Date)request.getAttribute("data"));
+		try {
+			c.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
 		c.setIndirizzo(request.getParameter("indirizzo"));
 		c.setTelefono(request.getParameter("telefono"));
 		c.setEmail(request.getParameter("email"));
 		c.setUsername(request.getParameter("username"));
 		c.setPassword(request.getParameter("password"));
 		try {
-			idaoUtente.insert(c);
+			idaoUtente.insert(c,3);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("FindAllServlet");
+		response.sendRedirect("index.html");
 		
 	}
 
