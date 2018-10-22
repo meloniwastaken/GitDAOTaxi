@@ -188,24 +188,40 @@ public class DAOUtente implements IDAOUtente {
 	}
 
 	@Override
-	public void insert(Utente utente) throws DAOException {
+	public void insert(Utente utente, Integer ruolo) throws DAOException {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		
 		try {
-			
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("INSERT INTO UTENTE VALUES (SEQ_UTENTE.NEXTVAL, ? , ? , ? , ? , ? , ? , ? , ? , ?)  ");
+			statement = connection.prepareStatement("INSERT INTO UTENTE VALUES (SEQ_UTENTE.NEXTVAL, ? , ? , ? , TO_DATE(?,'DD-MM-YYYY'), ? , ? , ? , ? , ?, ?)",new String[] {"ID"});
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getCodiceFiscale());
-			statement.setString(4, (utente.getDataDiNascita().toString()));
+			Integer gg = utente.getDataDiNascita().getDate();
+			Integer mm = utente.getDataDiNascita().getMonth()+1;
+			Integer aaaa = utente.getDataDiNascita().getYear()+1900;
+			
+			String giorno = gg.toString();
+			String mese = mm.toString();
+			String anno = aaaa.toString();
+			
+			if(gg<10)
+				giorno = "0"+giorno;
+			if(mm<10)
+				mese = "0"+mese;
+				
+				
+			String s = giorno+"-"+mese+"-"+anno;
+			System.out.println(s);
+			statement.setString(4, s);
 			statement.setString(5, utente.getIndirizzo());
 			statement.setString(6, utente.getTelefono());
 			statement.setString(7, utente.getEmail());
 			statement.setString(8, utente.getUsername());
 			statement.setString(9, utente.getPassword());
+			statement.setInt(10, ruolo);
 			statement.executeUpdate();
 			
 			resultSet = statement.getGeneratedKeys();
@@ -214,7 +230,7 @@ public class DAOUtente implements IDAOUtente {
 			}
 			
 		} catch (SQLException e) {
-		System.out.println(e.getMessage());	
+			System.out.println(e.getMessage());	
 		}
 		finally {
 			DataSource.getInstance().close(resultSet);

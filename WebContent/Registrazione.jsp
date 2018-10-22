@@ -9,7 +9,7 @@
 <body>
 <h1><center>Registrazione Utente</center></h1>
 
-<form method="POST" action="RegistrazioneServlet">
+<form method="POST" action="register">
 <table>
 <tbody>
 		<tr>
@@ -32,7 +32,7 @@
 		<tr>
 			<td><label for="data">Data di nascita: </label></td>
 			
-			<td><input type="date" name="data" min="1920-01-01" max="2000-12-31" /> </td>
+			<td><input type="date" id="data" name="data" min="1920-01-01" max="2000-12-31" /> </td>
 					
 			
 		</tr>
@@ -84,6 +84,8 @@
 <form action="index.html">
 <input type="submit" value="INDIETRO"/>
 </form>
+
+<input type="button" onClick="(alert(document.getElementById('data')).value)">
 
 </body>
 </html>
