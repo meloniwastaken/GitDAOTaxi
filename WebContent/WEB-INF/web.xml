@@ -33,6 +33,14 @@
     <servlet-name>RegistrazioneServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>FindAllServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.FindAllServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllServlet</servlet-name>
+    <url-pattern>/findAll</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>SessionFilter</filter-name>
     <filter-class>ats.controllo.filters.SessionFilter</filter-class>
