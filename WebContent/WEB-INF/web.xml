@@ -30,7 +30,7 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-name>RegistrazioneServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
   <filter>

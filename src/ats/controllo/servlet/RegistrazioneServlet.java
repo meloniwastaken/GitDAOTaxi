@@ -14,13 +14,9 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
 
-///**
-// * Servlet implementation class RegistrazioneServlet
-// */
-//@WebServlet("/RegistrazioneServlet")
-//public class RegistrazioneServlet extends HttpServlet {
-//	private static final long serialVersionUID = 1L;
-//       
+public class RegistrazioneServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,13 +42,11 @@ import ats.persistenza.interfacce.IDAOUtente;
 		c.setEmail(request.getParameter("email"));
 		c.setUsername(request.getParameter("username"));
 		c.setPassword(request.getParameter("password"));
-		c.setRuolo(3);
 		try {
 			idaoUtente.insert(c);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		response.sendRedirect("FindAllServlet");
 		
 	}
