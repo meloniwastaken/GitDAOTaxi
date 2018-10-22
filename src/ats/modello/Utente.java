@@ -13,7 +13,6 @@ public abstract class Utente {
 	private String email;
 	private String username;
 	private String password;
-	private Integer ruolo;
 	
 	public Long getId() {
 		return id;
@@ -75,18 +74,11 @@ public abstract class Utente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getRuolo() {
-		return ruolo;
-	}
-	public void setRuolo(Integer ruolo) {
-		this.ruolo = ruolo;
-	}
-	
 	@Override
 	public String toString() {
 		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", codiceFiscale=" + codiceFiscale
 				+ ", dataDiNascita=" + dataDiNascita + ", indirizzo=" + indirizzo + ", telefono=" + telefono
-				+ ", email=" + email + ", username=" + username + ", password=" + password + ", ruolo=" + ruolo + "]";
+				+ ", email=" + email + ", username=" + username + ", password=" + password +  "]";
 	}
 	
 	

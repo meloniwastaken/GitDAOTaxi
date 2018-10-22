@@ -50,7 +50,6 @@ public class DAOTaxi implements IDAOTaxi {
 				a.setEmail(resultSet.getString(16));
 				a.setUsername(resultSet.getString(17));
 				a.setPassword(resultSet.getString(18));
-				a.setRuolo(2);
 				t.setAutista(a);
 				listaTaxi.add(t);
 			}
@@ -105,7 +104,6 @@ public class DAOTaxi implements IDAOTaxi {
 				a.setEmail(resultSet.getString(16));
 				a.setUsername(resultSet.getString(17));
 				a.setPassword(resultSet.getString(18));
-				a.setRuolo(2);
 				t.setAutista(a);
 			}
 		} catch (SQLException e) {

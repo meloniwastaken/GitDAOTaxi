@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ats.modello.Amministratore;
+import ats.modello.Autista;
+import ats.modello.Cliente;
 import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
@@ -43,6 +46,12 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("errorpage.jsp");
 		else {
 			request.getSession().setAttribute("id", utente.getId());
+			if(utente instanceof Amministratore)
+				request.getSession().setAttribute("ruolo", 1);
+			else if (utente instanceof Autista)
+				request.getSession().setAttribute("ruolo", 2);
+			else if (utente instanceof Cliente)
+				request.getSession().setAttribute("ruolo", 3);
 			request.getRequestDispatcher("profile.jsp").forward(request, response);
 		}
 	}
