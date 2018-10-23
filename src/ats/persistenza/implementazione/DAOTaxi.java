@@ -47,9 +47,10 @@ public class DAOTaxi implements IDAOTaxi {
 				a.setCodiceFiscale(resultSet.getString(13));
 				a.setDataDiNascita(resultSet.getDate(14));
 				a.setIndirizzo(resultSet.getString(15));
-				a.setEmail(resultSet.getString(16));
-				a.setUsername(resultSet.getString(17));
-				a.setPassword(resultSet.getString(18));
+				a.setTelefono(resultSet.getString(16));
+				a.setEmail(resultSet.getString(17));
+				a.setUsername(resultSet.getString(18));
+				a.setPassword(resultSet.getString(19));
 				t.setAutista(a);
 				listaTaxi.add(t);
 			}
@@ -69,8 +70,7 @@ public class DAOTaxi implements IDAOTaxi {
 	@Override
 	public Taxi findById(Long id) throws DAOException {
 		Taxi t = null;
-		String sql = "SELECT * FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE RUOLO=2 AND UTENTE.ID=?";
-		System.out.println(sql);
+		String sql = "SELECT * FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE RUOLO=2 AND TAXI.ID=?";
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -101,9 +101,10 @@ public class DAOTaxi implements IDAOTaxi {
 				a.setCodiceFiscale(resultSet.getString(13));
 				a.setDataDiNascita(resultSet.getDate(14));
 				a.setIndirizzo(resultSet.getString(15));
-				a.setEmail(resultSet.getString(16));
-				a.setUsername(resultSet.getString(17));
-				a.setPassword(resultSet.getString(18));
+				a.setTelefono(resultSet.getString(16));
+				a.setEmail(resultSet.getString(17));
+				a.setUsername(resultSet.getString(18));
+				a.setPassword(resultSet.getString(19));
 				t.setAutista(a);
 			}
 		} catch (SQLException e) {
@@ -242,9 +243,10 @@ public class DAOTaxi implements IDAOTaxi {
 				a.setCodiceFiscale(resultSet.getString(13));
 				a.setDataDiNascita(resultSet.getDate(14));
 				a.setIndirizzo(resultSet.getString(15));
-				a.setEmail(resultSet.getString(16));
-				a.setUsername(resultSet.getString(17));
-				a.setPassword(resultSet.getString(18));
+				a.setTelefono(resultSet.getString(16));
+				a.setEmail(resultSet.getString(17));
+				a.setUsername(resultSet.getString(18));
+				a.setPassword(resultSet.getString(19));
 				t.setAutista(a);
 				listaTaxi.add(t);
 			}

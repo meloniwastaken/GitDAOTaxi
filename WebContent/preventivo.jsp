@@ -8,7 +8,7 @@
 <title>Preventivo</title>
 </head>
 <body>
-<% Viaggio v = (Viaggio) request.getAttribute("viaggio");%>
+<% Viaggio v = (Viaggio) request.getSession().getAttribute("viaggio");%>
 <h1>AUTISTA</h1>
 <table>
 	<thead>
@@ -16,9 +16,9 @@
 	</thead>
 	<tbody>
 		<tr><td><%=v.getAutista().getNome()%></td>
-			<td><%=v.getAutista().getCognome() %></td>
-			<td><%=v.getAutista().getTelefono() %></td>
-			<td><%=v.getAutista().getEmail() %></td>
+			<td><%=v.getAutista().getCognome()%></td>
+			<td><%=v.getAutista().getTelefono()%></td>
+			<td><%=v.getAutista().getEmail()%></td>
 		</tr>
 	</tbody>
 </table>
@@ -40,7 +40,7 @@
 <h1>PREVENTIVO</h1>
 <table>
 	<thead>
-		<tr><th>Partenza</th><th>Destinazione</th><th>Kilometri</th><th>Prezzo</th></tr>
+		<tr><th>Partenza</th><th>Destinazione</th><th>Kilometri</th><th>Data</th><th>Prezzo</th></tr>
 	</thead>
 	<tbody>
 		<tr><td><%=v.getPartenza() %></td>
@@ -52,5 +52,8 @@
 		</tr>
 	</tbody>
 </table>
+<form method="POST" action="PrenotaServlet">
+	<input type="submit" value="Conferma">
+</form>
 </body>
 </html>

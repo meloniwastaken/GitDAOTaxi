@@ -1,6 +1,7 @@
 package ats.persistenza.implementazione;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -86,7 +87,8 @@ public class DAOViaggio implements IDAOViaggio{
 				v.setKilometri(resultSet.getDouble(8));
 				v.setPrezzo(resultSet.getDouble(9));
 				v.setStato(resultSet.getInt(10));
-				v.setFeedback(resultSet.getInt(11));
+				if(v.getFeedback()!=null)
+					statement.setInt(10, v.getFeedback());
 				
 				listaViaggi.add(v);
 			}
@@ -172,7 +174,8 @@ public class DAOViaggio implements IDAOViaggio{
 				v.setKilometri(resultSet.getDouble(8));
 				v.setPrezzo(resultSet.getDouble(9));
 				v.setStato(resultSet.getInt(10));
-				v.setFeedback(resultSet.getInt(11));
+				if(v.getFeedback()!=null)
+					statement.setInt(10, v.getFeedback());
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -197,13 +200,14 @@ public class DAOViaggio implements IDAOViaggio{
 			statement.setLong(1, v.getAutista().getId());
 			statement.setLong(2,v.getTaxi().getId());
 			statement.setLong(3, v.getCliente().getId());
-			statement.setString(4, v.getData().toString());
+			statement.setDate(4, (Date) v.getData());
 			statement.setString(5, v.getPartenza());
 			statement.setString(6, v.getDestinazione());
 			statement.setDouble(7, v.getKilometri());
 			statement.setDouble(8, v.getPrezzo());
 			statement.setInt(9, v.getStato());
-			statement.setInt(10, v.getFeedback());
+			if(v.getFeedback()!=null)
+				statement.setInt(10, v.getFeedback());
 			statement.setLong(11, v.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -224,17 +228,44 @@ public class DAOViaggio implements IDAOViaggio{
 		
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("INSERT INTO VIAGGIO VALUES (SEQ_VIAGGIO.NEXTVAL,?,?,?,?,?,?,?,?,?,?)", new String[] {"ID"});
+			statement = connection.prepareStatement("INSERT INTO VIAGGIO VALUES (SEQ_VIAGGIO.NEXTVAL,?,?,?,TO_DATE(?,'DD-MM-YYYY HH24:MI:SS'),?,?,?,?,?,?)", new String[] {"ID"});
 			statement.setLong(1, v.getAutista().getId());
-			statement.setLong(2,v.getTaxi().getId());
+			statement.setLong(2, v.getTaxi().getId());
 			statement.setLong(3, v.getCliente().getId());
-			statement.setString(4, v.getData().toString());
+			
+			Integer gg = v.getData().getDate();
+			Integer mm = v.getData().getMonth() + 1;
+			Integer aaaa = v.getData().getYear() + 1900;
+			Integer hh = v.getData().getHours();
+			Integer mi = v.getData().getMinutes();
+
+			String giorno = gg.toString();
+			String mese = mm.toString();
+			String anno = aaaa.toString();
+			String ore = hh.toString();
+			String minuti = mi.toString();
+
+			if (gg < 10)
+				giorno = "0" + giorno;
+			if (mm < 10)
+				mese = "0" + mese;
+			if(hh<10)
+				ore = "0" + ore;
+			if(mi<10)
+				minuti = "0" + minuti;
+
+			String s = giorno + "-" + mese + "-" + anno + " " + ore + ":" + minuti + ":00";
+
+			statement.setString(4, s);
 			statement.setString(5, v.getPartenza());
 			statement.setString(6, v.getDestinazione());
 			statement.setDouble(7, v.getKilometri());
 			statement.setDouble(8, v.getPrezzo());
 			statement.setInt(9, v.getStato());
-			statement.setInt(10, v.getFeedback());
+			if(v.getFeedback()!=null)
+				statement.setInt(10, v.getFeedback());
+			else
+				statement.setString(10, null);
 			statement.executeUpdate();
 			
 			resultSet = statement.getGeneratedKeys();
