@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ats.modello.Autista;
 import ats.modello.Cliente;
 import ats.modello.Taxi;
 import ats.modello.Viaggio;
@@ -66,9 +67,12 @@ public class PreventivoServlet extends HttpServlet {
 		v.setPartenza(request.getParameter("partenza"));
 		v.setDestinazione(request.getParameter("destinazione"));
 		v.setKilometri(Double.parseDouble(request.getParameter("kilometri")));
+		v.setAutista(t.getAutista());
+		
+		System.out.println(request.getParameter("data")+" "+request.getParameter("time"));
 		
 		try {
-			v.setData(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+			v.setData(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("data")+" "+request.getParameter("time")));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,12 +80,15 @@ public class PreventivoServlet extends HttpServlet {
 		
 		v.setCliente(c);
 		v.setTaxi(t);
+		System.out.println("time: "+request.getParameter("time"));
 		Double prezzo= v.getKilometri()*t.getPrezzoPerKilometro();
 		v.setPrezzo(prezzo);
+		v.setStato(1);
+		v.setFeedback(null);
 				
 		
 		
-		request.setAttribute("viaggio", v);
+		request.getSession().setAttribute("viaggio", v);
 		RequestDispatcher rd = request.getRequestDispatcher("preventivo.jsp");
 		rd.forward(request, response);
 		

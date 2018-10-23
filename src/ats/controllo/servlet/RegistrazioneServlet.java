@@ -38,6 +38,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		c.setEmail(request.getParameter("email"));
 		c.setUsername(request.getParameter("username"));
 		c.setPassword(request.getParameter("password"));
+		
 		try {
 			idaoUtente.insert(c,3);
 		} catch (DAOException e) {
