@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ats.modello.Autista;
+import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -31,10 +32,10 @@ public class FindAllAutistiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Autista> autisti = null;
-		IDAOUtente daoUtente = new DAOUtente();
+		DAOAutista daoAutista = new DAOAutista();
 		
 		try {
-			autisti = daoUtente.findAllAutista();
+			autisti = daoAutista.findAll();
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}

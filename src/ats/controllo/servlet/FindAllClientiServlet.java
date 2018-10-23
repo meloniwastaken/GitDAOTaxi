@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ats.modello.Autista;
 import ats.modello.Cliente;
+import ats.persistenza.implementazione.DAOCliente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -32,10 +33,10 @@ public class FindAllClientiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Cliente> clienti = null;
-		IDAOUtente daoUtente = new DAOUtente();
+		DAOCliente daoCliente = new DAOCliente();
 		
 		try {
-			clienti = daoUtente.findAllCliente();
+			clienti = daoCliente.findAll();
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}

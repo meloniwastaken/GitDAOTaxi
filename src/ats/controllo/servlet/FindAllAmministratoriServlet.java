@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ats.modello.Amministratore;
+import ats.persistenza.implementazione.DAOAmministratore;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -31,10 +32,10 @@ public class FindAllAmministratoriServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Amministratore> amministratori = null;
-		IDAOUtente daoUtente = new DAOUtente();
+		DAOAmministratore daoAmministratore = new DAOAmministratore();
 		
 		try {
-			amministratori = daoUtente.findAllAmministratore();
+			amministratori = daoAmministratore.findAll();
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}

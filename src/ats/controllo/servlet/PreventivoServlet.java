@@ -15,6 +15,7 @@ import ats.modello.Autista;
 import ats.modello.Cliente;
 import ats.modello.Taxi;
 import ats.modello.Viaggio;
+import ats.persistenza.implementazione.DAOCliente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.implementazione.DAOUtente;
@@ -47,10 +48,10 @@ public class PreventivoServlet extends HttpServlet {
 		Viaggio v = new Viaggio();
 		Cliente c = new Cliente();
 		Taxi t = new Taxi();
-		IDAOUtente daoUtente = new DAOUtente();
+		DAOCliente daoCliente = new DAOCliente();
 		IDAOTaxi daoTaxi= new DAOTaxi();
 		try {
-			c = daoUtente.findClienteById((Long)request.getSession().getAttribute("id"));
+			c = daoCliente.findById((Long)request.getSession().getAttribute("id"));
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
