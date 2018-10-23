@@ -23,22 +23,22 @@ public class DAOUtente implements IDAOUtente {
 		utenti.addAll(this.findAllAutista());
 		return utenti;
 	}
-	
+
 	public List<Cliente> findAllCliente() throws DAOException {
 		List<Cliente> utenti = new ArrayList<Cliente>(0);
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE RUOLO = 3");
 			resultSet = statement.executeQuery();
-			
-			while(resultSet.next()) {
+
+			while (resultSet.next()) {
 				Cliente utente = new Cliente();
-				
+
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -54,30 +54,29 @@ public class DAOUtente implements IDAOUtente {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
 		}
 		return utenti;
 	}
-	
+
 	public List<Amministratore> findAllAmministratore() throws DAOException {
 		List<Amministratore> utenti = new ArrayList<Amministratore>(0);
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE RUOLO = 1");
 			resultSet = statement.executeQuery();
-			
-			while(resultSet.next()) {
+
+			while (resultSet.next()) {
 				Amministratore utente = new Amministratore();
-				
+
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -93,30 +92,30 @@ public class DAOUtente implements IDAOUtente {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
 		}
 		return utenti;
 	}
-	
+
 	public List<Autista> findAllAutista() throws DAOException {
 		List<Autista> utenti = new ArrayList<Autista>(0);
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID");
+			statement = connection
+					.prepareStatement("SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID");
 			resultSet = statement.executeQuery();
-			
-			while(resultSet.next()) {
+
+			while (resultSet.next()) {
 				Autista utente = new Autista();
-				
+
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -133,8 +132,7 @@ public class DAOUtente implements IDAOUtente {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
@@ -144,27 +142,27 @@ public class DAOUtente implements IDAOUtente {
 
 	@Override
 	public Utente findById(Long id) throws DAOException {
-		
+
 		Utente utente = null;
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
-		    statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE ID = ?" );
-		    statement.setLong(1, id);
-		    resultSet = statement.executeQuery();
-		    
-		    if(resultSet.next()) {
+			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE ID = ?");
+			statement.setLong(1, id);
+			resultSet = statement.executeQuery();
+
+			if (resultSet.next()) {
 				Integer ruolo = resultSet.getInt("RUOLO");
-				if(ruolo==1)
+				if (ruolo == 1)
 					utente = new Amministratore();
-				else if (ruolo==2)
+				else if (ruolo == 2)
 					utente = new Autista();
-				else 
+				else
 					utente = new Cliente();
-				
+
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -175,45 +173,43 @@ public class DAOUtente implements IDAOUtente {
 				utente.setEmail(resultSet.getString(8));
 				utente.setUsername(resultSet.getString(9));
 				utente.setPassword(resultSet.getString(10));
-		    
-		    
-		    }
+
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}finally {
-		    DataSource.getInstance().close(resultSet);
+		} finally {
+			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
-	}  
-		
-		
+		}
+
 		return utente;
 	}
 
 	@Override
 	public Utente findByUsernameAndPassword(String username, String password) throws DAOException {
 		Utente utente = null;
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE USERNAME = ? AND PASSWORD = ?");
 			statement.setString(1, username);
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
-			
-			if(resultSet.next()) {
+
+			if (resultSet.next()) {
 				Integer ruolo = resultSet.getInt("RUOLO");
-				if(ruolo==1)
+				if (ruolo == 1)
 					utente = new Amministratore();
-				else if (ruolo==2)
+				else if (ruolo == 2)
 					utente = new Autista();
-				else 
+				else
 					utente = new Cliente();
-				
+
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -228,8 +224,7 @@ public class DAOUtente implements IDAOUtente {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
@@ -241,10 +236,11 @@ public class DAOUtente implements IDAOUtente {
 	public void update(Utente utente) throws DAOException {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("UPDATE UTENTE SET NOME = ?, COGNOME = ?, CODICE_FISCALE = ?, DATA_DI_NASCITA = ?, INDIRIZZO = ?, TELEFONO = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?");
+			statement = connection.prepareStatement(
+					"UPDATE UTENTE SET NOME = ?, COGNOME = ?, CODICE_FISCALE = ?, DATA_DI_NASCITA = ?, INDIRIZZO = ?, TELEFONO = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?");
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getCodiceFiscale());
@@ -255,14 +251,11 @@ public class DAOUtente implements IDAOUtente {
 			statement.setString(8, utente.getUsername());
 			statement.setString(9, utente.getPassword());
 			statement.executeUpdate();
-			
-	
-			
+
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
 		}
@@ -274,28 +267,29 @@ public class DAOUtente implements IDAOUtente {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("INSERT INTO UTENTE VALUES (SEQ_UTENTE.NEXTVAL, ? , ? , ? , TO_DATE(?,'DD-MM-YYYY'), ? , ? , ? , ? , ?, ?)",new String[] {"ID"});
+			statement = connection.prepareStatement(
+					"INSERT INTO UTENTE VALUES (SEQ_UTENTE.NEXTVAL, ? , ? , ? , TO_DATE(?,'DD-MM-YYYY'), ? , ? , ? , ? , ?, ?)",
+					new String[] { "ID" });
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getCodiceFiscale());
 			Integer gg = utente.getDataDiNascita().getDate();
-			Integer mm = utente.getDataDiNascita().getMonth()+1;
-			Integer aaaa = utente.getDataDiNascita().getYear()+1900;
-			
+			Integer mm = utente.getDataDiNascita().getMonth() + 1;
+			Integer aaaa = utente.getDataDiNascita().getYear() + 1900;
+
 			String giorno = gg.toString();
 			String mese = mm.toString();
 			String anno = aaaa.toString();
-			
-			if(gg<10)
-				giorno = "0"+giorno;
-			if(mm<10)
-				mese = "0"+mese;
-				
-				
-			String s = giorno+"-"+mese+"-"+anno;
+
+			if (gg < 10)
+				giorno = "0" + giorno;
+			if (mm < 10)
+				mese = "0" + mese;
+
+			String s = giorno + "-" + mese + "-" + anno;
 			System.out.println(s);
 			statement.setString(4, s);
 			statement.setString(5, utente.getIndirizzo());
@@ -305,44 +299,81 @@ public class DAOUtente implements IDAOUtente {
 			statement.setString(9, utente.getPassword());
 			statement.setInt(10, ruolo);
 			statement.executeUpdate();
-			
+
 			resultSet = statement.getGeneratedKeys();
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				utente.setId(resultSet.getLong(1));
 			}
-			
+
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());	
-		}
-		finally {
+			System.out.println(e.getMessage());
+		} finally {
 			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
 		}
-		
-		
+
 	}
 
 	@Override
 	public void deleteById(Long id) throws DAOException {
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
-		
+
 		try {
-			connection= DataSource.getInstance().getConnection();
+			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("DELETE FROM UTENTE WHERE ID = ?");
 			statement.setLong(1, id);
 			statement.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
 		}
-		
+
+	}
+
+	@Override
+	public Cliente findClienteById(Long id) throws DAOException {
+		Cliente c = null;
+		String sql = "SELECT * FROM UTENTE WHERE RUOLO=3 AND ID=?";
+		System.out.println(sql);
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = connection.prepareStatement(sql);
+
+			statement.setLong(1, id);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				c = new Cliente();
+				c.setId(resultSet.getLong(1));
+				c.setNome(resultSet.getString(2));
+				c.setCognome(resultSet.getString(3));
+				c.setCodiceFiscale(resultSet.getString(4));
+				c.setDataDiNascita(resultSet.getDate(5));
+				c.setIndirizzo(resultSet.getString(6));
+				c.setTelefono(resultSet.getString(7));
+				c.setEmail(resultSet.getString(8));
+				c.setUsername(resultSet.getString(9));
+				c.setPassword(resultSet.getString(10));
+
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(resultSet);
+			instance.close(statement);
+			instance.close(connection);
+		}
+		return c;
+
 	}
 
 }
