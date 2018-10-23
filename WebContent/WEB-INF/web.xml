@@ -42,6 +42,30 @@
     <url-pattern>/findAll</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>FindAllAmministratoriServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.FindAllAmministratoriServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllAmministratoriServlet</servlet-name>
+    <url-pattern>/findAllAmministratori</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FindAllAutistiServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.FindAllAutistiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllAutistiServlet</servlet-name>
+    <url-pattern>/findAllAutisti</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FindAllClientiServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.FindAllClientiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllClientiServlet</servlet-name>
+    <url-pattern>/findAllClienti</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>FindByIdUtenteServlet</servlet-name>
     <servlet-class>ats.controllo.servlet.FindByIdUtenteServlet</servlet-class>
   </servlet>
