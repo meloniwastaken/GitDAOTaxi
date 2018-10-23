@@ -208,5 +208,57 @@ public class DAOTaxi implements IDAOTaxi {
 			instance.close(connection);
 		}
 	}
+	
+	public List<Taxi> findAllDisponibili() throws DAOException {
+		List<Taxi> listaTaxi = new ArrayList<Taxi>();
+		String sql = "SELECT * FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE RUOLO=2 AND DISPONIBILE=1";
+		System.out.println(sql);
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = connection.prepareStatement(sql);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Taxi t = new Taxi();
+				t.setId(resultSet.getLong(1));
+				t.setModello(resultSet.getString(2));
+				t.setMarca(resultSet.getString(3));
+				t.setTarga(resultSet.getString(4));
+				t.setAnnoDiImmatricolazione(resultSet.getInt(5));
+				t.setPosti(resultSet.getInt(6));
+				t.setPrezzoPerKilometro(resultSet.getDouble(7));
+				Integer disponibile = resultSet.getInt(8);
+				if (disponibile == 0)
+					t.setDisponibile(false);
+				else if (disponibile == 1)
+					t.setDisponibile(true);
+
+				Autista a = new Autista();
+				a.setId(resultSet.getLong(9));
+				a.setNome(resultSet.getString(11));
+				a.setCognome(resultSet.getString(12));
+				a.setCodiceFiscale(resultSet.getString(13));
+				a.setDataDiNascita(resultSet.getDate(14));
+				a.setIndirizzo(resultSet.getString(15));
+				a.setEmail(resultSet.getString(16));
+				a.setUsername(resultSet.getString(17));
+				a.setPassword(resultSet.getString(18));
+				t.setAutista(a);
+				listaTaxi.add(t);
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(resultSet);
+			instance.close(statement);
+			instance.close(connection);
+		}
+		return listaTaxi;
+
+	}
 
 }
