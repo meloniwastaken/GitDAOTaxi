@@ -41,6 +41,14 @@
     <servlet-name>FindAllServlet</servlet-name>
     <url-pattern>/findAll</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>FindByIdUtenteServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.FindByIdUtenteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindByIdUtenteServlet</servlet-name>
+    <url-pattern>/findByIdUtente</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>SessionFilter</filter-name>
     <filter-class>ats.controllo.filters.SessionFilter</filter-class>
