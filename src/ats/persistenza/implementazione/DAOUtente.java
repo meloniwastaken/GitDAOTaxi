@@ -187,6 +187,7 @@ public class DAOUtente implements IDAOUtente {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void insert(Utente utente, Integer ruolo) throws DAOException {
 		Connection connection = null;
