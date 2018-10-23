@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="ats.modello.Taxi" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Prenotazione</title>
 </head>
 <body>
-<%List<Taxi> lista = (List<Taxi>)request.getAttribute("lista"); %>
+<%List<Taxi> lista = (List<Taxi>)request.getAttribute("taxi"); %>
 <h1><center>Prenotazione viaggio</center></h1>
-<form method="POST" action="FormPrenotazione">
+<form method="POST" action="Preventivo">
 <table>
 
 	<tbody>

@@ -26,7 +26,7 @@ public class FormPrenotazione extends HttpServlet {
         super();
     }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Taxi> taxi = new ArrayList<Taxi>(0);
 		IDAOTaxi daoTaxi = new DAOTaxi();
 		try {
