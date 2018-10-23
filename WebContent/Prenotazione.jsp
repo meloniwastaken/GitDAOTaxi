@@ -17,8 +17,13 @@
 	<tbody>
 		
 		<tr>
+			<td><label for="data">Data di partenza: </label></td>
 			<td><input type="date" id="data" name="data"> </td>
-			<td><input type="time" id="time" name="time"></td>		
+		</tr>
+		
+		<tr>
+			<td><label for="time">Orario di partenza: </label></td>
+			<td><input type="time" id="time" name="time"></td>	
 		
 		</tr>
 	
