@@ -11,7 +11,7 @@
 <body>
 <%List<Taxi> lista = (List<Taxi>)request.getAttribute("taxi"); %>
 <h1><center>Prenotazione viaggio</center></h1>
-<form method="POST" action="Preventivo">
+<form method="POST" action="PreventivoServlet">
 <table>
 
 	<tbody>
