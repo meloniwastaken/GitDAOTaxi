@@ -87,4 +87,9 @@ public class DAOAutista implements IDAOAutista {
 		}
 		return a;
 	}
+
+	@Override
+	public void update(Autista autista) throws DAOException {
+		
+	}
 }
