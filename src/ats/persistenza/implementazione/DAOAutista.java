@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ats.modello.Autista;
-import ats.modello.Cliente;
+import ats.persistenza.interfacce.IDAOAutista;
 
-public class DAOAutista {
+public class DAOAutista implements IDAOAutista {
 	public List<Autista> findAll() throws DAOException {
 		List<Autista> utenti = new ArrayList<Autista>(0);
 

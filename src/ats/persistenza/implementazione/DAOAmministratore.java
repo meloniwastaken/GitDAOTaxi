@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ats.modello.Amministratore;
-import ats.modello.Cliente;
+import ats.persistenza.interfacce.IDAOAmministratore;
 
-public class DAOAmministratore {
+public class DAOAmministratore implements IDAOAmministratore{
 	public List<Amministratore> findAll() throws DAOException {
 		List<Amministratore> utenti = new ArrayList<Amministratore>(0);
 

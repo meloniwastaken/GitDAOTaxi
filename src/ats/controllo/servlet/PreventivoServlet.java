@@ -11,18 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ats.modello.Autista;
 import ats.modello.Cliente;
 import ats.modello.Taxi;
 import ats.modello.Viaggio;
 import ats.persistenza.implementazione.DAOCliente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
-import ats.persistenza.implementazione.DAOUtente;
-import ats.persistenza.implementazione.DAOViaggio;
+import ats.persistenza.interfacce.IDAOCliente;
 import ats.persistenza.interfacce.IDAOTaxi;
-import ats.persistenza.interfacce.IDAOUtente;
-import ats.persistenza.interfacce.IDAOViaggio;
 
 /**
  * Servlet implementation class PreventivoServlet
@@ -48,7 +44,7 @@ public class PreventivoServlet extends HttpServlet {
 		Viaggio v = new Viaggio();
 		Cliente c = new Cliente();
 		Taxi t = new Taxi();
-		DAOCliente daoCliente = new DAOCliente();
+		IDAOCliente daoCliente = new DAOCliente();
 		IDAOTaxi daoTaxi= new DAOTaxi();
 		try {
 			c = daoCliente.findById((Long)request.getSession().getAttribute("id"));

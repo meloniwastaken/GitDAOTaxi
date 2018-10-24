@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ats.modello.Cliente;
+import ats.persistenza.interfacce.IDAOCliente;
 
-public class DAOCliente {
+public class DAOCliente implements IDAOCliente {
 	
 	public List<Cliente> findAll() throws DAOException {
 		List<Cliente> utenti = new ArrayList<Cliente>(0);

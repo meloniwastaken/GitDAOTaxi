@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import ats.modello.Autista;
 import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
-import ats.persistenza.implementazione.DAOUtente;
-import ats.persistenza.interfacce.IDAOUtente;
+import ats.persistenza.interfacce.IDAOAutista;
 
 
 public class FindAllAutistiServlet extends HttpServlet {
@@ -32,7 +30,7 @@ public class FindAllAutistiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Autista> autisti = null;
-		DAOAutista daoAutista = new DAOAutista();
+		IDAOAutista daoAutista = new DAOAutista();
 		
 		try {
 			autisti = daoAutista.findAll();

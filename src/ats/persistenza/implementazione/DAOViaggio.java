@@ -220,6 +220,7 @@ public class DAOViaggio implements IDAOViaggio{
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void insert(Viaggio v) throws DAOException {
 		Connection connection = null;

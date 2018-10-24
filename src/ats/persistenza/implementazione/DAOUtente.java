@@ -115,6 +115,7 @@ public class DAOUtente implements IDAOUtente {
 		return utente;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void update(Utente utente) throws DAOException {
 		Connection connection = null;

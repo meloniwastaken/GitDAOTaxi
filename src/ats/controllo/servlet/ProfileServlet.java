@@ -10,13 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import ats.modello.Amministratore;
 import ats.modello.Autista;
 import ats.modello.Cliente;
-import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOAmministratore;
 import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOCliente;
 import ats.persistenza.implementazione.DAOException;
-import ats.persistenza.implementazione.DAOUtente;
-import ats.persistenza.interfacce.IDAOUtente;
 
 /**
  * Servlet implementation class ProfileServlet

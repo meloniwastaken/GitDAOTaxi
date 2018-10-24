@@ -15,9 +15,6 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-/**
- * Servlet implementation class FormPrenotazione
- */
 @WebServlet("/FormPrenotazione")
 public class FormPrenotazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
