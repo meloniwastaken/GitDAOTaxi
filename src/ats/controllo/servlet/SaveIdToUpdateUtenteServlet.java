@@ -32,7 +32,7 @@ public class SaveIdToUpdateUtenteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("userId"));
+		Long id = Long.parseLong(request.getParameter("id"));
 		Utente utente = null;
 		IDAOUtente daoUtente = new DAOUtente();
 		
