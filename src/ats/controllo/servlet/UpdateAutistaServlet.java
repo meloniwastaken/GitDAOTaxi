@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import ats.modello.Amministratore;
 import ats.modello.Autista;
 import ats.modello.Cliente;
+import ats.modello.Taxi;
 import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
+import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOAutista;
+import ats.persistenza.interfacce.IDAOTaxi;
 import ats.persistenza.interfacce.IDAOUtente;
 
 @WebServlet("/updateAutista")
@@ -59,6 +62,14 @@ public class UpdateAutistaServlet extends HttpServlet {
 			autista.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			autista.setId(Long.parseLong(request.getParameter("id")));
 			daoAutista.update(autista);
+			
+			IDAOTaxi daoTaxi = new DAOTaxi();
+			Taxi t = new Taxi();
+			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
+			t.setAutista(autista);
+			daoTaxi.update(t);
+			
+			
 		} catch (NumberFormatException e) {
 			System.out.println(e.getMessage());
 		} catch (DAOException e) {
