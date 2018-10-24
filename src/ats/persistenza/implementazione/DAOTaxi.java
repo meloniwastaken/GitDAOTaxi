@@ -160,7 +160,7 @@ public class DAOTaxi implements IDAOTaxi {
 
 	@Override
 	public void update(Taxi t) throws DAOException {
-		String sql = "UPDATE TAXI SET MODELLO=?, MARCA=?, TARGA=?, anno_immatricolazione=?, POSTI=?, prezzo_km=?, DISPONIBILE=?, AUTISTA=? WHERE ID=?";
+		String sql = "UPDATE TAXI SET MODELLO=?, MARCA=?, TARGA=?, ANNO_IMMATRICOLAZIONE=?, POSTI=?, PREZZO_PER_KILOMETRO=?, DISPONIBILE=?, AUTISTA=? WHERE ID=?";
 		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();

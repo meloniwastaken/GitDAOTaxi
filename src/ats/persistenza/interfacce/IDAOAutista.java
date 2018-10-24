@@ -13,4 +13,6 @@ public interface IDAOAutista {
 	public abstract void update(Autista autista) throws DAOException;
 	
 	public abstract void insert(Autista autista) throws DAOException;
+	
+	public abstract void delete(Long id) throws DAOException;
 }

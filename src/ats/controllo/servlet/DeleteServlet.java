@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ats.modello.Autista;
+import ats.modello.Utente;
+import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
+import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOUtente;
 
 /**
@@ -31,11 +35,16 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
-		System.out.println(id);
-		
 		IDAOUtente daoUtente = new DAOUtente();
 		try {
-			daoUtente.deleteById(id);
+			Utente u = daoUtente.findById(id);
+			if(u instanceof Autista) {
+				IDAOAutista daoAutista = new DAOAutista();
+				daoAutista.delete(id);
+			}
+			else {
+				daoUtente.deleteById(id);
+			}
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
