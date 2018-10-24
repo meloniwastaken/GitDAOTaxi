@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registrazione utente</title>
+<title>Registrazione Autista</title>
 </head>
 <body>
-<h1><center>Registrazione Utente</center></h1>
+<h1><center>Registrazione Autista</center></h1>
 
-<form method="POST" action="register">
+<form method="POST" action="RegistrazioneAutistaServlet">
 <table>
 <tbody>
 		<tr>
@@ -55,6 +55,14 @@
 			<td><input type="text" id="email" name="email"/></td>
 			
 		</tr>
+		
+		<tr>
+			<td>
+			<label for="stipendio">Stipendio: </label></td>
+			<td><input type="text" id="stipendio" name="stipendio"/></td>
+			
+		</tr>
+		
 		<tr>
 			<td>
 			<label for="username">Username: </label></td>
@@ -84,7 +92,6 @@
 <form action="index.html">
 <input type="submit" value="HOME"/>
 </form>
-
 
 </body>
 </html>
