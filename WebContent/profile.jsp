@@ -39,6 +39,10 @@
 			<tr><th>Stipendio:</th><td><%=stipendio%> €</td>
 		<%} %>
 	</table>
+	<form method="POST" action="visualizzaViaggi">
+		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
+		<input type="submit" value="Visualizza Viaggi"/>
+	</form>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==1) {
 		//admin
 	}%>
@@ -49,6 +53,10 @@
 		<form method="POST" action="saveIdToUpdateUtente">
 			<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 			<input type="submit" value="Modifica Account"/>
+		</form>
+		<form method="POST" action="FormPrenotazione">
+			<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
+			<input type="submit" value="Prenota viaggio"/>
 		</form>
 	<% }%>
 	<a href="logout">Logout</a>
