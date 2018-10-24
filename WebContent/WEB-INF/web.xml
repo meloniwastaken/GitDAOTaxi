@@ -89,6 +89,14 @@
     <servlet-name>FindByIdUtenteServlet</servlet-name>
     <url-pattern>/findByIdUtente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>DeleteUtenteByIdServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.DeleteUtenteByIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUtenteByIdServlet</servlet-name>
+    <url-pattern>/deleteByIdUtente</url-pattern>
+  </servlet-mapping>
   <filter>
     <filter-name>SessionFilter</filter-name>
     <filter-class>ats.controllo.filters.SessionFilter</filter-class>

@@ -121,7 +121,7 @@ public class DAOTaxi implements IDAOTaxi {
 
 	@Override
 	public void insert(Taxi t) throws DAOException {
-		String sql = "INSERT INTO TAXI VALUES (SEQ_TAXI.NEXTVAL,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO TAXI VALUES (SEQ_TAXI.NEXTVAL,?,?,?,?,?,?,?,NULL)";
 		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
@@ -140,6 +140,7 @@ public class DAOTaxi implements IDAOTaxi {
 				statement.setInt(7, 1);
 			else
 				statement.setInt(7, 0);
+						
 			statement.executeUpdate();
 			resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
