@@ -58,9 +58,7 @@ public class UpdateAutistaForm extends HttpServlet {
 		}
 		
 		
-		
 		request.setAttribute("listaTaxi", listaTaxi);
-		
 		request.getRequestDispatcher("updateAutistaForm.jsp").forward(request, response);
 	}
 

@@ -16,7 +16,7 @@ public class DAOTaxi implements IDAOTaxi {
 	@Override
 	public List<Taxi> findAll() throws DAOException {
 		List<Taxi> listaTaxi = new ArrayList<Taxi>();
-		String sql = "SELECT * FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE RUOLO=2";
+		String sql = "SELECT * FROM TAXI LEFT JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID";
 		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
@@ -39,19 +39,24 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setDisponibile(false);
 				else if (disponibile == 1)
 					t.setDisponibile(true);
-
-				Autista a = new Autista();
-				a.setId(resultSet.getLong(9));
-				a.setNome(resultSet.getString(11));
-				a.setCognome(resultSet.getString(12));
-				a.setCodiceFiscale(resultSet.getString(13));
-				a.setDataDiNascita(resultSet.getDate(14));
-				a.setIndirizzo(resultSet.getString(15));
-				a.setTelefono(resultSet.getString(16));
-				a.setEmail(resultSet.getString(17));
-				a.setUsername(resultSet.getString(18));
-				a.setPassword(resultSet.getString(19));
-				t.setAutista(a);
+				
+				Long idAutista = resultSet.getLong(9);
+				if(idAutista!=0) {
+					Autista a = new Autista();
+					a.setId(resultSet.getLong(9));
+					a.setNome(resultSet.getString(11));
+					a.setCognome(resultSet.getString(12));
+					a.setCodiceFiscale(resultSet.getString(13));
+					a.setDataDiNascita(resultSet.getDate(14));
+					a.setIndirizzo(resultSet.getString(15));
+					a.setTelefono(resultSet.getString(16));
+					a.setEmail(resultSet.getString(17));
+					a.setUsername(resultSet.getString(18));
+					a.setPassword(resultSet.getString(19));
+					t.setAutista(a);
+				}
+				else
+					t.setAutista(null);
 				listaTaxi.add(t);
 			}
 
