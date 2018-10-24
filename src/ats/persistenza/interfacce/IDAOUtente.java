@@ -2,9 +2,7 @@ package ats.persistenza.interfacce;
 
 import java.util.List;
 
-import ats.modello.Amministratore;
-import ats.modello.Autista;
-import ats.modello.Cliente;
+
 import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOException;
 
