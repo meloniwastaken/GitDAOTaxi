@@ -9,6 +9,7 @@ import java.util.List;
 
 import ats.modello.Autista;
 import ats.persistenza.interfacce.IDAOAutista;
+import ats.persistenza.interfacce.IDAOUtente;
 
 public class DAOAutista implements IDAOAutista {
 	public List<Autista> findAll() throws DAOException {
@@ -90,6 +91,22 @@ public class DAOAutista implements IDAOAutista {
 
 	@Override
 	public void update(Autista autista) throws DAOException {
+		IDAOUtente daoUtente = new DAOUtente();
+		daoUtente.update(autista);
 		
+		Connection connection = null;
+		PreparedStatement statement = null;
+		connection = DataSource.getInstance().getConnection();
+		try {
+			statement = connection.prepareStatement("UPDATE STIPENDIO SET STIPENDIO = ? WHERE ID = ?");
+			statement.setDouble(1, autista.getStipendio());
+			statement.setLong(2, autista.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			DataSource.getInstance().close(statement);
+			DataSource.getInstance().close(connection);
+		}
 	}
 }
