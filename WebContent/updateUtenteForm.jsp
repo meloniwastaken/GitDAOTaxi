@@ -34,6 +34,10 @@
   	<input type="hidden" name="id" value="<%=utente.getId()%>"><br>
   	<br>
   	<input type="submit" value="Conferma">
-</form>
+	</form>
+	<form method="POST" action="delete">
+		<input type="hidden" name="id" value="<%=utente.getId()%>"/>
+		<input type="submit" value="Cancella account"/>
+	</form>
 </body>
 </html>

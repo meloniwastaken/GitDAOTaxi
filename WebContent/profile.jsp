@@ -46,12 +46,10 @@
 		//autista
 	}%>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==3) {%>
-		<a href="ConfirmDeleteServlet">Cancella Account</a> <br>
 		<form method="POST" action="saveIdToUpdateUtente">
 			<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 			<input type="submit" value="Modifica Account"/>
 		</form>
-		<a href="UpdateUtenteServlet">Modifica Account</a>
 	<% }%>
 	<a href="logout">Logout</a>
 </body>

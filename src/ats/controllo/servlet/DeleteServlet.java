@@ -35,6 +35,8 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
+		if(id==(Long) request.getSession().getAttribute("id"))
+			request.getSession().invalidate();
 		IDAOUtente daoUtente = new DAOUtente();
 		try {
 			Utente u = daoUtente.findById(id);
