@@ -1,16 +1,21 @@
 package ats.controllo.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import ats.modello.Taxi;
 import ats.modello.Autista;
 import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
+import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOAutista;
+import ats.persistenza.interfacce.IDAOTaxi;
 
 /**
  * Servlet implementation class UpdateUtenteServlet
@@ -42,6 +47,20 @@ public class UpdateAutistaForm extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		request.setAttribute("autista", autista);
+		
+		
+		IDAOTaxi daoTaxi = new DAOTaxi();
+		List<Taxi> listaTaxi= new ArrayList<Taxi>();
+		try {
+			listaTaxi=daoTaxi.findAll();
+		} catch (DAOException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		request.setAttribute("listaTaxi", listaTaxi);
+		
 		request.getRequestDispatcher("updateAutistaForm.jsp").forward(request, response);
 	}
 
