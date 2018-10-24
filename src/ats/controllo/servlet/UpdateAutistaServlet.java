@@ -45,7 +45,6 @@ public class UpdateAutistaServlet extends HttpServlet {
 		IDAOAutista daoAutista = new DAOAutista();
 		
 		try {
-			Autista vecchioAutista = daoAutista.findById(Long.parseLong(request.getParameter("id")));
 			autista.setNome(request.getParameter("nome"));
 			autista.setCognome(request.getParameter("cognome"));
 			autista.setCodiceFiscale(request.getParameter("codiceFiscale"));

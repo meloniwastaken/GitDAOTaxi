@@ -40,8 +40,7 @@ public class DAOTaxi implements IDAOTaxi {
 				else if (disponibile == 1)
 					t.setDisponibile(true);
 				
-				Long idAutista = resultSet.getLong(9);
-				if(idAutista!=0) {
+				if(resultSet.getLong(9)!=0) {
 					Autista a = new Autista();
 					a.setId(resultSet.getLong(9));
 					a.setNome(resultSet.getString(11));
@@ -75,7 +74,7 @@ public class DAOTaxi implements IDAOTaxi {
 	@Override
 	public Taxi findById(Long id) throws DAOException {
 		Taxi t = null;
-		String sql = "SELECT * FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE RUOLO=2 AND TAXI.ID=?";
+		String sql = "SELECT * FROM TAXI LEFT JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE TAXI.ID=?";
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -100,17 +99,21 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setDisponibile(true);
 
 				Autista a = new Autista();
-				a.setId(resultSet.getLong(9));
-				a.setNome(resultSet.getString(11));
-				a.setCognome(resultSet.getString(12));
-				a.setCodiceFiscale(resultSet.getString(13));
-				a.setDataDiNascita(resultSet.getDate(14));
-				a.setIndirizzo(resultSet.getString(15));
-				a.setTelefono(resultSet.getString(16));
-				a.setEmail(resultSet.getString(17));
-				a.setUsername(resultSet.getString(18));
-				a.setPassword(resultSet.getString(19));
-				t.setAutista(a);
+				if(resultSet.getLong(9)!=0) {
+					a.setId(resultSet.getLong(9));
+					a.setNome(resultSet.getString(11));
+					a.setCognome(resultSet.getString(12));
+					a.setCodiceFiscale(resultSet.getString(13));
+					a.setDataDiNascita(resultSet.getDate(14));
+					a.setIndirizzo(resultSet.getString(15));
+					a.setTelefono(resultSet.getString(16));
+					a.setEmail(resultSet.getString(17));
+					a.setUsername(resultSet.getString(18));
+					a.setPassword(resultSet.getString(19));
+					t.setAutista(a);
+				}
+				else
+					t.setAutista(null);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
