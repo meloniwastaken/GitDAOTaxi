@@ -44,6 +44,12 @@
   				<td style="text-align:center;"><%=autista.getPassword()%></td>
   				<td style="text-align:center;">Autista</td>
   				<td style="text-align:center;"><%=autista.getStipendio()%></td>
+  				<td style="text-align:center;">
+  					<form method="POST" action="updateAutistaForm">
+  						<input type="hidden" name="id" value="<%=autista.getId()%>">
+  						<input type="submit" value="Modifica">
+  					</form>
+  				</td>
   			</tr>
   		<%}%>
 </table>

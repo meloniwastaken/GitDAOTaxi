@@ -33,8 +33,6 @@
   	<br>
   	<input type="hidden" name="id" value="<%=utente.getId()%>"><br>
   	<br>
-  	<input type="hidden" name="ruolo" value="<%=utente%>"><br>
-  	<br>
   	<input type="submit" value="Conferma">
 </form>
 </body>
