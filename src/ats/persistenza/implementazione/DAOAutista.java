@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import ats.modello.Autista;
+import ats.modello.Taxi;
 import ats.persistenza.interfacce.IDAOAutista;
+import ats.persistenza.interfacce.IDAOTaxi;
 import ats.persistenza.interfacce.IDAOUtente;
 
 public class DAOAutista implements IDAOAutista {
@@ -131,5 +133,32 @@ public class DAOAutista implements IDAOAutista {
 			instance.close(connection);
 		}
 
+	}
+
+	@Override
+	public void delete(Long id) throws DAOException {
+		IDAOUtente daoUtente = new DAOUtente();
+		IDAOTaxi daoTaxi = new DAOTaxi();
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = DataSource.getInstance().getConnection();
+			statement = connection.prepareStatement("SELECT TAXI.ID FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA = UTENTE.ID WHERE UTENTE.ID = ?");
+			statement.setLong(1, id);
+			resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				Long taxiId = resultSet.getLong(1);
+				Taxi t = daoTaxi.findById(taxiId);
+				t.setDisponibile(false);
+				daoTaxi.update(t);
+				daoUtente.deleteById(id);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		daoUtente.deleteById(id);
+		
+		
 	}
 }
