@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import ats.modello.Autista;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -51,7 +50,7 @@ public class DAOAutista implements IDAOAutista {
 		}
 		return utenti;
 	}
-	
+
 	public Autista findById(Long id) throws DAOException {
 		Autista a = null;
 		String sql = "SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID WHERE UTENTE.ID = ?";
@@ -93,7 +92,7 @@ public class DAOAutista implements IDAOAutista {
 	public void update(Autista autista) throws DAOException {
 		IDAOUtente daoUtente = new DAOUtente();
 		daoUtente.update(autista);
-		
+
 		Connection connection = null;
 		PreparedStatement statement = null;
 		connection = DataSource.getInstance().getConnection();
@@ -108,5 +107,29 @@ public class DAOAutista implements IDAOAutista {
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);
 		}
+	}
+
+	@Override
+	public void insert(Autista autista) throws DAOException {
+		IDAOUtente daoUtente = new DAOUtente();
+		daoUtente.insert(autista, 2);
+		String sql = "INSERT INTO STIPENDIO VALUES (?,?)";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement=null;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, autista.getId());
+			statement.setDouble(2, autista.getStipendio());
+			statement.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(statement);
+			instance.close(connection);
+		}
+
 	}
 }
