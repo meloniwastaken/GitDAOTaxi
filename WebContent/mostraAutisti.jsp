@@ -50,6 +50,12 @@
   						<input type="submit" value="Modifica">
   					</form>
   				</td>
+  				<td style="text-align:center;">
+  					<form method="POST" action="delete">
+  						<input type="hidden" name="id" value="<%=autista.getId()%>">
+  						<input type="submit" value="Cancella">
+  					</form>
+  				</td>
   			</tr>
   		<%}%>
 </table>

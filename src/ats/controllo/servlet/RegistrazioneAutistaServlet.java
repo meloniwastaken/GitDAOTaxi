@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ats.modello.Autista;
+import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
+import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOUtente;
 
 /**
@@ -42,7 +44,7 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IDAOUtente idaoUtente = new DAOUtente();
+		IDAOAutista daoAutista = new DAOAutista();
 		Autista a = new Autista();
 		
 		a.setNome(request.getParameter("nome"));
@@ -61,7 +63,7 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		a.setPassword(request.getParameter("password"));
 		
 		try {
-			idaoUtente.insert(a,2);
+			daoAutista.insert(a);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}

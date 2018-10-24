@@ -11,33 +11,35 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
 
-
-public class DeleteUtenteByIdServlet extends HttpServlet {
+/**
+ * Servlet implementation class DeleteAutistaServlet
+ */
+@WebServlet("/delete")
+public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUtenteByIdServlet() {
+    public DeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("userId"));
-		IDAOUtente daoUtente = new DAOUtente();
+		Long id = Long.parseLong(request.getParameter("id"));
+		System.out.println(id);
 		
+		IDAOUtente daoUtente = new DAOUtente();
 		try {
 			daoUtente.deleteById(id);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		response.sendRedirect("findAll");
+		response.sendRedirect("index.html");
 	}
 
 }

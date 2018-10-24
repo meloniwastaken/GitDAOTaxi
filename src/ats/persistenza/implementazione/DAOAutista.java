@@ -117,12 +117,12 @@ public class DAOAutista implements IDAOAutista {
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement=null;
+		System.out.println(autista.getId());
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, autista.getId());
 			statement.setDouble(2, autista.getStipendio());
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
