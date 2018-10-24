@@ -124,7 +124,7 @@ public class DAOUtente implements IDAOUtente {
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement(
-					"UPDATE UTENTE SET NOME = ?, COGNOME = ?, CODICE_FISCALE = ?, DATA_DI_NASCITA = ?, INDIRIZZO = ?, TELEFONO = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?");
+					"UPDATE UTENTE SET NOME = ?, COGNOME = ?, CODICE_FISCALE = ?, DATA_DI_NASCITA = TO_DATE(?,'DD-MM-YYYY'), INDIRIZZO = ?, TELEFONO = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?");
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getCodiceFiscale());
@@ -153,7 +153,6 @@ public class DAOUtente implements IDAOUtente {
 			statement.executeUpdate();
 
 		} catch (SQLException e) {
-
 			System.out.println(e.getMessage());
 		} finally {
 			DataSource.getInstance().close(statement);

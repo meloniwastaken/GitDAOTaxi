@@ -66,6 +66,22 @@
     <url-pattern>/findAllClienti</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>SaveIdToUpdateUtenteServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.SaveIdToUpdateUtenteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveIdToUpdateUtenteServlet</servlet-name>
+    <url-pattern>/saveIdToUpdateUtente</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UpdateUtenteServlet</servlet-name>
+    <servlet-class>ats.controllo.servlet.UpdateUtenteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUtenteServlet</servlet-name>
+    <url-pattern>/updateUtente</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>FindByIdUtenteServlet</servlet-name>
     <servlet-class>ats.controllo.servlet.FindByIdUtenteServlet</servlet-class>
   </servlet>
