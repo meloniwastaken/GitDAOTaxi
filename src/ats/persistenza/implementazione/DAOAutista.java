@@ -155,14 +155,6 @@ public class DAOAutista implements IDAOAutista {
 				t.setAutista(null);
 				daoTaxi.update(t);
 			}
-			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("DELETE FROM STIPENDIO WHERE ID = ?");
-			statement.setLong(1, id);
-			statement.executeUpdate();
-			
-			Utente u = daoUtente.findById(id);
-			u.setUsername(null);
-			daoUtente.update(u);
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

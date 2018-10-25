@@ -45,15 +45,21 @@
   				<td style="text-align:center;">Autista</td>
   				<td style="text-align:center;"><%=autista.getStipendio()%></td>
   				<td style="text-align:center;">
-  					<form method="POST" action="updateAutistaForm">
+  					<form method="POST" action="/GitDAOTaxi/updateAutistaForm">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
   						<input type="submit" value="Modifica">
   					</form>
   				</td>
   				<td style="text-align:center;">
-  					<form method="POST" action="delete">
+  					<form method="POST" action="/GitDAOTaxi/delete">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
   						<input type="submit" value="Cancella">
+  					</form>
+  				</td>
+  				<td style="text-align:center;">
+  					<form method="POST" action="statistics">
+  						<input type="hidden" name="id" value="<%=autista.getId()%>">
+  						<input type="submit" value="Statistiche">
   					</form>
   				</td>
   			</tr>

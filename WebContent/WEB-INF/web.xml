@@ -50,14 +50,6 @@
     <url-pattern>/findAllAmministratori</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>FindAllAutistiServlet</servlet-name>
-    <servlet-class>ats.controllo.servlet.FindAllAutistiServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FindAllAutistiServlet</servlet-name>
-    <url-pattern>/findAllAutisti</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>SaveIdToUpdateUtenteServlet</servlet-name>
     <servlet-class>ats.controllo.servlet.SaveIdToUpdateUtenteServlet</servlet-class>
   </servlet>
