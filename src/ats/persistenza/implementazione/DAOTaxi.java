@@ -186,7 +186,10 @@ public class DAOTaxi implements IDAOTaxi {
 				statement.setInt(7, 1);
 			else
 				statement.setInt(7, 0);
-			statement.setLong(8, t.getAutista().getId()); //FK autista
+			if(t.getAutista()==null)
+				statement.setNull(8, 0);
+			else
+				statement.setLong(8, t.getAutista().getId()); //FK autista
 			statement.setLong(9, t.getId());
 			statement.executeUpdate();
 
