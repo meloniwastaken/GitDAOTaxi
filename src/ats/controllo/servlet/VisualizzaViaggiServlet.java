@@ -34,11 +34,8 @@ public class VisualizzaViaggiServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IDAOUtente daoUtente = new DAOUtente();
 		IDAOViaggio daoViaggio = new DAOViaggio();
 		Utente u = null;
@@ -56,7 +53,12 @@ public class VisualizzaViaggiServlet extends HttpServlet {
 		}
 		request.setAttribute("viaggi", listaViaggi);
 		request.getRequestDispatcher("viaggi.jsp").forward(request, response);
-			
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
+	}
 }

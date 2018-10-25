@@ -27,6 +27,7 @@
 				<th>Prezzo</th>
 				<th>Stato</th>
 				<th>Feedback</th>
+				<%if((Integer) request.getSession().getAttribute("ruolo")==2) {%> <th>Cambia stato</th><%}%>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,8 +41,28 @@
 				<td><%=v.getData()%></td>
 				<td><%=v.getKilometri()%></td>
 				<td><%=v.getPrezzo()%></td>
-				<td><%if(v.getStato()==1) {%>In attesa<%} else if(v.getStato()==2){%>In corso<%} else {%>Completato<%}%></td>
-				<td><%=v.getFeedback()%></td>
+				<%if(v.getStato()==1) {%><td>In attesa</td><%} else if(v.getStato()==2){%><td>In corso</td><%} else {%><td>Completato</td><%}%>
+				<td><%if(v.getFeedback()==null && v.getStato()==3 && (Integer)request.getSession().getAttribute("ruolo")==3) {%>
+						<form method="POST" action="cliente/lasciaFeedback">
+							<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
+							<select name="feedback">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
+							<input type="submit" value="Lascia Feedback"/>
+						</form>
+				<%} else if(v.getFeedback()!=null && v.getStato()==3) {%>
+					<%=v.getFeedback()%>
+				<%}%></td>
+				<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=3) {%> <td>
+					<form action="autista/avanzaStatoViaggio" method="POST">
+						<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
+						<input type="submit" value="Avanza Stato">
+					</form>
+					</td><%}%>
 			</tr>
 		<%} %>
 		</tbody>

@@ -31,7 +31,7 @@ public class DAOViaggio implements IDAOViaggio{
 		
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM VIAGGIO LEFT JOIN UTENTE AUTISTA ON VIAGGIO.AUTISTA = AUTISTA.ID LEFT JOIN TAXI ON VIAGGIO.TAXI = TAXI.ID LEFT JOIN UTENTE CLIENTE ON VIAGGIO.CLIENTE = CLIENTE.ID");
+			statement = connection.prepareStatement("SELECT * FROM VIAGGIO LEFT JOIN UTENTE AUTISTA ON VIAGGIO.AUTISTA = AUTISTA.ID LEFT JOIN TAXI ON VIAGGIO.TAXI = TAXI.ID LEFT JOIN UTENTE CLIENTE ON VIAGGIO.CLIENTE = CLIENTE.ID ORDER BY STATO");
 			resultSet = statement.executeQuery();
 			
 			while(resultSet.next()) {
@@ -208,6 +208,8 @@ public class DAOViaggio implements IDAOViaggio{
 			statement.setInt(9, v.getStato());
 			if(v.getFeedback()!=null)
 				statement.setInt(10, v.getFeedback());
+			else
+				statement.setNull(10, 0);
 			statement.setLong(11, v.getId());
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -318,7 +320,7 @@ public class DAOViaggio implements IDAOViaggio{
 		
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM VIAGGIO LEFT JOIN UTENTE AUTISTA ON VIAGGIO.AUTISTA = AUTISTA.ID LEFT JOIN TAXI ON VIAGGIO.TAXI = TAXI.ID LEFT JOIN UTENTE CLIENTE ON VIAGGIO.CLIENTE = CLIENTE.ID WHERE CLIENTE.ID = ?");
+			statement = connection.prepareStatement("SELECT * FROM VIAGGIO LEFT JOIN UTENTE AUTISTA ON VIAGGIO.AUTISTA = AUTISTA.ID LEFT JOIN TAXI ON VIAGGIO.TAXI = TAXI.ID LEFT JOIN UTENTE CLIENTE ON VIAGGIO.CLIENTE = CLIENTE.ID WHERE CLIENTE.ID = ? ORDER BY STATO");
 			statement.setLong(1, id);
 			resultSet = statement.executeQuery();
 			
@@ -407,7 +409,7 @@ public class DAOViaggio implements IDAOViaggio{
 		
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM VIAGGIO LEFT JOIN UTENTE AUTISTA ON VIAGGIO.AUTISTA = AUTISTA.ID LEFT JOIN TAXI ON VIAGGIO.TAXI = TAXI.ID LEFT JOIN UTENTE CLIENTE ON VIAGGIO.CLIENTE = CLIENTE.ID WHERE AUTISTA.ID = ?");
+			statement = connection.prepareStatement("SELECT * FROM VIAGGIO LEFT JOIN UTENTE AUTISTA ON VIAGGIO.AUTISTA = AUTISTA.ID LEFT JOIN TAXI ON VIAGGIO.TAXI = TAXI.ID LEFT JOIN UTENTE CLIENTE ON VIAGGIO.CLIENTE = CLIENTE.ID WHERE AUTISTA.ID = ? ORDER BY STATO");
 			statement.setLong(1, id);
 			resultSet = statement.executeQuery();
 			
