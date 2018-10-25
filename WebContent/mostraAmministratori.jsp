@@ -44,6 +44,18 @@
   				<td style="text-align:center;"><%=amministratore.getUsername()%></td>
   				<td style="text-align:center;"><%=amministratore.getPassword()%></td>
   				<td style="text-align:center;">Amministratore</td>
+  				<td>
+  				<form method="POST" action="update">
+  				<input type="hidden" id="id" name="id" value="<%=amministratore.getId()%>">
+  				<input type="submit" value="MODIFICA">
+  				</form>
+  				</td>
+  				<td>
+  				<form method="POST" action="delete">
+  				<input type="hidden" id="id" name="id" value="<%=amministratore.getId()%>">
+  				<input type="submit" value="CANCELLA">
+  				</form>
+  				</td>
   			</tr>
   		<%}%>
 </table>
