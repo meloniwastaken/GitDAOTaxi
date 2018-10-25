@@ -45,7 +45,7 @@
   				<td style="text-align:center;"><%=amministratore.getPassword()%></td>
   				<td style="text-align:center;">Amministratore</td>
   				<td>
-  				<form method="POST" action="update">
+  				<form method="POST" action="/GitDAOTaxi/formUpdate">
   				<input type="hidden" id="id" name="id" value="<%=amministratore.getId()%>">
   				<input type="submit" value="MODIFICA">
   				</form>
