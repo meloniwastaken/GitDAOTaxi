@@ -40,17 +40,20 @@ public class DeleteServlet extends HttpServlet {
 		IDAOUtente daoUtente = new DAOUtente();
 		try {
 			Utente u = daoUtente.findById(id);
+			u.setUsername(null);
+			u.setPassword(null);
+			daoUtente.update(u);
 			if(u instanceof Autista) {
 				IDAOAutista daoAutista = new DAOAutista();
 				daoAutista.delete(id);
 			}
-			else {
-				daoUtente.deleteById(id);
-			}
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("index.html");
+		if((Integer) request.getSession().getAttribute("ruolo")==1)
+			response.sendRedirect("/GitDAOTaxi/admin/findAllClienti");
+		else
+			response.sendRedirect("index.html");
 	}
 
 }

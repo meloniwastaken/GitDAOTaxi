@@ -11,7 +11,7 @@
 	<h1>Modifica Utente</h1>
 	<% Utente utente = (Utente)request.getAttribute("utente"); %>
 	
-	<form method="POST" action="updateUtente">
+	<form method="POST" action="update">
   	<br>
   	Nome <input type="text" name="nome" value="<%=utente.getNome()%>"><br>
   	<br>

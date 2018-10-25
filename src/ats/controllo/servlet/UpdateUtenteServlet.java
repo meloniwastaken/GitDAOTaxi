@@ -18,7 +18,7 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
 
-
+@WebServlet("/update")
 public class UpdateUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -70,7 +70,10 @@ public class UpdateUtenteServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		response.sendRedirect("index.html");
+		if((Integer) request.getSession().getAttribute("ruolo")==1)
+			response.sendRedirect("/GitDAOTaxi/admin/findAllClienti");
+		else
+			response.sendRedirect("index.html");
 	}
 
 }

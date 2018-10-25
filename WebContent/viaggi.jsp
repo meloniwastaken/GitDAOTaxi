@@ -28,6 +28,7 @@
 				<th>Stato</th>
 				<th>Feedback</th>
 				<%if((Integer) request.getSession().getAttribute("ruolo")==2) {%> <th>Cambia stato</th><%}%>
+				<%if((Integer) request.getSession().getAttribute("ruolo")==1) {%> <th>Note</th><%}%>
 			</tr>
 		</thead>
 		<tbody>
@@ -57,12 +58,18 @@
 				<%} else if(v.getFeedback()!=null && v.getStato()==3) {%>
 					<%=v.getFeedback()%>
 				<%}%></td>
-				<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=3) {%> <td>
+
+				<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=3 && v.getCliente().getUsername()!=null) {%>
+				<td>
 					<form action="autista/avanzaStatoViaggio" method="POST">
 						<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
 						<input type="submit" value="Avanza Stato">
 					</form>
-					</td><%}%>
+				</td>
+				<%} else if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=3 && v.getCliente().getUsername()!=null) {%>
+					<td>Utente cancellato</td>
+				<%}%>
+				<%if((Integer) request.getSession().getAttribute("ruolo")==1 && v.getCliente().getUsername()==null) {%> <td>Utente cancellato</td><%}%>
 			</tr>
 		<%} %>
 		</tbody>

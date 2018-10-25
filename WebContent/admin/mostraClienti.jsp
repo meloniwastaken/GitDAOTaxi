@@ -27,6 +27,9 @@
     <th>Username</th>
     <th>Password</th>
     <th>Ruolo</th>
+    <th>Modifica</th>
+    <th>Cancella</th>
+    <th>Statistiche</th>
   </tr>
   	<% 
   		for(Cliente cliente : clienti){ %>
@@ -42,6 +45,24 @@
   				<td style="text-align:center;"><%=cliente.getUsername()%></td>
   				<td style="text-align:center;"><%=cliente.getPassword()%></td>
   				<td style="text-align:center;">Cliente</td>
+  				<td>
+  					<form action="/GitDAOTaxi/formUpdate" method="POST">
+  						<input type="hidden" name="id" value="<%=cliente.getId()%>">
+  						<input type="submit" value="Modifica"/>
+  					</form>
+  				</td>
+  				  <td>
+  					<form action="/GitDAOTaxi/delete" method="POST">
+  						<input type="hidden" name="id" value="<%=cliente.getId()%>">
+  						<input type="submit" value="Cancella"/>
+  					</form>
+  				</td>
+  				  <td>
+  					<form action="statistics" method="POST">
+  						<input type="hidden" name="id" value="<%=cliente.getId()%>">
+  						<input type="submit" value="Statistiche"/>
+  					</form>
+  				</td>
   			</tr>
   		<%}%>
 </table>

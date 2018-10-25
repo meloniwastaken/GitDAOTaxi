@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ats.modello.Autista;
 import ats.modello.Taxi;
+import ats.modello.Utente;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -76,7 +77,7 @@ public class DAOAutista implements IDAOAutista {
 				a.setEmail(resultSet.getString(8));
 				a.setUsername(resultSet.getString(9));
 				a.setPassword(resultSet.getString(10));
-				a.setStipendio(resultSet.getDouble(12));
+				a.setStipendio(resultSet.getDouble(13));
 
 			}
 		} catch (SQLException e) {
@@ -151,13 +152,21 @@ public class DAOAutista implements IDAOAutista {
 				Long taxiId = resultSet.getLong(1);
 				Taxi t = daoTaxi.findById(taxiId);
 				t.setDisponibile(false);
+				t.setAutista(null);
 				daoTaxi.update(t);
-				daoUtente.deleteById(id);
 			}
+			connection = DataSource.getInstance().getConnection();
+			statement = connection.prepareStatement("DELETE FROM STIPENDIO WHERE ID = ?");
+			statement.setLong(1, id);
+			statement.executeUpdate();
+			
+			Utente u = daoUtente.findById(id);
+			u.setUsername(null);
+			daoUtente.update(u);
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		daoUtente.deleteById(id);
 		
 		
 	}

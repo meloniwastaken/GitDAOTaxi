@@ -15,7 +15,7 @@ import ats.persistenza.interfacce.IDAOUtente;
 /**
  * Servlet implementation class UpdateUtenteServlet
  */
-@WebServlet("/UpdateUtenteServlet")
+@WebServlet("/formUpdate")
 public class SaveIdToUpdateUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +41,6 @@ public class SaveIdToUpdateUtenteServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println("UTENTE TROVATO:\n" + utente);
 		request.setAttribute("utente", utente);
 		request.getRequestDispatcher("updateUtenteForm.jsp").forward(request, response);
 	}
