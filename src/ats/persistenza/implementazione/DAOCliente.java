@@ -11,7 +11,7 @@ import ats.modello.Cliente;
 import ats.persistenza.interfacce.IDAOCliente;
 
 public class DAOCliente implements IDAOCliente {
-	
+
 	public List<Cliente> findAll() throws DAOException {
 		List<Cliente> utenti = new ArrayList<Cliente>(0);
 
@@ -49,7 +49,7 @@ public class DAOCliente implements IDAOCliente {
 		}
 		return utenti;
 	}
-	
+
 	public Cliente findById(Long id) throws DAOException {
 		Cliente c = null;
 		String sql = "SELECT * FROM UTENTE WHERE RUOLO=3 AND ID=?";
@@ -86,6 +86,34 @@ public class DAOCliente implements IDAOCliente {
 		}
 		return c;
 	}
-	
-	
+
+	@Override
+	public List<Double> mostraStatistiche(Long id) throws DAOException {
+		String sql = "SELECT COUNT(CLIENTE), SUM(KILOMETRI) FROM VIAGGIO WHERE CLIENTE = ?";
+		List<Double> statisticheCliente = new ArrayList<Double>(0);
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = connection.prepareStatement(sql);
+
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Double sommaViaggi = resultSet.getDouble(1);
+				Double sommaKilometri = resultSet.getDouble(2);
+				statisticheCliente.add(sommaViaggi);
+				statisticheCliente.add(sommaKilometri);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(resultSet);
+			instance.close(statement);
+			instance.close(connection);
+		}
+		return statisticheCliente;
+	}
+
 }

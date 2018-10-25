@@ -8,4 +8,5 @@ import ats.persistenza.implementazione.DAOException;
 public interface IDAOCliente {
 	public List<Cliente> findAll() throws DAOException;
 	public Cliente findById(Long id) throws DAOException;
+	public List<Double> mostraStatistiche(Long id) throws DAOException;
 }
