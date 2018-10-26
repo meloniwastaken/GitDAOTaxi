@@ -14,5 +14,6 @@ public interface IDAOTaxi {
 	public abstract void insert(Taxi t) throws DAOException;
 	public abstract void update(Taxi t) throws DAOException;
 	public abstract void deleteById(Long id) throws DAOException;
+	public abstract List<Double> findStatistiche(Long id) throws DAOException;
 
 }

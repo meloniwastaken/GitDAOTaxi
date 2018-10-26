@@ -484,8 +484,38 @@ public class DAOViaggio implements IDAOViaggio{
 	}
 	
 	@Override
-	public List<Double> findStatistiche(Long id) throws DAOException {
+	public List<Double> findStatisticheCliente(Long id) throws DAOException {
 		String sql = "SELECT COUNT(CLIENTE) AS VIAGGI_TOTALI, SUM(KILOMETRI) AS SOMMA_KILOMETRI, SUM(PREZZO) AS SOMMA_PREZZO, SUM(FEEDBACK)/(SELECT COUNT(*) FROM VIAGGIO WHERE CLIENTE = ? AND FEEDBACK IS NOT NULL) AS MEDIA_FEEDBACK FROM VIAGGIO WHERE CLIENTE = ? GROUP BY(CLIENTE)";
+		List<Double> statisticheCliente = new ArrayList<Double>(0);
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, id);
+			statement.setLong(2, id);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				statisticheCliente.add(0,resultSet.getDouble(1));
+				statisticheCliente.add(1,resultSet.getDouble(2));
+				statisticheCliente.add(2,resultSet.getDouble(3));
+				statisticheCliente.add(3,resultSet.getDouble(4));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(resultSet);
+			instance.close(statement);
+			instance.close(connection);
+		}
+		return statisticheCliente;
+	}
+	
+	@Override
+	public List<Double> findStatisticheAutista(Long id) throws DAOException {
+		String sql = "SELECT COUNT(AUTISTA) AS VIAGGI_TOTALI, SUM(KILOMETRI) AS SOMMA_KILOMETRI, SUM(PREZZO) AS SOMMA_PREZZO, SUM(FEEDBACK)/(SELECT COUNT(*) FROM VIAGGIO WHERE AUTISTA = ? AND FEEDBACK IS NOT NULL) AS MEDIA_FEEDBACK FROM VIAGGIO WHERE AUTISTA = ? GROUP BY(AUTISTA)";
 		List<Double> statisticheCliente = new ArrayList<Double>(0);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
