@@ -40,6 +40,7 @@ public class VisualizzaViaggiServlet extends HttpServlet {
 		IDAOViaggio daoViaggio = new DAOViaggio();
 		Utente u = null;
 		List<Viaggio> listaViaggi = new ArrayList<Viaggio>(0);
+		List<Double> statistiche = new ArrayList<Double>(0);
 		try {
 			u = daoUtente.findById((Long) request.getSession().getAttribute("id"));
 			if(u instanceof Amministratore)
@@ -48,10 +49,19 @@ public class VisualizzaViaggiServlet extends HttpServlet {
 				listaViaggi = daoViaggio.findByAutista(u.getId());
 			else
 				listaViaggi = daoViaggio.findByCliente(u.getId());
+			
+			if((Integer) request.getSession().getAttribute("ruolo")==1) {
+				statistiche = daoViaggio.findStatisticheTotali();
+			}
+			else {
+				statistiche = daoViaggio.findStatistiche((Long) request.getSession().getAttribute("id"));
+			}
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
+		
 		request.setAttribute("viaggi", listaViaggi);
+		request.setAttribute("statistiche", statistiche);
 		request.getRequestDispatcher("viaggi.jsp").forward(request, response);
 	}
 

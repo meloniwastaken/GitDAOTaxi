@@ -13,4 +13,6 @@ public interface IDAOViaggio {
 	public abstract void update(Viaggio v) throws DAOException;
 	public abstract void insert(Viaggio v) throws DAOException;
 	public abstract void deleteById(Long id) throws DAOException;
+	public List<Double> findStatistiche(Long id) throws DAOException;
+	public List<Double> findStatisticheTotali() throws DAOException;
 }

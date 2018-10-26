@@ -13,7 +13,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%List<Viaggio> viaggi = (List<Viaggio>) request.getAttribute("viaggi");%>
+<%List<Viaggio> viaggi = (List<Viaggio>) request.getAttribute("viaggi");
+  List<Double> statistiche = (List<Double>) request.getAttribute("statistiche");
+%>
 	<table>
 		<thead>
 			<tr>
@@ -73,6 +75,12 @@
 			</tr>
 		<%} %>
 		</tbody>
+	</table>
+	<table>
+		<tr><th>Totale viaggi</th><td><%=statistiche.get(0).intValue()%></td></tr>
+		<tr><th>Totale kilometri</th><td><%=statistiche.get(1)%></td></tr>
+		<tr><th>Totale prezzo</th><td><%=statistiche.get(2)%></td></tr>
+		<tr><th>Media Feedback</th><td><%=statistiche.get(3)%></td></tr>
 	</table>
 </body>
 </html>
