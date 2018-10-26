@@ -18,54 +18,62 @@
 <table>
 	<tbody>
   		<tr>
-  			<td>Nome</td>
+  			<td>Nome: </td>
   			<td><input readonly name="nome" value="<%=autista.getNome()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Cognome</td>
+  			<td>Cognome: </td>
   			<td><input type="text" name="cognome" value="<%=autista.getCognome()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Codice fiscale</td>
+  			<td>Codice fiscale: </td>
   			<td><input type="text" name="codiceFiscale" value="<%=autista.getCodiceFiscale()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Data di nascita</td> 
+  			<td>Data di nascita: </td> 
   			<td><input type="text" name="dataDiNascita" value="<%=autista.getDataDiNascita()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Indirizzo</td>
+  			<td>Indirizzo: </td>
   			<td><input type="text" name="indirizzo" value="<%=autista.getIndirizzo()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Telefono</td>
+  			<td>Telefono: </td>
   			<td><input type="text" name="telefono" value="<%=autista.getTelefono()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>E-mail</td> 
+  			<td>E-mail: </td> 
   			<td><input type="text" name="email" value="<%=autista.getEmail()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Username</td> 
+  			<td>Stipendio: </td> 
+  			<td><input type="text" name="stipendio" value="<%=autista.getStipendio()%>"></td>
+  		</tr>
+  		
+  		<tr>
+  			<td>Username: </td> 
   			<td><input type="text" name="username" value="<%=autista.getUsername()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Password</td>
+  			<td>Password: </td>
   			<td><input type="password" name="password" value="<%=autista.getPassword()%>"></td>
   		</tr>
   		
   		<tr>
-  			<td>Stipendio</td> 
-  			<td><input type="text" name="stipendio" value="<%=autista.getStipendio()%>"></td>
-  		</tr>
+			<td>
+			<label for="password2">Conferma Password: </label></td>
+			<td><input type="password" name="password2" value="<%=autista.getPassword()%>"></td>
+		</tr>
+  		
+  		
   		<input type="hidden" name="id" value="<%=autista.getId()%>"><br>
   		
   		<tr>
@@ -74,6 +82,8 @@
   			<%for (Taxi t:listaTaxi){ %>
   			<option value="<%=t.getId()%>"><%=t.getMarca() %> <%=t.getModello() %>, <%=t.getTarga() %>, <%if (t.getAutista()==null){%> Non assegnato <%} else { %> Assegnato <%} %></option> <%} %>
   			</select>
+  			</td>
+  		</tr>
   	
   	</tbody>
 </table>

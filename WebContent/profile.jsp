@@ -49,6 +49,8 @@
 	</form>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>
 		<a href="/GitDAOTaxi/admin/findAllClienti">Mostra Clienti</a>
+		<br>
+		<a href="FormRegistrazioneAutistaServlet">Registra Autista</a>
 	<% }%>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==2) {
 		//autista

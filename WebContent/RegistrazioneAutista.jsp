@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List" %>
+<%@ page import="ats.modello.Taxi" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
 </head>
 <body>
 <h1><center>Registrazione Autista</center></h1>
+<%List<Taxi> listaTaxi = (List<Taxi>)request.getAttribute("listaTaxi"); %>
 
 <form method="POST" action="RegistrazioneAutistaServlet">
 <table>
@@ -75,12 +78,22 @@
 			<td><input type="password" id="password" name="password"/></td>
 			
 		</tr>
+		
 		<tr>
 			<td>
 			<label for="password2">Conferma Password: </label></td>
 			<td><input type="password" id="password2" name="password2"/></td>
-					</tr>
+		</tr>
 		
+		 		
+  		<tr>
+  			<td>
+  			<select id="taxi" name="taxi">
+  			<%for (Taxi t:listaTaxi){ %>
+  			<option value="<%=t.getId()%>"><%=t.getMarca() %> <%=t.getModello() %>, <%=t.getTarga() %>, <%if (t.getAutista()==null){%> Non assegnato <%} else { %> Assegnato <%} %></option> <%} %>
+  			</select>
+		</td>
+		</tr>
 		
 </tbody>
 </table>

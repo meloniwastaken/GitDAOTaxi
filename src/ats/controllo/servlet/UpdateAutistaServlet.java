@@ -10,46 +10,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ats.modello.Amministratore;
 import ats.modello.Autista;
-import ats.modello.Cliente;
+
 import ats.modello.Taxi;
-import ats.modello.Utente;
+
 import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
-import ats.persistenza.implementazione.DAOUtente;
+
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
-import ats.persistenza.interfacce.IDAOUtente;
 
 @WebServlet("/updateAutista")
 public class UpdateAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateAutistaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UpdateAutistaServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Autista autista = new Autista();
 		IDAOAutista daoAutista = new DAOAutista();
-		
+
 		try {
 			autista.setNome(request.getParameter("nome"));
 			autista.setCognome(request.getParameter("cognome"));
 			autista.setCodiceFiscale(request.getParameter("codiceFiscale"));
 			try {
-				autista.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataDiNascita")));
+				autista.setDataDiNascita(
+						new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataDiNascita")));
 			} catch (ParseException e) {
 				System.out.println(e.getMessage());
 			}
@@ -61,14 +60,13 @@ public class UpdateAutistaServlet extends HttpServlet {
 			autista.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			autista.setId(Long.parseLong(request.getParameter("id")));
 			daoAutista.update(autista);
-			
+
 			IDAOTaxi daoTaxi = new DAOTaxi();
 			Taxi t = new Taxi();
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
 			t.setAutista(autista);
 			daoTaxi.update(t);
-			
-			
+
 		} catch (NumberFormatException e) {
 			System.out.println(e.getMessage());
 		} catch (DAOException e) {

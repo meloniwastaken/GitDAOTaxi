@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ats.modello.Autista;
+import ats.modello.Taxi;
 import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOException;
-import ats.persistenza.implementazione.DAOUtente;
+import ats.persistenza.implementazione.DAOTaxi;
+
 import ats.persistenza.interfacce.IDAOAutista;
-import ats.persistenza.interfacce.IDAOUtente;
+import ats.persistenza.interfacce.IDAOTaxi;
+
 
 /**
  * Servlet implementation class RegistrazioneAutistaServlet
@@ -23,21 +26,24 @@ import ats.persistenza.interfacce.IDAOUtente;
 @WebServlet("/RegistrazioneAutistaServlet")
 public class RegistrazioneAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegistrazioneAutistaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public RegistrazioneAutistaServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		IDAOAutista daoAutista = new DAOAutista();
 		Autista a = new Autista();
-		
+
 		a.setNome(request.getParameter("nome"));
 		a.setCognome(request.getParameter("cognome"));
 		a.setCodiceFiscale(request.getParameter("codFiscale"));
@@ -46,6 +52,7 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
+
 		a.setIndirizzo(request.getParameter("indirizzo"));
 		a.setTelefono(request.getParameter("telefono"));
 		a.setEmail(request.getParameter("email"));
@@ -58,8 +65,26 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("index.html");
 		
+		
+//		Long idAutista=a.getId();
+
+		IDAOTaxi daoTaxi = new DAOTaxi();
+		Taxi t = new Taxi();
+		try {
+			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
+			t.setAutista(a);
+			daoTaxi.update(t);
+
+		} catch (NumberFormatException e1) {
+			System.out.println(e1.getMessage());
+		} catch (DAOException e1) {
+			System.out.println(e1.getMessage());
+		}
+
+		
+		response.sendRedirect("index.html");
+
 	}
 
 }
