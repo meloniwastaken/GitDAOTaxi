@@ -53,8 +53,11 @@ public class VisualizzaViaggiServlet extends HttpServlet {
 			if((Integer) request.getSession().getAttribute("ruolo")==1) {
 				statistiche = daoViaggio.findStatisticheTotali();
 			}
-			else {
-				statistiche = daoViaggio.findStatistiche((Long) request.getSession().getAttribute("id"));
+			else if((Integer) request.getSession().getAttribute("ruolo")==3) {
+				statistiche = daoViaggio.findStatisticheCliente((Long) request.getSession().getAttribute("id"));
+			}
+			else if((Integer) request.getSession().getAttribute("ruolo")==2) {
+				statistiche = daoViaggio.findStatisticheAutista((Long) request.getSession().getAttribute("id"));
 			}
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
