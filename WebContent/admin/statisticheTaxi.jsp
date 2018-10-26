@@ -18,7 +18,7 @@
 		<tr><th>Anno Immatricolazione</th><td><%=t.getAnnoDiImmatricolazione()%></td></tr>
 		<tr><th>Posti</th><td><%=t.getPosti()%></td></tr>
 		<tr><th>€/Km</th><td><%=t.getPrezzoPerKilometro()%></td></tr>
-		<%if(statistiche!=null || !statistiche.isEmpty()) {%>
+		<%if(statistiche!=null && !statistiche.isEmpty()) {%>
 			<tr><th>Totale viaggi</th><td><%=statistiche.get(0)%></td></tr>
 			<tr><th>Totale kilometri</th><td><%=statistiche.get(1)%></td></tr>
 		<%} %>
