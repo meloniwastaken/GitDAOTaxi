@@ -277,7 +277,7 @@ public class DAOTaxi implements IDAOTaxi {
 
 	@Override
 	public List<Double> findStatistiche(Long id) throws DAOException {
-		String sql = "SELECT COUNT(TAXI.ID) AS VIAGGI_TOTALI, SUM(KILOMETRI) AS SOMMA_KILOMETRI FROM TAXI INNER JOIN VIAGGIO ON TAXI.ID = VIAGGIO.TAXI WHERE TAXI.ID = 16 GROUP BY (TAXI.ID)";
+		String sql = "SELECT COUNT(TAXI.ID) AS VIAGGI_TOTALI, SUM(KILOMETRI) AS SOMMA_KILOMETRI FROM TAXI INNER JOIN VIAGGIO ON TAXI.ID = VIAGGIO.TAXI WHERE TAXI.ID = ? GROUP BY (TAXI.ID)";
 		List<Double> statistiche = new ArrayList<Double>(0);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
@@ -286,7 +286,6 @@ public class DAOTaxi implements IDAOTaxi {
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, id);
-			statement.setLong(2, id);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				statistiche.add(0,resultSet.getDouble(1));

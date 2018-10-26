@@ -76,11 +76,13 @@
 		<%} %>
 		</tbody>
 	</table>
+	<%if(statistiche!=null && !statistiche.isEmpty()) {%>
 	<table>
 		<tr><th>Totale viaggi</th><td><%=statistiche.get(0).intValue()%></td></tr>
 		<tr><th>Totale kilometri</th><td><%=statistiche.get(1)%></td></tr>
 		<tr><th>Totale prezzo</th><td><%=statistiche.get(2)%></td></tr>
 		<tr><th>Media Feedback</th><td><%=statistiche.get(3)%></td></tr>
 	</table>
+	<%} %>
 </body>
 </html>

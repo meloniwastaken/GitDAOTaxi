@@ -17,7 +17,6 @@
 	
 	<table style="width:100%">
   <tr>
-    <th>ID</th>
     <th>Modello</th> 
     <th>Marca</th>
     <th>Targa</th>
@@ -25,11 +24,12 @@
     <th>Posti</th>
     <th>Prezzo per Km</th>
     <th>Autista</th>
+    <th>Cancella</th>
+    <th>Statistiche</th>
   </tr>
   	<% 
   		for(Taxi taxi : elencoTaxi){ %>
   			<tr>
-  				<td style="text-align:center;"><%=taxi.getId()%></td>
   				<td style="text-align:center;"><%=taxi.getModello()%></td>
   				<td style="text-align:center;"><%=taxi.getMarca()%></td>
   				<td style="text-align:center;"><%=taxi.getTarga()%></td>
@@ -37,16 +37,20 @@
   	  			<td style="text-align:center;"><%=taxi.getPosti()%></td>
   		 		<td style="text-align:center;"><%=taxi.getPrezzoPerKilometro() %></td>
   		 		<td style="text-align:center;"><%=taxi.getAutista().getNome() + " " + taxi.getAutista().getCognome()%></td>
+  		 		<td style="text-align:center;">
+  		 		<form method="POST" action="deleteTaxi">
+					  <input type="hidden" name="id" value="<%=taxi.getId()%>">
+					  <input type="submit" value="Cancella">
+	 			</form>
+	 			</td>
+	 			<td style="text-align:center;">
+	 			<form method="POST" action="statisticheTaxi">
+					  <input type="hidden" name="id" value="<%=taxi.getId()%>">
+					  <input type="submit" value="Statistiche">
+	 			</form>
+	 			</td>
   			</tr>
   		<%}%>
 </table>
-
-	<form method="POST" action="deleteTaxi">
-	  <input type="hidden" name="taxiId"><br><br>
-	  <input type="submit" value="Cancella">
-	  
-	 <form method="POST" action="statistiche">
-	  <input type="hidden" name="taxiId"><br><br>
-	  <input type="submit" value="Statistiche">
 </body>
 </html>

@@ -18,7 +18,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class StatisticheTaxi
  */
-@WebServlet("/StatisticheTaxi")
+@WebServlet("/admin/statisticheTaxi")
 public class StatisticheTaxi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

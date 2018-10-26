@@ -14,7 +14,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class DeleteTaxi
  */
-@WebServlet("/deleteTaxi")
+@WebServlet("/admin/deleteTaxi")
 public class DeleteTaxi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,7 +37,7 @@ public class DeleteTaxi extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("index.html");
+		response.sendRedirect("/GitDAOTaxi/index.html");
 	}
 
 }

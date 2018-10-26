@@ -17,7 +17,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class FindAllTaxiServlet
  */
-@WebServlet("/findAllTaxi")
+@WebServlet("/admin/findAllTaxi")
 public class FindAllTaxiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
