@@ -58,7 +58,7 @@
   					</form>
   				</td>
   				  <td>
-  					<form action="statistics" method="POST">
+  					<form action="/GitDAOTaxi/visualizzaViaggi" method="POST">
   						<input type="hidden" name="id" value="<%=cliente.getId()%>">
   						<input type="submit" value="Statistiche"/>
   					</form>
