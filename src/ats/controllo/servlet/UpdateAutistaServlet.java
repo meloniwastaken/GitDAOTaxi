@@ -41,8 +41,12 @@ public class UpdateAutistaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Autista autista = new Autista();
 		IDAOAutista daoAutista = new DAOAutista();
+		IDAOTaxi daoTaxi = new DAOTaxi();
+		Taxi t = new Taxi();
 
 		try {
+			daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("id")));
+
 			autista.setNome(request.getParameter("nome"));
 			autista.setCognome(request.getParameter("cognome"));
 			autista.setCodiceFiscale(request.getParameter("codiceFiscale"));
@@ -61,8 +65,6 @@ public class UpdateAutistaServlet extends HttpServlet {
 			autista.setId(Long.parseLong(request.getParameter("id")));
 			daoAutista.update(autista);
 
-			IDAOTaxi daoTaxi = new DAOTaxi();
-			Taxi t = new Taxi();
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
 			t.setAutista(autista);
 			daoTaxi.update(t);

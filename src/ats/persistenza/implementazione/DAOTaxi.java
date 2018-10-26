@@ -301,6 +301,26 @@ public class DAOTaxi implements IDAOTaxi {
 		}
 		return statistiche;
 	}
+
+	@Override
+	public void deleteAutistaFromTaxi(Long id) throws DAOException {
+		String sql = "UPDATE TAXI SET AUTISTA = NULL WHERE AUTISTA = ?";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement = null;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, id);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(statement);
+			instance.close(connection);
+		}
+		
+	}
 	
 	
 
