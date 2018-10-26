@@ -17,12 +17,12 @@
 	
 	<table style="width:100%">
   <tr>
-    <th>Marca</th>
     <th>Modello</th> 
+    <th>Marca</th>
     <th>Targa</th>
     <th>Anno immatricolazione</th>
     <th>Posti</th>
-    <th>Prezzo/km</th>
+    <th>Prezzo per Km</th>
     <th>Autista</th>
     <th>Cancella</th>
     <th>Statistiche</th>
@@ -30,13 +30,14 @@
   	<% 
   		for(Taxi taxi : elencoTaxi){ %>
   			<tr>
-  				<td style="text-align:center;"><%=taxi.getMarca()%></td>
   				<td style="text-align:center;"><%=taxi.getModello()%></td>
+  				<td style="text-align:center;"><%=taxi.getMarca()%></td>
   				<td style="text-align:center;"><%=taxi.getTarga()%></td>
   				<td style="text-align:center;"><%=taxi.getAnnoDiImmatricolazione()%></td>
   	  			<td style="text-align:center;"><%=taxi.getPosti()%></td>
   		 		<td style="text-align:center;"><%=taxi.getPrezzoPerKilometro() %></td>
-  		 		<td style="text-align:center;"><%if (taxi.getAutista().getId()!=0) {%> <%=taxi.getAutista().getNome() + " " + taxi.getAutista().getCognome()%><%}%></td>
+  		 		<td style="text-align:center;"><%if(taxi.getAutista() != null){out.print(taxi.getAutista().getNome() + " " + taxi.getAutista().getCognome());}
+  		 		else{out.print("Non assegnato");}%></td>
   		 		<td style="text-align:center;">
   		 		<form method="POST" action="deleteTaxi">
 					  <input type="hidden" name="id" value="<%=taxi.getId()%>">
