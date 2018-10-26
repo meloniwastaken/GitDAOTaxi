@@ -41,7 +41,7 @@
 				<td><%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>ID: <%=v.getTaxi().getId()%><%}%> <%=v.getTaxi().getMarca()%> <%=v.getTaxi().getModello()%></td>
 				<td><%=v.getPartenza()%></td>
 				<td><%=v.getDestinazione()%></td>
-				<td><%=v.getData()%></td>
+				<td><%=v.getData().toString()%></td>
 				<td><%=v.getKilometri()%></td>
 				<td><%=v.getPrezzo()%></td>
 				<%if(v.getStato()==1) {%><td>In attesa</td><%} else if(v.getStato()==2){%><td>In corso</td><%} else {%><td>Completato</td><%}%>

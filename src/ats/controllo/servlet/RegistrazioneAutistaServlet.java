@@ -73,6 +73,7 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		Taxi t = new Taxi();
 		try {
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
+			t.setDisponibile(true);
 			t.setAutista(a);
 			daoTaxi.update(t);
 

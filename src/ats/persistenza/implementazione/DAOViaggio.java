@@ -81,7 +81,7 @@ public class DAOViaggio implements IDAOViaggio{
 				v.setAutista(a);
 				v.setTaxi(t);
 				v.setCliente(c);
-				v.setData(resultSet.getDate(5));
+				v.setData(resultSet.getTimestamp(5));
 				v.setPartenza(resultSet.getString(6));
 				v.setDestinazione(resultSet.getString(7));
 				v.setKilometri(resultSet.getDouble(8));
