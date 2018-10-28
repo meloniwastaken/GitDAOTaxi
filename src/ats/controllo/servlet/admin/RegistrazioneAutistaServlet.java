@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.admin;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -23,7 +23,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class RegistrazioneAutistaServlet
  */
-@WebServlet("/RegistrazioneAutistaServlet")
+@WebServlet("/admin/registrazioneAutista")
 public class RegistrazioneAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -84,7 +84,7 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		}
 
 		
-		response.sendRedirect("index.html");
+		response.sendRedirect("../");
 
 	}
 

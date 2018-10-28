@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class FormRegistrazioneAutistaServlet
  */
-@WebServlet("/FormRegistrazioneAutistaServlet")
+@WebServlet("/admin/formRegistrazioneAutista")
 public class FormRegistrazioneAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,17 +45,7 @@ public class FormRegistrazioneAutistaServlet extends HttpServlet {
 		}
 
 		request.setAttribute("listaTaxi", listaTaxi);
-		request.getRequestDispatcher("RegistrazioneAutista.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-
+		request.getRequestDispatcher("registrazioneAutista.jsp").forward(request, response);
 	}
 
 }

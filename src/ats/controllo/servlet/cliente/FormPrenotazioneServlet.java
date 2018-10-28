@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.cliente;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-@WebServlet("/FormPrenotazione")
+@WebServlet("/cliente/formPrenotazione")
 public class FormPrenotazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,7 @@ public class FormPrenotazioneServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		request.setAttribute("taxi", taxi);
-		request.getRequestDispatcher("Prenotazione.jsp").forward(request, response);
+		request.getRequestDispatcher("prenotazione.jsp").forward(request, response);
 	}
 
 }

@@ -69,7 +69,7 @@ public class Taxi {
 	public String toString() {
 		return "Taxi [id=" + id + ", marca=" + marca + ", modello=" + modello + ", targa=" + targa
 				+ ", annoDiImmatricolazione=" + annoDiImmatricolazione + ", posti=" + posti + ", prezzoPerKilometro="
-				+ prezzoPerKilometro + ", disponibile=" + disponibile + ", autista=" + autista + "]";
+				+ prezzoPerKilometro + ", disponibile=" + disponibile + ", autista=" + autista.getId() + "]";
 	}
 	
 	

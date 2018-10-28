@@ -10,5 +10,4 @@ public class Autista extends Utente {
 	public void setStipendio(Double stipendio) {
 		this.stipendio = stipendio;
 	}
-	
 }

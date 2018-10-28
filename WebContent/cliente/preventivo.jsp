@@ -52,7 +52,7 @@
 		</tr>
 	</tbody>
 </table>
-<form method="POST" action="PrenotaServlet">
+<form method="POST" action="prenota">
 	<input type="submit" value="Conferma">
 </form>
 </body>

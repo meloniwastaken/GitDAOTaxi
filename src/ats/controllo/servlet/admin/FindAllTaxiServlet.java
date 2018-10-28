@@ -1,4 +1,4 @@
-package ats.controllo.servlet.taxi;
+package ats.controllo.servlet.admin;
 
 import java.io.IOException;
 import java.util.List;

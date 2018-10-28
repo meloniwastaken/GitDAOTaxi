@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.cliente;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import ats.persistenza.interfacce.IDAOViaggio;
 /**
  * Servlet implementation class PrenotaServlet
  */
-@WebServlet("/PrenotaServlet")
+@WebServlet("/cliente/prenota")
 public class PrenotaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,7 @@ public class PrenotaServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("index.html");
+		response.sendRedirect("../");
 	}
 
 }

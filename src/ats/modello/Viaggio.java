@@ -83,7 +83,7 @@ public class Viaggio {
 	}
 	@Override
 	public String toString() {
-		return "Viaggio [id=" + id + ", autista=" + autista + ", taxi=" + taxi + ", cliente=" + cliente + ", data="
+		return "Viaggio [id=" + id + ", autista=" + autista.getId() + ", taxi=" + taxi.getId() + ", cliente=" + cliente.getId() + ", data="
 				+ data + ", partenza=" + partenza + ", destinazione=" + destinazione + ", kilometri=" + kilometri
 				+ ", prezzo=" + prezzo + ", stato=" + stato + ", feedback=" + feedback + "]";
 	}

@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.admin;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,7 +21,7 @@ import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-@WebServlet("/updateAutista")
+@WebServlet("/admin/updateAutista")
 public class UpdateAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -66,6 +66,7 @@ public class UpdateAutistaServlet extends HttpServlet {
 			daoAutista.update(autista);
 
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
+			t.setDisponibile(true);
 			t.setAutista(autista);
 			daoTaxi.update(t);
 

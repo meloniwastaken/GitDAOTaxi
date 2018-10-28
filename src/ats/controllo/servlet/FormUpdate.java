@@ -16,13 +16,13 @@ import ats.persistenza.interfacce.IDAOUtente;
  * Servlet implementation class UpdateUtenteServlet
  */
 @WebServlet("/formUpdate")
-public class SaveIdToUpdateUtenteServlet extends HttpServlet {
+public class FormUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SaveIdToUpdateUtenteServlet() {
+    public FormUpdate() {
         super();
         // TODO Auto-generated constructor stub
     }

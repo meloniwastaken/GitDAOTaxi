@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.admin;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class UpdateUtenteServlet
  */
-@WebServlet("/updateAutistaForm")
+@WebServlet("/admin/updateAutistaForm")
 public class UpdateAutistaForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1><center>Inserisci Taxi</center></h1>
-<form method="POST" action="InserisciTaxiServlet">
+<form method="POST" action="inserisciTaxi">
 <table>
 	<tbody>
 		<tr>

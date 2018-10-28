@@ -56,7 +56,7 @@
 		//autista
 	}%>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==3) {%>
-		<form method="POST" action="FormPrenotazione">
+		<form method="POST" action="cliente/formPrenotazione">
 			<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 			<input type="submit" value="Prenota viaggio"/>
 		</form>

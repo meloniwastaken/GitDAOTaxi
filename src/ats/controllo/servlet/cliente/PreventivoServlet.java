@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.cliente;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -23,7 +23,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class PreventivoServlet
  */
-@WebServlet("/PreventivoServlet")
+@WebServlet("/cliente/preventivo")
 public class PreventivoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

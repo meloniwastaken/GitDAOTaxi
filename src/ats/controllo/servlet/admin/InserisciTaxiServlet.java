@@ -1,4 +1,4 @@
-package ats.controllo.servlet;
+package ats.controllo.servlet.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -15,7 +15,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class InserisciTaxiServlet
  */
-@WebServlet("/InserisciTaxiServlet")
+@WebServlet("/admin/inserisciTaxi")
 public class InserisciTaxiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -12,7 +12,7 @@
 <h1><center>Registrazione Autista</center></h1>
 <%List<Taxi> listaTaxi = (List<Taxi>)request.getAttribute("listaTaxi"); %>
 
-<form method="POST" action="RegistrazioneAutistaServlet">
+<form method="POST" action="registrazioneAutista">
 <table>
 <tbody>
 		<tr>

@@ -34,36 +34,12 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>FindAllServlet</servlet-name>
-    <servlet-class>ats.controllo.servlet.FindAllServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FindAllServlet</servlet-name>
-    <url-pattern>/findAll</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>FindAllAmministratoriServlet</servlet-name>
-    <servlet-class>ats.controllo.servlet.FindAllAmministratoriServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FindAllAmministratoriServlet</servlet-name>
-    <url-pattern>/findAllAmministratori</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>SaveIdToUpdateUtenteServlet</servlet-name>
     <servlet-class>ats.controllo.servlet.SaveIdToUpdateUtenteServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SaveIdToUpdateUtenteServlet</servlet-name>
     <url-pattern>/saveIdToUpdateUtente</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>FindByIdUtenteServlet</servlet-name>
-    <servlet-class>ats.controllo.servlet.FindByIdUtenteServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FindByIdUtenteServlet</servlet-name>
-    <url-pattern>/findByIdUtente</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>SessionFilter</filter-name>
