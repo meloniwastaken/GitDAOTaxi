@@ -46,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("ruolo", 3);
 			request.getRequestDispatcher("profile").forward(request, response);
 		}
+		System.out.println(request.getRequestURI());
 	}
 
 }

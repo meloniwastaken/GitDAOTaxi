@@ -27,8 +27,8 @@ public class SessionFilter implements Filter {
 		if(richiesta.getSession().getAttribute("id") == null) {
 			risposta.sendRedirect("index.html");
 		}
-		
-		chain.doFilter(request, response);
+		else
+			chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

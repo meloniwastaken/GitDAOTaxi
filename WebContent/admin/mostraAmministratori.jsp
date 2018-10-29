@@ -26,9 +26,6 @@
     <th>Indirizzo</th>
     <th>Telefono</th>
     <th>E-mail</th>
-    <th>Username</th>
-    <th>Password</th>
-    <th>Ruolo</th>
   </tr>
   	<% 
   		for(Amministratore amministratore : amministratori){ %>
@@ -41,9 +38,6 @@
   	  			<td style="text-align:center;"><%=amministratore.getIndirizzo()%></td>
   		 		<td style="text-align:center;"><%=amministratore.getTelefono()%></td>
   		 		<td style="text-align:center;"><%=amministratore.getEmail()%></td>
-  				<td style="text-align:center;"><%=amministratore.getUsername()%></td>
-  				<td style="text-align:center;"><%=amministratore.getPassword()%></td>
-  				<td style="text-align:center;">Amministratore</td>
   				<td>
   				<form method="POST" action="/GitDAOTaxi/formUpdate">
   				<input type="hidden" id="id" name="id" value="<%=amministratore.getId()%>">

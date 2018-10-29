@@ -49,4 +49,20 @@
     <filter-name>SessionFilter</filter-name>
     <url-pattern>/profile</url-pattern>
   </filter-mapping>
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>ats.controllo.filters.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+    <filter>
+    <filter-name>ValidazioneUtenteFilter</filter-name>
+    <filter-class>ats.controllo.filters.ValidazioneUtenteFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ValidazioneUtenteFilter</filter-name>
+    <url-pattern>/register</url-pattern>
+  </filter-mapping>
 </web-app>

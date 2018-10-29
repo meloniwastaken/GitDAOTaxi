@@ -24,8 +24,6 @@
     <th>Posti</th>
     <th>Prezzo per Km</th>
     <th>Autista</th>
-    <th>Cancella</th>
-    <th>Statistiche</th>
   </tr>
   	<% 
   		for(Taxi taxi : elencoTaxi){ %>

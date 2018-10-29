@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import ats.modello.Autista;
 import ats.modello.Taxi;
 import ats.modello.Utente;
@@ -161,5 +164,62 @@ public class DAOAutista implements IDAOAutista {
 		}
 		
 		
+	}
+
+	@Override
+	public Map<Autista, Taxi> findAllWithTaxi() throws DAOException {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Map<Autista,Taxi> map = new HashMap<Autista,Taxi>();
+		
+
+		try {
+			connection = DataSource.getInstance().getConnection();
+			statement = connection.prepareStatement("SELECT * FROM UTENTE LEFT JOIN TAXI ON UTENTE.ID = TAXI.AUTISTA LEFT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID WHERE UTENTE.RUOLO = 2");
+			resultSet = statement.executeQuery();
+			
+			while(resultSet.next()) {
+				Autista a = new Autista();
+				Taxi t = null;
+				a.setId(resultSet.getLong(1));
+				a.setNome(resultSet.getString(2));
+				a.setCognome(resultSet.getString(3));
+				a.setCodiceFiscale(resultSet.getString(4));
+				a.setDataDiNascita(resultSet.getDate(5));
+				a.setIndirizzo(resultSet.getString(6));
+				a.setTelefono(resultSet.getString(7));
+				a.setEmail(resultSet.getString(8));
+				a.setUsername(resultSet.getString(9));
+				a.setPassword(resultSet.getString(10));
+				a.setStipendio(resultSet.getDouble(22));
+				
+				if(resultSet.getLong(12)!=0) {
+					t = new Taxi();
+					t.setId(resultSet.getLong(12));
+					t.setModello(resultSet.getString(13));
+					t.setMarca(resultSet.getString(14));
+					t.setTarga(resultSet.getString(15));
+					t.setAnnoDiImmatricolazione(resultSet.getInt(16));
+					t.setPosti(resultSet.getInt(17));
+					t.setPrezzoPerKilometro(resultSet.getDouble(18));
+					Integer disponibile = resultSet.getInt(19);
+					if (disponibile == 0)
+						t.setDisponibile(false);
+					else if (disponibile == 1)
+						t.setDisponibile(true);
+				}
+				
+				map.put(a, t);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			DataSource.getInstance().close(resultSet);
+			DataSource.getInstance().close(statement);
+			DataSource.getInstance().close(connection);
+		}
+		return map;
 	}
 }

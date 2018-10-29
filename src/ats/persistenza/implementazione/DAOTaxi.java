@@ -182,9 +182,10 @@ public class DAOTaxi implements IDAOTaxi {
 			statement.setInt(5, t.getPosti());
 			statement.setDouble(6, t.getPrezzoPerKilometro());
 			Boolean disponibile = t.getDisponibile();
+			System.out.println(disponibile);
 			if (disponibile == true)
 				statement.setInt(7, 1);
-			else
+			else if (disponibile==false) 
 				statement.setInt(7, 0);
 			if(t.getAutista()==null)
 				statement.setNull(8, 0);
@@ -321,6 +322,63 @@ public class DAOTaxi implements IDAOTaxi {
 		}
 		
 	}
+
+	@Override
+	public Taxi findByIdAutista(Long id) throws DAOException {
+		Taxi t = null;
+		String sql = "SELECT * FROM TAXI LEFT JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE UTENTE.ID=?";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = instance.getConnection();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setLong(1, id);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				t = new Taxi();
+				t.setId(resultSet.getLong(1));
+				t.setModello(resultSet.getString(2));
+				t.setMarca(resultSet.getString(3));
+				t.setTarga(resultSet.getString(4));
+				t.setAnnoDiImmatricolazione(resultSet.getInt(5));
+				t.setPosti(resultSet.getInt(6));
+				t.setPrezzoPerKilometro(resultSet.getDouble(7));
+				Integer disponibile = resultSet.getInt(8);
+				if (disponibile == 0)
+					t.setDisponibile(false);
+				else if (disponibile == 1)
+					t.setDisponibile(true);
+
+				Autista a = new Autista();
+				if(resultSet.getLong(9)!=0) {
+					a.setId(resultSet.getLong(9));
+					a.setNome(resultSet.getString(11));
+					a.setCognome(resultSet.getString(12));
+					a.setCodiceFiscale(resultSet.getString(13));
+					a.setDataDiNascita(resultSet.getDate(14));
+					a.setIndirizzo(resultSet.getString(15));
+					a.setTelefono(resultSet.getString(16));
+					a.setEmail(resultSet.getString(17));
+					a.setUsername(resultSet.getString(18));
+					a.setPassword(resultSet.getString(19));
+					t.setAutista(a);
+				}
+				else
+					t.setAutista(null);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(resultSet);
+			instance.close(statement);
+			instance.close(connection);
+		}
+		return t;
+
+	}
+	
 	
 	
 

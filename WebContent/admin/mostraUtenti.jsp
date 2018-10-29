@@ -27,8 +27,6 @@
     <th>Indirizzo</th>
     <th>Telefono</th>
     <th>E-mail</th>
-    <th>Username</th>
-    <th>Password</th>
     <th>Ruolo</th>
   </tr>
   	<% 
@@ -42,8 +40,6 @@
   	  			<td style="text-align:center;"><%=utente.getIndirizzo()%></td>
   		 		<td style="text-align:center;"><%=utente.getTelefono()%></td>
   		 		<td style="text-align:center;"><%=utente.getEmail()%></td>
-  				<td style="text-align:center;"><%=utente.getUsername()%></td>
-  				<td style="text-align:center;"><%=utente.getPassword()%></td>
   				<td style="text-align:center;"><%if(utente instanceof Amministratore){
   				out.print("Amministratore");
   				}else if(utente instanceof Autista){

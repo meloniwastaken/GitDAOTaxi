@@ -79,6 +79,7 @@
 
 
 <br>
+<input type="hidden" name="from" value="Registrazione.jsp">
 <input type="submit" value="REGISTRA"/>
 </form>
 <form action="index.html">

@@ -37,7 +37,7 @@ public class DeleteTaxi extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("/GitDAOTaxi/index.html");
+		response.sendRedirect("../");
 	}
 
 }
