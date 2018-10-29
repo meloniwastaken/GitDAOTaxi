@@ -93,6 +93,7 @@
   			<select id="taxi" name="taxi">
   			<%for (Taxi t:listaTaxi){ %>
   			<option value="<%=t.getId()%>"><%=t.getMarca() %> <%=t.getModello() %>, <%=t.getTarga() %>, <%if (t.getAutista()==null){%> Non assegnato <%} else { %> Assegnato <%} %></option> <%} %>
+  			
   			</select>
 		</td>
 		</tr>
