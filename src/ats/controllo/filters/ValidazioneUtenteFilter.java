@@ -15,6 +15,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Servlet Filter implementation class ValidazioneUtenteFilter
  */
@@ -43,7 +45,7 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("codFiscale", true);
 		if(request.getParameter("indirizzo")==null ||  request.getParameter("indirizzo").isEmpty() || request.getParameter("indirizzo").length()>50)
 			errorMap.put("indirizzo", true);
-		if(request.getParameter("telefono")==null ||  request.getParameter("telefono").isEmpty() || request.getParameter("telefono").length()>15) 
+		if(request.getParameter("telefono")==null ||  request.getParameter("telefono").isEmpty() || request.getParameter("telefono").length()>15 || StringUtils.isNumeric(request.getParameter("telefono")) == false) 
 			errorMap.put("telefono", true);
 		if(request.getParameter("email")==null || request.getParameter("email").length()>25 || !request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
 			errorMap.put("email",true);
