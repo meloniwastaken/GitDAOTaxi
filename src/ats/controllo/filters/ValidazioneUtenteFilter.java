@@ -32,13 +32,8 @@ public class ValidazioneUtenteFilter implements Filter {
 	public void doFilter(ServletRequest request1, ServletResponse response1, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) request1;
 		HttpServletResponse response = (HttpServletResponse) response1;
-//		System.out.println(request.getRequestURI());
-//		String cpath = request.getContextPath();
-//		String uri = request.getRequestURI();
-//		Integer cpathlength = cpath.length();
-//		uri = uri.substring(cpathlength+1, uri.length());
-//		System.out.println(uri);
-		
+
+		request.removeAttribute("errorMap");
 		Map<String,Boolean> errorMap = new HashMap<String,Boolean>();
 		if(request.getParameter("nome")==null || request.getParameter("nome").isEmpty() || request.getParameter("nome").length()>35)
 			errorMap.put("nome", true);
@@ -46,9 +41,9 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("cognome", true);
 		if(request.getParameter("codFiscale")==null || request.getParameter("codFiscale").length()!=16)
 			errorMap.put("codFiscale", true);
-		if(request.getParameter("indirizzo")==null || request.getParameter("indirizzo").length()>50)
+		if(request.getParameter("indirizzo")==null ||  request.getParameter("indirizzo").isEmpty() || request.getParameter("indirizzo").length()>50)
 			errorMap.put("indirizzo", true);
-		if(request.getParameter("telefono")==null || request.getParameter("telefono").length()>15) 
+		if(request.getParameter("telefono")==null ||  request.getParameter("telefono").isEmpty() || request.getParameter("telefono").length()>15) 
 			errorMap.put("telefono", true);
 		if(request.getParameter("email")==null || request.getParameter("email").length()>25 || !request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
 			errorMap.put("email",true);
@@ -56,23 +51,20 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("username", true);
 		if(request.getParameter("password")==null || request.getParameter("password").length()<=6 || request.getParameter("password").length()>=16)
 			errorMap.put("password", true);
-		if(request.getParameter("password2")==null || request.getParameter("password2").length()<=6 || request.getParameter("password2").length()>=16 || !request.getParameter("password").equals(request.getParameter("password2")))
+		if(request.getParameter("cognome").isEmpty() || !request.getParameter("password").equals(request.getParameter("password2")))
 			errorMap.put("password2", true);
+		if(request.getParameter("stipendio")!=null)
+			if(request.getParameter("stipendio").isEmpty() || Double.parseDouble(request.getParameter("stipendio"))<500)
+				errorMap.put("stipendio", true);
 		
 		if(errorMap.isEmpty())
 			chain.doFilter(request, response);
-		else
+		else {
+			request.setAttribute("errorMap", errorMap);
 			request.getRequestDispatcher(request.getParameter("from")).forward(request, response);
-			
-
-		//request.getRequestDispatcher("errorPage.jsp").forward(request, response);
-		
-		//chain.doFilter(request, response);
+		}
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
 	public void init(FilterConfig fConfig) throws ServletException {
 		// TODO Auto-generated method stub
 	}

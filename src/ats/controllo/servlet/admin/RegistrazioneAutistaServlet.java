@@ -52,7 +52,6 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
-
 		a.setIndirizzo(request.getParameter("indirizzo"));
 		a.setTelefono(request.getParameter("telefono"));
 		a.setEmail(request.getParameter("email"));

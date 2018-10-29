@@ -65,4 +65,16 @@
     <filter-name>ValidazioneUtenteFilter</filter-name>
     <url-pattern>/register</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>ValidazioneUtenteFilter</filter-name>
+    <url-pattern>/admin/registrazioneAutista</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>ValidazioneUtenteFilter</filter-name>
+    <url-pattern>/update</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>ValidazioneUtenteFilter</filter-name>
+    <url-pattern>/admin/updateAutista</url-pattern>
+  </filter-mapping>
 </web-app>

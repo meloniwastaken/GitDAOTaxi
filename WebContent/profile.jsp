@@ -43,15 +43,17 @@
 		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 		<input type="submit" value="Visualizza Viaggi"/>
 	</form>
-	<form method="POST" action="saveIdToUpdateUtente">
+	<form method="POST" action="formUpdate">
 		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 		<input type="submit" value="Modifica Account"/>
 	</form>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>
 		<a href="/GitDAOTaxi/admin/findAllClienti">Mostra Clienti</a>
 		<br>
-		<a href="FormRegistrazioneAutistaServlet">Registra Autista</a>
-	<% }%>
+		<form method="POST" action="admin/formRegistrazioneAutista">
+			<input type="submit" value="Registra Autista">
+		</form>
+	<%}%>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==2) {
 		//autista
 	}%>
