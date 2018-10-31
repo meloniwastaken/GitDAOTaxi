@@ -61,9 +61,9 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("telefono", true);
 		if(request.getParameter("email")==null || request.getParameter("email").length()>25 || !request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
 			errorMap.put("email",true);
-		if(request.getParameter("username")==null || request.getParameter("username").length()<=6 || request.getParameter("username").length()>=16 || checkUsername == true)
+		if(request.getParameter("username")==null || request.getParameter("username").length()<6 || request.getParameter("username").length()>=16 || checkUsername == true)
 			errorMap.put("username", true);
-		if(request.getParameter("password")==null || request.getParameter("password").length()<=6 || request.getParameter("password").length()>=16)
+		if(request.getParameter("password")==null || request.getParameter("password").length()<6 || request.getParameter("password").length()>=16)
 			errorMap.put("password", true);
 		if(request.getParameter("cognome").isEmpty() || !request.getParameter("password").equals(request.getParameter("password2")))
 			errorMap.put("password2", true);
