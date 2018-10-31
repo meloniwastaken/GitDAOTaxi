@@ -57,7 +57,7 @@
 							</select>
 							<input type="submit" value="Lascia Feedback"/>
 						</form>
-				<%} else if(v.getFeedback()!=null && v.getStato()==3) {%>
+				<%} else if(v.getFeedback()!=null && v.getStato()==4) {%>
 					<%=v.getFeedback()%>
 				<%}%></td>
 
