@@ -39,20 +39,38 @@
 			<tr><th>Stipendio:</th><td><%=stipendio%> €</td>
 		<%} %>
 	</table>
+	<br>
 	<form method="POST" action="visualizzaViaggi">
 		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 		<input type="submit" value="Visualizza Viaggi"/>
 	</form>
+	<br>
 	<form method="POST" action="formUpdate">
 		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
 		<input type="submit" value="Modifica Account"/>
 	</form>
+	<br>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>
-		<a href="/GitDAOTaxi/admin/findAllClienti">Mostra Clienti</a>
+		<form method="GET" action="/GitDAOTaxi/admin/findAll">
+			<input type="submit" value="Elenco Utenti">
+		</form>
+		<br>
+		<form method="GET" action="/GitDAOTaxi/admin/findAllAutisti">
+			<input type="submit" value="Elenco Autisti">
+		</form>
+		<br>
+		<form method="GET" action="/GitDAOTaxi/admin/findAllClienti">
+			<input type="submit" value="Elenco Clienti">
+		</form>
 		<br>
 		<form method="POST" action="admin/formRegistrazioneAutista">
 			<input type="submit" value="Registra Autista">
 		</form>
+		<br>
+		<form method="POST" action="/GitDAOTaxi/admin/inserisciTaxi.jsp">
+			<input type="submit" value="Aggiungi Taxi">
+		</form>
+		<br>
 	<%}%>
 	<%if((Integer) request.getSession().getAttribute("ruolo")==2) {
 		//autista
