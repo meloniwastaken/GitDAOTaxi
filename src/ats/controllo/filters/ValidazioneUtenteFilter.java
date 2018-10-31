@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ats.persistenza.implementazione.DAOException;
+import ats.persistenza.implementazione.DAOUtente;
+import ats.persistenza.interfacce.IDAOUtente;
+
 /**
  * Servlet Filter implementation class ValidazioneUtenteFilter
  */
@@ -35,12 +39,21 @@ public class ValidazioneUtenteFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) response1;
 
 		request.removeAttribute("errorMap");
+		IDAOUtente daoUtente = new DAOUtente();
+		Boolean checkCF = null;
+		Boolean checkUsername = null;
+		try {
+			checkCF = daoUtente.checkCodicefiscale(request.getParameter("codFiscale"));
+			checkUsername = daoUtente.checkUsername(request.getParameter("username"));
+		} catch (DAOException e) {
+			System.out.println(e.getMessage());
+		}
 		Map<String,Boolean> errorMap = new HashMap<String,Boolean>();
 		if(request.getParameter("nome")==null || request.getParameter("nome").isEmpty() || request.getParameter("nome").length()>35)
 			errorMap.put("nome", true);
 		if(request.getParameter("cognome")==null ||  request.getParameter("cognome").isEmpty() || request.getParameter("cognome").length()>35)
 			errorMap.put("cognome", true);
-		if(request.getParameter("codFiscale")==null || request.getParameter("codFiscale").length()!=16)
+		if(request.getParameter("codFiscale")==null || request.getParameter("codFiscale").length()!=16 || checkCF == true)
 			errorMap.put("codFiscale", true);
 		if(request.getParameter("indirizzo")==null ||  request.getParameter("indirizzo").isEmpty() || request.getParameter("indirizzo").length()>50)
 			errorMap.put("indirizzo", true);
@@ -48,7 +61,7 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("telefono", true);
 		if(request.getParameter("email")==null || request.getParameter("email").length()>25 || !request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
 			errorMap.put("email",true);
-		if(request.getParameter("username")==null || request.getParameter("username").length()<=6 || request.getParameter("username").length()>=16)
+		if(request.getParameter("username")==null || request.getParameter("username").length()<=6 || request.getParameter("username").length()>=16 || checkUsername == true)
 			errorMap.put("username", true);
 		if(request.getParameter("password")==null || request.getParameter("password").length()<=6 || request.getParameter("password").length()>=16)
 			errorMap.put("password", true);

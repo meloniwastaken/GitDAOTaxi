@@ -235,4 +235,59 @@ public class DAOUtente implements IDAOUtente {
 
 	}
 
+	@Override
+	public Boolean checkCodicefiscale(String codiceFiscale) throws DAOException {
+
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = DataSource.getInstance().getConnection();
+			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE CODICE_FISCALE = ?");
+			statement.setString(1, codiceFiscale);
+			resultSet = statement.executeQuery();
+
+			if (resultSet.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			DataSource.getInstance().close(resultSet);
+			DataSource.getInstance().close(statement);
+			DataSource.getInstance().close(connection);
+		}
+	}
+
+	@Override
+	public Boolean checkUsername(String username) throws DAOException {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			connection = DataSource.getInstance().getConnection();
+			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE USERNAME = ?");
+			statement.setString(1, username);
+			resultSet = statement.executeQuery();
+
+			if (resultSet.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			DataSource.getInstance().close(resultSet);
+			DataSource.getInstance().close(statement);
+			DataSource.getInstance().close(connection);
+		}
+
+	}
 }
