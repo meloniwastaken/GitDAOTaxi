@@ -51,7 +51,7 @@ public class ValidazioneTaxiFilter implements Filter {
 			errorMap.put("modello", true);
 		if(request.getParameter("targa")==null || request.getParameter("targa").length()!=7)
 			errorMap.put("targa", true);
-		if(request.getParameter("annoImmatricolazione")==null ||  request.getParameter("annoImmatricolazione").isEmpty() || request.getParameter("telefono").length()!=4 || StringUtils.isNumeric(request.getParameter("annoImmatricolazione")) == false) 
+		if(request.getParameter("annoImmatricolazione")==null ||  request.getParameter("annoImmatricolazione").isEmpty() || request.getParameter("annoImmatricolazione").length()!=4 || StringUtils.isNumeric(request.getParameter("annoImmatricolazione")) == false) 
 			errorMap.put("annoImmatricolazione", true);
 		if(request.getParameter("posti")==null || request.getParameter("posti").length()<1 || request.getParameter("posti").length()>2 || Integer.parseInt(request.getParameter("posti")) <= 0 || StringUtils.isNumeric(request.getParameter("posti")) == false)
 			errorMap.put("posti",true);

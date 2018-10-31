@@ -48,7 +48,7 @@ public class InserisciTaxiServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		response.sendRedirect("profile");
+		response.sendRedirect("../profile");
 	}
 
 }
