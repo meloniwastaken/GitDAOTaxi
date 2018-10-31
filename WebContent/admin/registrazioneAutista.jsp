@@ -104,8 +104,8 @@
 <input type="hidden" name="from" value="formRegistrazioneAutista">
 <input type="submit" value="REGISTRA"/>
 </form>
-<form action="index.html">
-<input type="submit" value="HOME"/>
+<form action="../profile">
+<input type="submit" value="INDIETRO"/>
 </form>
 
 </body>
