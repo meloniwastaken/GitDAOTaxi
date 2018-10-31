@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ats.modello.Viaggio" %>
+<%@page import="java.text.DecimalFormat"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +10,9 @@
 <title>Preventivo</title>
 </head>
 <body>
-<% Viaggio v = (Viaggio) request.getSession().getAttribute("viaggio");%>
+<% Viaggio v = (Viaggio) request.getSession().getAttribute("viaggio");
+DecimalFormat f = new DecimalFormat("##.00");
+%>
 <h1>AUTISTA</h1>
 <table>
 	<thead>
@@ -47,8 +51,7 @@
 			<td><%=v.getDestinazione() %></td>
 			<td><%=v.getKilometri()%></td>
 			<td><%=v.getData()%></td>
-			<td><%=v.getPrezzo() %></td>
-			
+			<td><%=f.format(v.getPrezzo()) %></td>
 		</tr>
 	</tbody>
 </table>
