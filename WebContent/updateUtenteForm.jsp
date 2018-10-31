@@ -86,6 +86,10 @@
 <input type="hidden" name="from" value="formUpdate">
 <input type="submit" value="MODIFICA"/>
 </form>
+<form method="POST" action="delete">
+<input type="hidden" name="id" value="<%=utente.getId() %>">
+<input type="submit" value="CANCELLA ACCOUNT">
+</form>
 <form action="index.html">
 <input type="submit" value="HOME"/>
 </form>

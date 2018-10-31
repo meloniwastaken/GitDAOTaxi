@@ -36,6 +36,7 @@
   	  			<td style="text-align:center;"><%=cliente.getIndirizzo()%></td>
   		 		<td style="text-align:center;"><%=cliente.getTelefono()%></td>
   		 		<td style="text-align:center;"><%=cliente.getEmail()%></td>
+  		 		<%if (cliente.getUsername()!=null && cliente.getPassword()!=null){ %>
   				<td style="text-align:center;">
   					<form action="/GitDAOTaxi/formUpdate" method="POST">
   						<input type="hidden" name="id" value="<%=cliente.getId()%>">
@@ -48,6 +49,10 @@
   						<input type="submit" value="Cancella"/>
   					</form>
   				</td>
+  				<%} else { %>
+  				<td style="text-align:center;">Utente cancellato</td>
+  				<td style="text-align:center;">-----</td>
+  				<%} %>
   				  <td style="text-align:center;">
   					<form action="/GitDAOTaxi/visualizzaViaggi" method="POST">
   						<input type="hidden" name="id" value="<%=cliente.getId()%>">

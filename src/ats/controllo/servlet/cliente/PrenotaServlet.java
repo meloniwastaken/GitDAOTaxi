@@ -36,7 +36,7 @@ public class PrenotaServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("../");
+		response.sendRedirect("/GitDAOTaxi/profile");
 	}
 
 }

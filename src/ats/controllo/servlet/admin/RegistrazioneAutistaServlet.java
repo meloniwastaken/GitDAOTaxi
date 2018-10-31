@@ -19,7 +19,6 @@ import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-
 /**
  * Servlet implementation class RegistrazioneAutistaServlet
  */
@@ -58,32 +57,31 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		a.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 		a.setUsername(request.getParameter("username"));
 		a.setPassword(request.getParameter("password"));
-		
+
 		try {
 			daoAutista.insert(a);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
-//		Long idAutista=a.getId();
 
-		IDAOTaxi daoTaxi = new DAOTaxi();
-		Taxi t = new Taxi();
-		try {
-			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
-			t.setDisponibile(true);
-			t.setAutista(a);
-			daoTaxi.update(t);
+		if (Long.parseLong(request.getParameter("taxi")) != 0) {
 
-		} catch (NumberFormatException e1) {
-			System.out.println(e1.getMessage());
-		} catch (DAOException e1) {
-			System.out.println(e1.getMessage());
+			IDAOTaxi daoTaxi = new DAOTaxi();
+			Taxi t = new Taxi();
+			try {
+				t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
+				t.setDisponibile(true);
+				t.setAutista(a);
+				daoTaxi.update(t);
+
+			} catch (NumberFormatException e1) {
+				System.out.println(e1.getMessage());
+			} catch (DAOException e1) {
+				System.out.println(e1.getMessage());
+			}
+
 		}
-
-		
-		response.sendRedirect("../");
+		response.sendRedirect("../profile");
 
 	}
 

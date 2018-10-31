@@ -27,7 +27,7 @@ public class DAOAutista implements IDAOAutista {
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection
-					.prepareStatement("SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID");
+					.prepareStatement("SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID ORDER BY UTENTE.COGNOME");
 			resultSet = statement.executeQuery();
 
 			while (resultSet.next()) {
