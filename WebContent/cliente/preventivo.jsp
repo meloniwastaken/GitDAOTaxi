@@ -40,7 +40,7 @@
 <h1>PREVENTIVO</h1>
 <table>
 	<thead>
-		<tr><th>Partenza</th><th>Destinazione</th><th>Kilometri</th><th>Data</th><th>Prezzo</th></tr>
+		<tr><th>Partenza</th><th>Destinazione</th><th>Kilometri</th><th>Data</th><th>Prezzo [€]</th></tr>
 	</thead>
 	<tbody>
 		<tr><td><%=v.getPartenza() %></td>
@@ -54,6 +54,10 @@
 </table>
 <form method="POST" action="prenota">
 	<input type="submit" value="Conferma">
+</form>
+<br>
+<form action="/GitDAOTaxi/profile">
+<input type="submit" value="Annulla">
 </form>
 </body>
 </html>
