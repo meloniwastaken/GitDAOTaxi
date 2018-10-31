@@ -43,7 +43,7 @@ public class AvanzaStatoViaggioServlet extends HttpServlet {
 		Viaggio v = null;
 		try {	
 			v = daoViaggio.findById(idViaggio);
-			if(v.getStato()!=3) {
+			if(v.getStato()!=4) {
 				v.setStato(v.getStato()+1);
 				daoViaggio.update(v);
 			}
@@ -51,7 +51,7 @@ public class AvanzaStatoViaggioServlet extends HttpServlet {
 			if(v.getStato()==2) {
 				Long id = (Long) request.getSession().getAttribute("id");
 				Taxi t = daoTaxi.findByIdAutista(id);
-				t.setDisponibile(false);
+				t.setDisponibile(true);
 				System.out.println("stato 2");
 				System.out.println(t);
 				daoTaxi.update(t);
@@ -62,9 +62,21 @@ public class AvanzaStatoViaggioServlet extends HttpServlet {
 				Taxi t = daoTaxi.findByIdAutista(id);
 				System.out.println("stato 3");
 				System.out.println(t);
+				t.setDisponibile(false);
+				daoTaxi.update(t);
+			}
+			
+			
+			if(v.getStato()==4) {
+				Long id = (Long) request.getSession().getAttribute("id");
+				Taxi t = daoTaxi.findByIdAutista(id);
+				System.out.println("stato 4");
+				System.out.println(t);
 				t.setDisponibile(true);
 				daoTaxi.update(t);
 			}
+			
+			
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}

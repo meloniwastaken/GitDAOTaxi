@@ -25,7 +25,6 @@
     <th>Indirizzo</th>
     <th>Telefono</th>
     <th>E-mail</th>
-    <th>Ruolo</th>
     <th>Stipendio</th>
     <th>Taxi</th>
   </tr>
@@ -40,9 +39,11 @@
   	  			<td style="text-align:center;"><%=autista.getIndirizzo()%></td>
   		 		<td style="text-align:center;"><%=autista.getTelefono()%></td>
   		 		<td style="text-align:center;"><%=autista.getEmail()%></td>
-  				<td style="text-align:center;">Autista</td>
   				<td style="text-align:center;"><%=autista.getStipendio()%></td>
   				<td style="text-align:center;"><% if(map.get(autista)!=null) out.println(map.get(autista).getMarca() + " " + map.get(autista).getModello() + " " + map.get(autista).getTarga()); else out.println("Non assegnato");%></td>
+  				
+  				<%if (autista.getUsername()!=null && autista.getPassword()!=null) {%>
+  				
   				<td style="text-align:center;">
   					<form method="POST" action="updateAutistaForm">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
@@ -55,6 +56,11 @@
   						<input type="submit" value="Cancella">
   					</form>
   				</td>
+  				
+  				<%}else{ %>
+  				<td style="text-align:center;">Utente cancellato</td>
+  				<td style="text-align:center;">-----</td>
+  				<%} %>
   				<td style="text-align:center;">
   					<form method="POST" action="../visualizzaViaggi">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">

@@ -60,18 +60,22 @@ public class UpdateAutistaServlet extends HttpServlet {
 			autista.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			autista.setId(Long.parseLong(request.getParameter("id")));
 			daoAutista.update(autista);
-
+			
+			if (Long.parseLong(request.getParameter("taxi"))==0) 
+				daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("id")));
+			else {
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
 			t.setDisponibile(true);
 			t.setAutista(autista);
 			daoTaxi.update(t);
+			}
 
 		} catch (NumberFormatException e) {
 			System.out.println(e.getMessage());
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("index.html");
+		response.sendRedirect("findAllAutisti");
 	}
 
 }
