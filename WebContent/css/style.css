@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+@font-face {
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand_Book.otf);
+}
+
+body {
+	font-family: Quicksand;
+    background-position: center;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+    background-size: cover;
+    color: white;
+}
+
+.first {
+	padding-top: 100px;
+}
+
+.col-md-4 {
+	font-size: 18px;
+}
+
+.panel-default {
+	border-color: rgb(8,8,8);
+}
+
+.panel {
+	background-color: rgba(32,32,32,0.8);
+}
+
+.label {
+	text-align: left;
+	text-decoration: bold;
+	color: white;
+}

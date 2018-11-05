@@ -168,30 +168,37 @@ contest:"\e971";
 	padding-left:20%;
 	padding-right:20%;
 }
-</style>
+
+a {
+	text-decoration: none;
+}
 </style>
 </head>
 
-<body background="taxi.jpg">
-	<div class="logoPrincipale" id="logo"><img src="logo.png"></div>
+<body background="img/bg.jpg">
+	<div class="logoPrincipale" id="logo"><img src="img/logo.png"></div>
 
 	<div class="container-login100">
 		<div class="wrap-login100 p-t-30 p-b-50">
 			<span class="login100-form-title p-b-41"></span>
-			
-			<form class="login100-form validate-form p-b-33 p-t-5">
-				<div class="wrap-input100 validate-input" data-validate = "Enter username">
-					<p>Prenota il tuo viaggio</p>
-					
-					<input class="input100" type="text" name="username" placeholder="&#x1f464 Username">
-					<input class="input100" type="password" name="pass" placeholder="&#x1f512 Password">
-					<div class="button_container">
-						<button class="login100-form-btn">Login</button>
-						<button class="login100-form-btn">Registrazione</button>
+				<div class="wrap-input100 validate-input">
+					<div class="login100-form validate-form p-b-33 p-t-5">
+						<p>Prenota il tuo viaggio</p>
+						<form action="login" method="POST">
+							<input class="input100" type="text" name="username" placeholder="&#x1f464 Username">
+							<input class="input100" type="password" name="password" placeholder="&#x1f512 Password">
+							<div class="button_container">
+								<button class="login100-form-btn">Login</button>
+							</div>
+						</form>
+						<div class="button_container">
+							<a href="Registrazione.jsp">
+								<button class="login100-form-btn">Registrazione</button>
+							</a>
+						</div>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
-					<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 				</div>
-			</form>
 		</div>
 	</div>
 	

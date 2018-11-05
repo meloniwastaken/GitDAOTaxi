@@ -9,8 +9,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>PROFILO</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 </head>
-<body>
+<body background="img/bg.jpg">
+
+	<jsp:include page="navBar.jsp"/>
+
 	<%
 	Utente utente = null;
 	Double stipendio = null;
@@ -27,60 +33,29 @@
 	%>
 	
 	<%=request.getSession().getAttribute("id")%> <br>
-	<table>
-		<tr><th>Nome:</th><td><%=utente.getNome()%></td>
-		<tr><th>Cognome:</th><td><%=utente.getCognome()%></td>
-		<tr><th>Codice fiscale:</th><td><%=utente.getCodiceFiscale()%></td>
-		<tr><th>Data di nascita:</th><td><%=utente.getDataDiNascita()%></td>
-		<tr><th>Indirizzo:</th><td><%=utente.getIndirizzo()%></td>
-		<tr><th>Telefono:</th><td><%=utente.getTelefono()%></td>
-		<tr><th>Email:</th><td><%=utente.getEmail()%></td>
-		<%if(stipendio!=null) {%>
-			<tr><th>Stipendio:</th><td><%=stipendio%> €</td>
-		<%} %>
-	</table>
-	<br>
-	<form method="POST" action="visualizzaViaggi">
-		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
-		<input type="submit" value="Visualizza Viaggi"/>
-	</form>
-	<br>
-	<form method="POST" action="formUpdate">
-		<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
-		<input type="submit" value="Modifica Account"/>
-	</form>
-	<br>
-	<%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>
-		<form method="GET" action="/GitDAOTaxi/admin/findAll">
-			<input type="submit" value="Elenco Utenti">
-		</form>
-		<br>
-		<form method="GET" action="/GitDAOTaxi/admin/findAllAutisti">
-			<input type="submit" value="Elenco Autisti">
-		</form>
-		<br>
-		<form method="GET" action="/GitDAOTaxi/admin/findAllClienti">
-			<input type="submit" value="Elenco Clienti">
-		</form>
-		<br>
-		<form method="POST" action="admin/formRegistrazioneAutista">
-			<input type="submit" value="Registra Autista">
-		</form>
-		<br>
-		<form method="POST" action="/GitDAOTaxi/admin/inserisciTaxi.jsp">
-			<input type="submit" value="Aggiungi Taxi">
-		</form>
-		<br>
-	<%}%>
-	<%if((Integer) request.getSession().getAttribute("ruolo")==2) {
-		//autista
-	}%>
-	<%if((Integer) request.getSession().getAttribute("ruolo")==3) {%>
-		<form method="POST" action="cliente/formPrenotazione">
-			<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
-			<input type="submit" value="Prenota viaggio"/>
-		</form>
-	<% }%>
-	<a href="logout">Logout</a>
+	
+	
+	<div class="container first">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-body">
+								<div class="row"><div class="col-md-4 label">Nome:</div><div class="col-md-4 col-md-offset-2"><%=utente.getNome()%></div></div>
+								<div class="row"><div class="col-md-4 label">Cognome:</div><div class="col-md-4 col-md-offset-2"><%=utente.getCognome()%></div></div>
+								<div class="row"><div class="col-md-4 label">Codice fiscale:</div><div class="col-md-4 col-md-offset-2"><%=utente.getCodiceFiscale()%></div></div>
+								<div class="row"><div class="col-md-4 label">Data di nascita:</div><div class="col-md-4 col-md-offset-2"><%=utente.getDataDiNascita()%></div></div>
+								<div class="row"><div class="col-md-4 label">Indirizzo:</div><div class="col-md-4 col-md-offset-2"><%=utente.getIndirizzo()%></div></div>
+								<div class="row"><div class="col-md-4 label">Telefono:</div><div class="col-md-4 col-md-offset-2"><%=utente.getTelefono()%></div></div>
+								<div class="row"><div class="col-md-4 label">Email:</div><div class="col-md-4 col-md-offset-2"><%=utente.getEmail()%></div></div>
+								<%if(stipendio!=null) {%>
+									<div class="row"><div class="col-md-4 label">Stipendio:</div><div class="col-md-4 col-md-offset-2"><%=stipendio%> €</div></div>
+								<%} %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
