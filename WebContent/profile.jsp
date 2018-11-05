@@ -35,7 +35,6 @@
 	<%=request.getSession().getAttribute("id")%> <br>
 	
 	
-	
 	<div class="container first">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
