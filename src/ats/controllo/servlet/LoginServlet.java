@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 				request.getSession().setAttribute("ruolo", 2);
 			else if (utente instanceof Cliente)
 				request.getSession().setAttribute("ruolo", 3);
+			request.getSession().setAttribute("nomeUtente", utente.getNome());
 			request.getRequestDispatcher("profile").forward(request, response);
 		}
 		System.out.println(request.getRequestURI());
