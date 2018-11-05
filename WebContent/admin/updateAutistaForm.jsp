@@ -22,7 +22,7 @@
 	<tbody>
   		<tr>
   			<td>Nome: </td>
-  			<td><input readonly name="nome" value="<%=autista.getNome()%>"></td>
+  			<td><input name="nome" value="<%=autista.getNome()%>"></td>
   			<td><%if(errorMap!=null && errorMap.get("nome")!=null) {%><div style="color:red">Errore nome</div><%}%></td>
   		</tr>
   		
@@ -69,7 +69,7 @@
   		
   		<tr>
   			<td>Username: </td> 
-  			<td><input type="text" name="username" value="<%=autista.getUsername()%>"></td>
+  			<td><input readonly type="text" name="username" value="<%=autista.getUsername()%>"></td>
   			<td><%if(errorMap!=null && errorMap.get("username")!=null) {%><div style="color:red">Errore username</div><%}%></td>
   		</tr>
   		

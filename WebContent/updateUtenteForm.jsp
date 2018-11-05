@@ -61,7 +61,7 @@
 		</tr>
 		<tr>
 			<td>
-			<label for="username">Username: </label></td>
+			<label readonly for="username">Username: </label></td>
 			<td><input type="text" id="username" name="username" value="<%=utente.getUsername()%>"/></td>
 			<td><%if(errorMap!=null && errorMap.get("username")!=null) {%><div style="color:red">Errore username</div><%}%></td>
 		</tr>
