@@ -1,4 +1,27 @@
-<script src="js/bootstrap.min.js"></script>
+<style>
+.btn_href{
+     
+     border:none; 
+     font: inherit;         
+     cursor: pointer;     
+     display: block;
+     padding: 3px 20px;
+     clear: both;
+     font-weight: 400;
+     line-height: 1.42857143;
+     color: #333;
+     white-space: nowrap;
+}
+
+
+.btn_href:hover{
+    color: #262626;
+    text-decoration: none;
+    background-color: #f5f5f5;
+    
+}
+</style>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,8 +68,8 @@
     	Aggiungi <span class="caret"></span></button>
           <ul class="dropdown-menu">
              <li>
-           	 <form method="POST" action="admin/formRegistrazioneAutista">
-			 	<button class="btn btn-default navbar-btn" type="submit">Aggiungi Autista</button>
+           	 <form method="POST" action="admin/formRegistrazioneAutista" id="idForm">
+			 	<a href="#" class="btn_href" onclick="document.getElementById('idForm').submit();">Aggiungi Autista</a>
 			</form>   
             <li><a href="/GitDAOTaxi/admin/inserisciTaxi.jsp">Aggiungi Taxi</a></li>
           </ul>
@@ -71,9 +94,9 @@
           <ul class="dropdown-menu">
             <li><a href="profile">Profilo</a></li>
             <li>
-            <form method="POST" action="formUpdate">
+            <form method="POST" action="formUpdate" id="idForm">
 				<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
-				<button class="btn btn-default navbar-btn" type="submit">Modifica Account</button>
+				<a href="#" class="btn_href" onclick="document.getElementById('idForm').submit();">Modifica Account</a>
 			</form>            
             </li>
             <li role="separator" class="divider"></li>
