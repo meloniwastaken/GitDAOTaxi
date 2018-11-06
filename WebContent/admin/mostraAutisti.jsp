@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ page import="java.util.Map" %>
     <%@ page import="ats.modello.Autista" %>
     <%@ page import="ats.modello.Taxi" %>
@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Mostra Autisti</title>
 </head>
 <body background="../img/bg.jpg">
@@ -32,7 +32,7 @@
 						<th>Data di Nascita</th>
 						<th>Telefono</th>
 						<th>Email</th>
-						<th>Stipendio</th>
+						<th>Stipendio [€]</th>
 						<th>Taxi</th>
 						<th></th>
 						<th></th>
@@ -41,44 +41,48 @@
   	<% 
   		for(Autista autista : map.keySet()){ %>
   			<tr>
-  				<td><%=autista.getId()%></td>
-  				<td><%=autista.getNome()%></td>
-  				<td><%=autista.getCognome()%></td>
-  				<td><%=autista.getCodiceFiscale()%></td>
-  				<td><%=autista.getDataDiNascita()%></td>
-  		 		<td><%=autista.getTelefono()%></td>
-  		 		<td><%=autista.getEmail()%></td>
-  				<td><%=autista.getStipendio()%></td>
-  				<td><% if(map.get(autista)!=null) out.println(map.get(autista).getMarca() + " " + map.get(autista).getModello() + " " + map.get(autista).getTarga()); else out.println("Non assegnato");%></td>
-  				
+  				<td style="text-align:center;"><%=autista.getId()%></td>
+  				<td style="text-align:center;"><%=autista.getNome()%></td>
+  				<td style="text-align:center;"><%=autista.getCognome()%></td>
+  				<td style="text-align:center;"><%=autista.getCodiceFiscale()%></td>
+  				<td style="text-align:center;"><%=autista.getDataDiNascita()%></td>
+  		 		<td style="text-align:center;"><%=autista.getTelefono()%></td>
+  		 		<td style="text-align:center;"><%=autista.getEmail()%></td>
+  				<td style="text-align:center;"><%=autista.getStipendio()%></td>
+  				<td style="text-align:center;"><% if(map.get(autista)!=null) out.println(map.get(autista).getMarca() + " " + map.get(autista).getModello() + " " + map.get(autista).getTarga()); else out.println("Non assegnato");%></td>
+  				<td style="text-align:center;">
+  					<form method="POST" action="../visualizzaViaggi">
+  						<input type="hidden" name="id" value="<%=autista.getId()%>">
+						<button type="submit" class="btn btn-primary">Statistiche</button>
+  					</form>
+  				</td>
   				<%if (autista.getUsername()!=null && autista.getPassword()!=null) {%>
   				
-  				<td>
+  				<td style="text-align:center;">
   					<form method="POST" action="updateAutistaForm">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
   						<button type="submit" class="btn btn-warning">Modifica</button>
   					</form>
   				</td>
-  				<td>
+  				<td style="text-align:center;">
   					<form method="POST" action="../delete">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
-						<button type="submit" class="btn btn-warning">Cancella</button>
+						<button type="submit" class="btn btn-danger">Cancella</button>
   					</form>
   				</td>
   				
   				<%}else{ %>
-  				<td>Utente cancellato</td>
-  				<td>-----</td>
+  				<td style="text-align:center;">Utente cancellato</td>
+  				<td style="text-align:center;">-----</td>
   				<%} %>
-  				<td>
-  					<form method="POST" action="../visualizzaViaggi">
-  						<input type="hidden" name="id" value="<%=autista.getId()%>">
-						<button type="submit" class="btn btn-warning">Statistiche</button>
-  					</form>
-  				</td>
+  				
   			</tr>
   		<%}%>
 			</table>
 </div></div></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

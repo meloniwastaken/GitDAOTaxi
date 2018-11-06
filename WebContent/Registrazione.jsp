@@ -36,7 +36,7 @@
 </style>
 
 <body background="img/bg.jpg">
-<h1><center>Registrazione Utente</center></h1>
+<h1>Registrazione Utente</h1>
 
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
 Utente u = (Utente)request.getAttribute("utente");
