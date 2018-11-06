@@ -1,6 +1,8 @@
 package ats.controllo.filters;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ats.modello.Cliente;
+import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -42,6 +46,21 @@ public class ValidazioneUtenteFilter implements Filter {
 		IDAOUtente daoUtente = new DAOUtente();
 		Boolean checkCF = null;
 		Boolean checkUsername = null;
+		
+		Utente u = new Cliente();
+		u.setNome(request.getParameter("nome"));
+		u.setCognome(request.getParameter("cognome"));
+		u.setCodiceFiscale(request.getParameter("condFiscale"));
+		u.setIndirizzo(request.getParameter("indirizzo"));
+		u.setTelefono(request.getParameter("telefono"));
+		try {
+			u.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+		}
+		u.setEmail(request.getParameter("email"));
+		u.setUsername(request.getParameter("username"));		
+		
 		try {
 			checkCF = daoUtente.checkCodicefiscale(request.getParameter("codFiscale"));
 			checkUsername = daoUtente.checkUsername(request.getParameter("username"));
@@ -75,6 +94,8 @@ public class ValidazioneUtenteFilter implements Filter {
 			chain.doFilter(request, response);
 		else {
 			request.setAttribute("errorMap", errorMap);
+			if (u!=null)
+				request.setAttribute("utente", u);
 			request.getRequestDispatcher(request.getParameter("from")).forward(request, response);
 		}
 	}

@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="ats.modello.Utente" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +11,35 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <script src="js/bootstrap.min.js"></script>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+
 </head>
+
+<style>
+.invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+
+
+</style>
+
 <body>
 <h1><center>Registrazione Utente</center></h1>
 
-<% Map<String,Boolean> errorMap = (Map<String,Boolean>)request.getAttribute("errorMap");%>
+<% Map<String,Boolean> errorMap = (Map<String,Boolean>)request.getAttribute("errorMap");
+Utente u = (Utente)request.getAttribute("utente");
+%>
 
 <%-- <div class="container">
 	<form method="POST" action="register">
@@ -97,22 +122,31 @@
 
 
 <div class="container">
-	<form>
+	<form method="POST" action="register">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2"> 
     		<div class="col-md-6 mb-3">
-      			<label for="validationServer01">Nome</label>
-      			<input type="text" class="form-control is-valid" id="nome" name="nome" required>
-      				<div class="valid-feedback">
-       			 		Looks good!
+      			<label for="validationServer02">Nome</label>
+      			<%if(errorMap!=null && errorMap.get("nome")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getNome() %>"<%} %> name="nome">
+      				<div class="invalid-feedback">
+       			 	Errore nome
       				</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getNome() %>"<%} %> name="nome">
+      			<%} %>
     		</div>
+    		
     		<div class="col-md-6 mb-3">
       			<label for="validationServer02">Cognome</label>
-      			<input type="text" class="form-control is-valid" id="cognome" name="cognome" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("cognome")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCognome() %>"<%} %> name="cognome">
+      				<div class="invalid-feedback">
+        			Errore cognome
       				</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getCognome() %>"<%} %> name="cognome">
+      			<%} %>    		
     		</div>    
     	</div>    
     </div>
@@ -123,18 +157,19 @@
 		<div class="col-md-8 col-md-offset-2">    
     		<div class="col-md-6 mb-3">
       			<label for="validationServer03">Data di nascita</label>
-      			<input type="date" class="form-control is-valid" id="data" name="data" min="1920-01-01" max="2000-12-31" required>
-      				<div class="valid-feedback">
-        				Looks good!
-      				</div>
+      			<input type="date" class="form-control is-valid" id="data" name="data" min="1920-01-01" max="2000-12-31">      				
     		</div>    
     		<div class="col-md-6 mb-3">
       			<label for="validationServer04">Codice Fiscale</label>
-      			<input type="text" class="form-control is-valid" id="codFiscale" name="codFiscale" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("codFiscale")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscale">
+      				<div class="invalid-feedback">
+        			Errore codice fiscale
       				</div>
-    		</div>    
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscale">
+      			<%} %>   
+      		</div>    		   
     	</div>
     </div>
     
@@ -144,18 +179,27 @@
 		<div class="col-md-8 col-md-offset-2">   
     		<div class="col-md-6 mb-3">
       			<label for="validationServer05">Indirizzo</label>
-      			<input type="text" class="form-control is-valid" id="indirizzo" name="indirizzo" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("indirizzo")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getIndirizzo() %>"<%} %> name="indirizzo">
+      				<div class="invalid-feedback">
+        			Errore indirizzo
       				</div>
-    		</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getIndirizzo() %>"<%} %> name="indirizzo">
+      			<%} %>   
+      		</div>
+    
     		<div class="col-md-6 mb-3">
       			<label for="validationServer06">Telefono</label>
-      			<input type="text" class="form-control is-valid" id="telefono" name="telefono" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("telefono")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getTelefono() %>"<%} %> name="telefono">
+      				<div class="invalid-feedback">
+        			Errore telefono
       				</div>
-    		</div>    
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getTelefono() %>"<%} %> name="telefono">
+      			<%} %> 
+      		</div>    		    
     	</div>
     </div>
     
@@ -166,42 +210,54 @@
 		<div class="col-md-8 col-md-offset-2">   
     		<div class="col-md-6 mb-3">
       			<label for="validationServer07">E-mail</label>
-      			<input type="text" class="form-control is-valid" id="email" name="email" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("email")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getEmail() %>"<%} %> name="email">
+      				<div class="invalid-feedback">
+        			Errore e-mail
       				</div>
-    		</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getEmail() %>"<%} %> name="email">
+      			<%} %> 
+      		</div>
     		<div class="col-md-6 mb-3">
       			<label for="validationServerUsername">Username</label>
-      			<input type="text" class="form-control is-invalid" id="username" name="username" aria-describedby="inputGroupPrepend3" required>
-        			<div class="invalid-feedback">
-          				Please choose a username.
-        			</div>
+      			<%if(errorMap!=null && errorMap.get("username")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
+      				<div class="invalid-feedback">
+        			Errore username
+      				</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
+      			<%} %> 
       		</div>
     	</div>    
     </div>
-    
-    
-    
+           
     <br><br>
-    
-    
-    
+           
     <div class="row">
 		<div class="col-md-8 col-md-offset-2">    
     		<div class="col-md-6 mb-3">
       			<label for="validationServer08">Password</label>
-      			<input type="password" class="form-control is-valid" id="password" name="password" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("password")!=null) {%>
+      			<input type="password" class="form-control is-invalid" id="password" name="password">
+      				<div class="invalid-feedback">
+        			Errore password
       				</div>
+      			<%}else {%>
+      			<input type="password" class="form-control is-valid" id="password" name="password">
+      			<%} %> 
     		</div>
     		<div class="col-md-6 mb-3">
       			<label for="validationServer09">Conferma Password</label>
-      			<input type="password" class="form-control is-valid" id="password2" name="password2" required>
-      				<div class="valid-feedback">
-        				Looks good!
+      			<%if(errorMap!=null && errorMap.get("password2")!=null) {%>
+      			<input type="password" class="form-control is-invalid" id="password2" name="password2">
+      				<div class="invalid-feedback">
+        			Le password non sono uguali
       				</div>
+      			<%}else {%>
+      			<input type="password" class="form-control is-valid" id="password2" name="password2">
+      			<%} %> 
     		</div>  
   		</div>
   	</div>
@@ -210,17 +266,16 @@
   
   	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="col-md-6 mb-3"></div>
-			<div class="col-md-3 mb-3"></div>
+			
 			<div class="col-md-6 mb-3">			
   			<button class="btn btn-primary" type="submit">Conferma</button>
   			</div>
   			</div>
   			</div>  			
   			
-  			
+  		<input type="hidden" name="from" value="Registrazione.jsp">	
 	</form>
 </div>
-
+<br><br>
 </body>
 </html>
