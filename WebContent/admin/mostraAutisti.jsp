@@ -56,13 +56,13 @@
   				<td>
   					<form method="POST" action="updateAutistaForm">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
-  						<input type="submit" value="Modifica">
+  						<button type="submit" class="btn btn-warning">Modifica</button>
   					</form>
   				</td>
   				<td>
   					<form method="POST" action="../delete">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
-  						<input type="submit" value="Cancella">
+						<button type="submit" class="btn btn-warning">Cancella</button>
   					</form>
   				</td>
   				
@@ -73,7 +73,7 @@
   				<td>
   					<form method="POST" action="../visualizzaViaggi">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
-  						<input type="submit" value="Statistiche">
+						<button type="submit" class="btn btn-warning">Statistiche</button>
   					</form>
   				</td>
   			</tr>

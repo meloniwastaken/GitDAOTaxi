@@ -21,7 +21,7 @@
 
 	<h1 class="first">Utenti</h1>
 
-	<% List<Utente> utenti = (List<Utente>) request.getAttribute("utenti"); %>
+	<% List<Utente> utenti = (List<Utente>) request.getAttribute("utenti");%>
 	
 	<div class="container first">
 		<div class="panel panel-default">
@@ -49,11 +49,11 @@
 			  		 		<td><%=utente.getTelefono()%></td>
 			  		 		<td><%=utente.getEmail()%></td>
 			  				<td><%if(utente instanceof Amministratore){
-			  				out.print("Admin");
+			  					out.print("Admin");
 			  				}else if(utente instanceof Autista){
-			  				out.print("Autista");
+			  					out.print("Autista");
 			  				}else{
-			  				out.print("Cliente");%>
+			  					out.print("Cliente");%>
 			  			
 			  		<%}%> 	</td>
 			  			</tr>

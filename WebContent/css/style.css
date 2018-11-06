@@ -42,13 +42,15 @@ body {
 	color: white;
 }
 
-td, th {
-	padding-left: 25px;
-}
-
 h1 {
 	width: 100%;
 	text-align: center;
 	text-decoration: bold;
 	font-size: 500%;
+}
+
+table {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
