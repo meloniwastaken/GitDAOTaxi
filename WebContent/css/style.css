@@ -24,6 +24,10 @@ body {
 	font-size: 18px;
 }
 
+.container {
+	width: 100%;
+}
+
 .panel-default {
 	border-color: rgb(8,8,8);
 }
@@ -36,4 +40,15 @@ body {
 	text-align: left;
 	text-decoration: bold;
 	color: white;
+}
+
+td, th {
+	padding-left: 25px;
+}
+
+h1 {
+	width: 100%;
+	text-align: center;
+	text-decoration: bold;
+	font-size: 500%;
 }
