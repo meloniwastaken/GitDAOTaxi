@@ -50,7 +50,7 @@ public class ValidazioneUtenteFilter implements Filter {
 		Utente u = new Cliente();
 		u.setNome(request.getParameter("nome"));
 		u.setCognome(request.getParameter("cognome"));
-		u.setCodiceFiscale(request.getParameter("condFiscale"));
+		u.setCodiceFiscale(request.getParameter("codFiscale"));
 		u.setIndirizzo(request.getParameter("indirizzo"));
 		u.setTelefono(request.getParameter("telefono"));
 		try {
@@ -67,28 +67,74 @@ public class ValidazioneUtenteFilter implements Filter {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		Map<String,Boolean> errorMap = new HashMap<String,Boolean>();
-		if(request.getParameter("nome")==null || request.getParameter("nome").isEmpty() || request.getParameter("nome").length()>35)
-			errorMap.put("nome", true);
-		if(request.getParameter("cognome")==null ||  request.getParameter("cognome").isEmpty() || request.getParameter("cognome").length()>35)
-			errorMap.put("cognome", true);
-		if(request.getParameter("codFiscale")==null || request.getParameter("codFiscale").length()!=16 || checkCF == true)
-			errorMap.put("codFiscale", true);
-		if(request.getParameter("indirizzo")==null ||  request.getParameter("indirizzo").isEmpty() || request.getParameter("indirizzo").length()>50)
-			errorMap.put("indirizzo", true);
-		if(request.getParameter("telefono")==null ||  request.getParameter("telefono").isEmpty() || request.getParameter("telefono").length()>15 || StringUtils.isNumeric(request.getParameter("telefono")) == false) 
-			errorMap.put("telefono", true);
-		if(request.getParameter("email")==null || request.getParameter("email").length()>25 || !request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
-			errorMap.put("email",true);
-		if(request.getParameter("username")==null || request.getParameter("username").length()<6 || request.getParameter("username").length()>=16 || checkUsername == true)
-			errorMap.put("username", true);
-		if(request.getParameter("password")==null || request.getParameter("password").length()<6 || request.getParameter("password").length()>=16)
-			errorMap.put("password", true);
-		if(request.getParameter("cognome").isEmpty() || !request.getParameter("password").equals(request.getParameter("password2")))
-			errorMap.put("password2", true);
-		if(request.getParameter("stipendio")!=null)
-			if(request.getParameter("stipendio").isEmpty() || Double.parseDouble(request.getParameter("stipendio"))<500)
-				errorMap.put("stipendio", true);
+		Map<String,String> errorMap = new HashMap<String,String>();
+		
+		if (request.getParameter("nome").isEmpty())
+			errorMap.put("nome empty", "Campo nome vuoto");
+		
+		if (request.getParameter("nome").length() >35)
+			errorMap.put("nome length", "Nome troppo lungo");	
+		
+		if (request.getParameter("cognome").isEmpty())
+			errorMap.put("cognome empty", "Campo cognome vuoto");
+		
+		if (request.getParameter("cognome").length() >35)
+			errorMap.put("cognome length", "Cognome troppo lungo");
+		
+		if (request.getParameter("data").isEmpty())
+			errorMap.put("data empty", "Campo data vuoto");
+				
+				
+		if (request.getParameter("codFiscale").length()!=16)
+			errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
+						
+		if (checkCF == true)
+			errorMap.put("codFiscale esistente", "Codice fiscale già registrato");
+						
+		if (request.getParameter("indirizzo").isEmpty())
+			errorMap.put("indirizzo empty", "Campo indirizzo vuoto");
+		
+		if (request.getParameter("indirizzo").length() >50)
+			errorMap.put("indirizzo length", "Indirizzo troppo lungo");				
+		
+		if(request.getParameter("telefono").isEmpty())
+			errorMap.put("telefono empty", "Campo telefono vuoto");
+		
+		if(request.getParameter("telefono").length()>20)
+			errorMap.put("telefono length", "Telefono troppo lungo");
+			
+		if (StringUtils.isNumeric(request.getParameter("telefono")) == false) 
+			errorMap.put("telefono nonValido", "Telefono non valido");
+		
+		if(request.getParameter("email").isEmpty())
+			errorMap.put("email empty", "Campo e-mail vuoto");		
+		
+		if(request.getParameter("email").length()>35)
+			errorMap.put("email length", "E-mail troppo lunga");
+			
+		if (!request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
+			errorMap.put("email nonValida", "E-mail non valida");
+		
+		if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
+			errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
+		
+		if (checkUsername==true)
+			errorMap.put("username esistente", "Username già utilizzato!");
+		
+//		if (request.getParameter("password").isEmpty())
+//			errorMap.put("password empty", "Campo password vuoto");
+		
+		if (request.getParameter("password").length() >16 || request.getParameter("password").length()<6)
+			errorMap.put("password length", "La password deve essere compresa fra 6 e 16 caratteri");
+		
+		if (!request.getParameter("password2").equals(request.getParameter("password")))
+			errorMap.put("password notEquals", "Le due password non coincidono!");
+		
+//		if(request.getParameter("stipendio").isEmpty())
+//			errorMap.put("stipendio empty", "Campo stipendio vuoto");
+			
+//		Double.parseDouble(request.getParameter("stipendio"))<500)
+				
 		
 		if(errorMap.isEmpty())
 			chain.doFilter(request, response);
@@ -100,6 +146,8 @@ public class ValidazioneUtenteFilter implements Filter {
 		}
 	}
 
+		
+	
 	public void init(FilterConfig fConfig) throws ServletException {
 		
 	}
