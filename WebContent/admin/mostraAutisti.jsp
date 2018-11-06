@@ -41,16 +41,16 @@
   	<% 
   		for(Autista autista : map.keySet()){ %>
   			<tr>
-  				<td style="text-align:center;"><%=autista.getId()%></td>
-  				<td style="text-align:center;"><%=autista.getNome()%></td>
-  				<td style="text-align:center;"><%=autista.getCognome()%></td>
-  				<td style="text-align:center;"><%=autista.getCodiceFiscale()%></td>
-  				<td style="text-align:center;"><%=autista.getDataDiNascita()%></td>
-  		 		<td style="text-align:center;"><%=autista.getTelefono()%></td>
-  		 		<td style="text-align:center;"><%=autista.getEmail()%></td>
-  				<td style="text-align:center;"><%=autista.getStipendio()%></td>
-  				<td style="text-align:center;"><% if(map.get(autista)!=null) out.println(map.get(autista).getMarca() + " " + map.get(autista).getModello() + " " + map.get(autista).getTarga()); else out.println("Non assegnato");%></td>
-  				<td style="text-align:center;">
+  				<td><%=autista.getId()%></td>
+  				<td><%=autista.getNome()%></td>
+  				<td><%=autista.getCognome()%></td>
+  				<td><%=autista.getCodiceFiscale()%></td>
+  				<td><%=autista.getDataDiNascita()%></td>
+  		 		<td><%=autista.getTelefono()%></td>
+  		 		<td><%=autista.getEmail()%></td>
+  				<td><%=autista.getStipendio()%></td>
+  				<td><% if(map.get(autista)!=null) out.println(map.get(autista).getMarca() + " " + map.get(autista).getModello() + " " + map.get(autista).getTarga()); else out.println("Non assegnato");%></td>
+  				<td>
   					<form method="POST" action="../visualizzaViaggi">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
 						<button type="submit" class="btn btn-primary">Statistiche</button>
@@ -58,13 +58,13 @@
   				</td>
   				<%if (autista.getUsername()!=null && autista.getPassword()!=null) {%>
   				
-  				<td style="text-align:center;">
+  				<td>
   					<form method="POST" action="updateAutistaForm">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
   						<button type="submit" class="btn btn-warning">Modifica</button>
   					</form>
   				</td>
-  				<td style="text-align:center;">
+  				<td>
   					<form method="POST" action="../delete">
   						<input type="hidden" name="id" value="<%=autista.getId()%>">
 						<button type="submit" class="btn btn-danger">Cancella</button>
@@ -72,8 +72,8 @@
   				</td>
   				
   				<%}else{ %>
-  				<td style="text-align:center;">Utente cancellato</td>
-  				<td style="text-align:center;">-----</td>
+  				<td>Utente cancellato</td>
+  				<td>-----</td>
   				<%} %>
   				
   			</tr>
