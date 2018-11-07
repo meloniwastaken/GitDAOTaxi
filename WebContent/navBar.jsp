@@ -15,9 +15,9 @@
 
 
 .btn_href:hover{
-    color: #000;
+    color: #ffff;
     text-decoration: none;
-    background-color: #f5f5f5;
+    background-color: #080808;
     
 }
 
@@ -32,7 +32,8 @@
 }
 
 .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
-    color: #000000;
+    color: #ffff;
+    background-color: #080808;
 
 </style>
 
