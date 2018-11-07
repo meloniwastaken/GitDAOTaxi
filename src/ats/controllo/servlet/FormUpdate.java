@@ -41,7 +41,7 @@ public class FormUpdate extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		request.setAttribute("utente", utente);
+		request.setAttribute("utenteUpdate", utente);
 		request.getRequestDispatcher("updateUtenteForm.jsp").forward(request, response);
 	}
 

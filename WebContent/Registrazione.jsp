@@ -39,7 +39,23 @@
 <h1>Registrazione Utente</h1>
 
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
-Utente u = (Utente)request.getAttribute("utente");
+Utente u = (Utente)request.getAttribute("utenteRegistrazione");
+String data="";
+if (u!=null) {
+Integer gg = u.getDataDiNascita().getDate();
+Integer mm = u.getDataDiNascita().getMonth() + 1;
+Integer yyyy = u.getDataDiNascita().getYear() + 1900;      				
+
+String giorno = gg.toString();
+String mese = mm.toString();
+String anno = yyyy.toString();
+	
+if (gg < 10)
+	giorno = "0" + giorno;
+if (mm < 10)
+	mese = "0" + mese;
+	
+data = anno+"-"+mese+"-"+giorno;  }
 %>
 
 <div class="container">
@@ -92,12 +108,12 @@ Utente u = (Utente)request.getAttribute("utente");
     		<div class="col-md-6 mb-3">
       			<label for="validationServer03">Data di nascita</label>
       			<%if (errorMap!=null && errorMap.get("data empty")!=null) {%>
-      			<input type="date" class="form-control is-invalid" name="data" min="1920-01-01" max="2000-12-31" <%if (u!=null){ %> value="<%=u.getDataDiNascita() %>"<%} %>>      				
+      			<input type="date" class="form-control is-invalid" name="data" min="1920-01-01" max="2000-12-31" <%if (u!=null){ %> value="<%=data %>"<%} %>>      				
     			<div class="invalid-feedback">
        			 	<%=errorMap.get("data empty")%>
       			</div>
       			<%}else {%>
-      			<input type="date" class="form-control is-valid" <%if (u!=null){ %> min="1920-01-01" max="2000-12-31" value="<%=u.getDataDiNascita() %>"<%} %> name="data">
+      			<input type="date" class="form-control is-valid" <%if (u!=null){ %> min="1920-01-01" max="2000-12-31" value="<%=data%>"<%} %> name="data">
       			<%} %>
     		
     		</div>    		    

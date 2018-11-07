@@ -18,7 +18,7 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
 
-@WebServlet("/update")
+
 public class UpdateUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -51,16 +51,16 @@ public class UpdateUtenteServlet extends HttpServlet {
 			}
 			utente.setNome(request.getParameter("nome"));
 			utente.setCognome(request.getParameter("cognome"));
-			utente.setCodiceFiscale(request.getParameter("codiceFiscale"));
+			utente.setCodiceFiscale(request.getParameter("codFiscaleUpdate"));
 			try {
-				utente.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataDiNascita")));
+				utente.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
 			} catch (ParseException e) {
 				System.out.println(e.getMessage());
 			}
 			utente.setIndirizzo(request.getParameter("indirizzo"));
 			utente.setTelefono(request.getParameter("telefono"));
 			utente.setEmail(request.getParameter("email"));
-			utente.setUsername(request.getParameter("username"));
+			utente.setUsername(request.getParameter("usernameUpdate"));
 			utente.setPassword(request.getParameter("password"));
 			utente.setId(Long.parseLong(request.getParameter("id")));
 			daoUtente.update(utente);
@@ -73,7 +73,7 @@ public class UpdateUtenteServlet extends HttpServlet {
 		if((Integer) request.getSession().getAttribute("ruolo")==1)
 			response.sendRedirect("/GitDAOTaxi/admin/findAllClienti");
 		else
-			response.sendRedirect("index.html");
+			response.sendRedirect("profile");
 	}
 
 }

@@ -8,91 +8,280 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registrazione utente</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/bootstrap.min.js"></script>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 </head>
-<body>
-<h1><center>Modifica Utente</center></h1>
+<style>
+.invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
 
-<% Map<String,Boolean> errorMap = (Map<String,Boolean>)request.getAttribute("errorMap");%>
-<% Utente utente = (Utente)request.getAttribute("utente"); %>
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
 
-<form method="POST" action="register">
-<table>
-<tbody>
-		<tr>
-			<td><label for="nome">Nome: </label></td>
-			<td><input type="text" id="nome" name="nome" value="<%=utente.getNome()%>"/> </td>
-			<td><%if(errorMap!=null && errorMap.get("nome")!=null) {%><div style="color:red">Errore nome</div><%}%></td>
-		</tr>
-		
-		<tr>
-			<td><label for="cognome">Cognome: </label></td>
-			<td><input type="text" id="cognome" name="cognome" value="<%=utente.getCognome()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("cognome")!=null) {%><div style="color:red">Errore cognome</div><%}%></td>
-		</tr>
-		
-		<tr>
-			<td><label for="codFiscale">Codice Fiscale: </label></td>
-			<td><input type="text" id="codFiscale" name="codFiscale" value="<%=utente.getCodiceFiscale()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("codFiscale")!=null) {%><div style="color:red">Errore codice fiscale</div><%}%></td>
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+
+
+</style>
+<body background="img/bg.jpg">
+<h1>Modifica Account</h1>
+
+<% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");%>
+<% Utente u = (Utente)request.getAttribute("utenteUpdate"); 
+Integer gg = u.getDataDiNascita().getDate();
+Integer mm = u.getDataDiNascita().getMonth() + 1;
+Integer yyyy = u.getDataDiNascita().getYear() + 1900;      				
+
+String giorno = gg.toString();
+String mese = mm.toString();
+String anno = yyyy.toString();
+	
+if (gg < 10)
+	giorno = "0" + giorno;
+if (mm < 10)
+	mese = "0" + mese;
+	
+String data = anno+"-"+mese+"-"+giorno;  
+%>
+
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+	<div class="panel panel-default">
+	<div class="panel-body">
+	<form method="POST" action="update">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2"> 
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer02">Nome</label>
+      			<%if(errorMap!=null && errorMap.get("nome empty")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getNome() %>"<%} %> name="nome">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("nome empty")%>
+      				</div>
+      			<%} else if (errorMap!=null && errorMap.get("nome length")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getNome() %>"<%} %> name="nome">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("nome length")%>
+      				</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getNome() %>"<%} %> name="nome">
+      			<%} %>
+    		</div>    		
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer02">Cognome</label>
+      			<%if(errorMap!=null && errorMap.get("cognome empty")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCognome() %>"<%} %> name="cognome">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("cognome empty")%>
+      				</div>
+      			<%} else if (errorMap!=null && errorMap.get("cognome length")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCognome() %>"<%} %> name="cognome">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("cognome length")%>
+      				</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getCognome() %>"<%} %> name="cognome">
+      			<%} %>
+    		</div>
+    	</div>
+    </div>
+    
+    <br><br>
+    
+    <div class="row">
+		<div class="col-md-8 col-md-offset-2">    
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer03">Data di nascita</label>
+      			<%if (errorMap!=null && errorMap.get("data empty")!=null) {%>
+      			<input type="date" class="form-control is-invalid" name="data" min="1920-01-01" max="2000-12-31" <%if (u!=null){ %> value="<%=data%>"<%}%>>      				
+    			<div class="invalid-feedback">
+       			 	<%=errorMap.get("data empty")%>
+      			</div>
+      			<%}else {%>
+      			<input type="date" class="form-control is-valid" <%if (u!=null){ %> min="1920-01-01" max="2000-12-31" value="<%=data%>"<%}%> name="data">
+      			<%} %>
+    		
+    		</div>    		    
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer04">Codice Fiscale</label>
+      			<%if(errorMap!=null && errorMap.get("codFiscale length")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscaleUpdate">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("codFiscale length")%>
+      				</div>
+      			 				
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscaleUpdate">
+      			<%} %>   
+      		</div>    		   
+    	</div>
+    </div>
+    
+    <br><br>
+    
+    <div class="row">
+		<div class="col-md-8 col-md-offset-2"> 
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer02">Indirizzo</label>
+      			<%if(errorMap!=null && errorMap.get("indirizzo empty")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getIndirizzo() %>"<%} %> name="indirizzo">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("indirizzo empty")%>
+      				</div>
+      			<%} else if (errorMap!=null && errorMap.get("indirizzo length")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getIndirizzo() %>"<%} %> name="indirizzo">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("indirizzo length")%>
+      				</div>
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getIndirizzo() %>"<%} %> name="indirizzo">
+      			<%} %>
+    		</div>    	
+    
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer06">Telefono</label>
+      			<%if(errorMap!=null && errorMap.get("telefono empty")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getTelefono() %>"<%} %> name="telefono">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("telefono empty")%>
+      				</div>
+      			<%}else if (errorMap!=null && errorMap.get("telefono length")!=null) {%>
+      				<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getTelefono() %>"<%} %> name="telefono">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("telefono length")%>
+      				</div>
+      			<%}else if (errorMap!=null && errorMap.get("telefono nonValido")!=null){%>
+      				<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getTelefono() %>"<%} %> name="telefono">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("telefono nonValido")%>
+      				</div>     				
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getTelefono() %>"<%} %> name="telefono">
+      			<%} %> 
+      		</div>    		    
+    	</div>
+    </div>
+    
+    <br><br>
+    
+    
+    <div class="row">
+		<div class="col-md-8 col-md-offset-2">   
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer02">E-mail</label>
+      			<%if(errorMap!=null && errorMap.get("email empty")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getEmail() %>"<%} %> name="email">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("email empty")%>
+      				</div>
+      			<%} else if (errorMap!=null && errorMap.get("email length")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getEmail() %>"<%} %> name="email">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("email length")%>
+      				</div>
+      			<%} else if (errorMap!=null && errorMap.get("email nonValida")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getEmail() %>"<%} %> name="email">
+      				<div class="invalid-feedback">
+       			 	<%=errorMap.get("email nonValida")%>
+      				</div>	    			
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getEmail() %>"<%} %> name="email">
+      			<%} %>
+    		</div>    	
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServerUsername">Username</label>
+      			<%if(errorMap!=null && errorMap.get("username length")!=null) {%>
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="usernameUpdate">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("username length")%>
+      				</div>
+      			<%-- <%}else if (errorMap!=null && errorMap.get("username esistente")!=null) {%>
+      				<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("username esistente")%>
+      				</div>     	 --%>			     				
+      			<%}else {%>
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="usernameUpdate">
+      			<%} %> 
+      		</div>
+    	</div>    
+    </div>
+           
+    <br><br>
+           
+    <div class="row">
+		<div class="col-md-8 col-md-offset-2">    
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer08">Password</label>
+      			<%if(errorMap!=null && errorMap.get("password length")!=null) {%>
+      			<input type="password" class="form-control is-invalid" id="password" name="password">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("password length") %>
+      				</div>
+      			<%}else {%>
+      			<input type="password" class="form-control is-valid" id="password" name="password">
+      			<%} %> 
+    		</div>
+    		<div class="col-md-6 mb-3">
+      			<label for="validationServer09">Conferma Password</label>
+      			<%if(errorMap!=null && errorMap.get("password notEquals")!=null) {%>
+      			<input type="password" class="form-control is-invalid" id="password2" name="password2">
+      				<div class="invalid-feedback">
+        			<%=errorMap.get("password notEquals")%>
+      				</div>
+      			<%}else {%>
+      			<input type="password" class="form-control is-valid" id="password2" name="password2">
+      			<%}%> 
+    		</div>  
+  		</div>
+  	</div>
+  
+  <br><br>
+  
+  	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
 			
-		</tr>
-		<tr>
-			<td><label for="data">Data di nascita: </label></td>
-			<td><input type="date" id="data" name="data" min="1920-01-01" max="2000-12-31" value="<%=utente.getDataDiNascita()%>"/> </td>
-		</tr>
-		
-		<tr>
-			<td><label for="indirizzo">Indirizzo: </label></td>
-			<td><input type="text" id="indirizzo" name="indirizzo" value="<%=utente.getIndirizzo()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("indirizzo")!=null) {%><div style="color:red">Errore indirizzo</div><%}%></td>
-		</tr>
-		
-		<tr>
+			<div class="col-md-6 mb-3">			
+  			<button class="btn btn-primary" type="submit">Conferma</button>
+  			</div>
+  			<input type="hidden" name="from" value="updateUtenteForm.jsp">
+  			<input type="hidden" name="id" value="<%=u.getId()%>">  			
+  			</form>
+  			
+  			<div class="col-md-6 mb-3">
+  			<form method="POST" action="delete">
+			<input type="hidden" name="id" value="<%=u.getId() %>">
+			<button type="submit" class="btn btn-danger">Cancella Account</button>
+			</form>
+			</div>
 			
-			<td><label for="telefono">Telefono: </label></td>
-			<td><input type="text" id="telefono" name="telefono" value="<%=utente.getTelefono()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("telefono")!=null) {%><div style="color:red">Errore telefono</div><%}%></td>
-		</tr>
-		<tr>
-			<td>
-			<label for="email">E-mail: </label></td>
-			<td><input type="text" id="email" name="email" value="<%=utente.getEmail()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("email")!=null) {%><div style="color:red">Errore e-mail</div><%}%></td>
-		</tr>
-		<tr>
-			<td>
-			<label readonly for="username">Username: </label></td>
-			<td><input type="text" id="username" name="username" value="<%=utente.getUsername()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("username")!=null) {%><div style="color:red">Errore username</div><%}%></td>
-		</tr>
-		<tr>
-			<td>
-			<label for="password">Password: </label></td>
-			<td><input type="password" id="password" name="password" value="<%=utente.getPassword()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("password")!=null) {%><div style="color:red">Errore password</div><%}%></td>
-		</tr>
-		<tr>
-			<td>
-			<label for="password2">Conferma Password: </label></td>
-			<td><input type="password" id="password2" name="password2" value="<%=utente.getPassword()%>"/></td>
-			<td><%if(errorMap!=null && errorMap.get("password2")!=null) {%><div style="color:red">Le password non sono uguali</div><%}%></td>
-		</tr>
-</tbody>
-</table>
+			<div class="col-md-6 mb-3">
+			<form action="profile">
+			<button type="submit" class="btn btn-success">Profilo</button>
+			</form>
+			</div>
+		</div>
+		</div>
+  			
+  			
+  			
+  			</div>
+  			</div>  			
+  			
+  	</div>
+	</div>
+</div>
 
-
-<br>
-<input type="hidden" name="id" value="<%=utente.getId()%>">
-<input type="hidden" name="from" value="formUpdate">
-<input type="submit" value="MODIFICA"/>
-</form>
-<form method="POST" action="delete">
-<input type="hidden" name="id" value="<%=utente.getId() %>">
-<input type="submit" value="CANCELLA ACCOUNT">
-</form>
-<form action="index.html">
-<input type="submit" value="HOME"/>
-</form>
 
 
 </body>

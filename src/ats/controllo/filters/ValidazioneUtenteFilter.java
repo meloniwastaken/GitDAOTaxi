@@ -47,19 +47,44 @@ public class ValidazioneUtenteFilter implements Filter {
 		Boolean checkCF = null;
 		Boolean checkUsername = null;
 		
-		Utente u = new Cliente();
-		u.setNome(request.getParameter("nome"));
-		u.setCognome(request.getParameter("cognome"));
-		u.setCodiceFiscale(request.getParameter("codFiscale"));
-		u.setIndirizzo(request.getParameter("indirizzo"));
-		u.setTelefono(request.getParameter("telefono"));
+		
+		Utente uRegistrazione=null;
+		Utente uUpdate=null;
+		
+		
+		if (request.getParameter("from").equals("Registrazione.jsp")) {
+		uRegistrazione = new Cliente(); //utente della registrazione
+		uRegistrazione.setNome(request.getParameter("nome"));
+		uRegistrazione.setCognome(request.getParameter("cognome"));
+		uRegistrazione.setCodiceFiscale(request.getParameter("codFiscale"));
+		uRegistrazione.setIndirizzo(request.getParameter("indirizzo"));
+		uRegistrazione.setTelefono(request.getParameter("telefono"));
 		try {
-			u.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+			uRegistrazione.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
 		} catch (ParseException e) {
 			System.out.println(e.getMessage());
 		}
-		u.setEmail(request.getParameter("email"));
-		u.setUsername(request.getParameter("username"));		
+		uRegistrazione.setEmail(request.getParameter("email"));
+		uRegistrazione.setUsername(request.getParameter("username"));	
+		}
+		
+		if (request.getParameter("from").equals("updateUtenteForm.jsp")) {
+		uUpdate = new Cliente(); // utente dell'update
+		uUpdate.setNome(request.getParameter("nome"));
+		uUpdate.setCognome(request.getParameter("cognome"));
+		uUpdate.setCodiceFiscale(request.getParameter("codFiscaleUpdate"));
+		uUpdate.setIndirizzo(request.getParameter("indirizzo"));
+		uUpdate.setTelefono(request.getParameter("telefono"));
+		uUpdate.setId(Long.parseLong(request.getParameter("id")));
+		try {
+			uUpdate.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+		} catch (ParseException e) {
+			System.out.println(e.getMessage());
+		}
+		uUpdate.setEmail(request.getParameter("email"));
+		uUpdate.setUsername(request.getParameter("usernameUpdate"));	
+		
+		}
 		
 		try {
 			checkCF = daoUtente.checkCodicefiscale(request.getParameter("codFiscale"));
@@ -84,13 +109,25 @@ public class ValidazioneUtenteFilter implements Filter {
 		if (request.getParameter("data").isEmpty())
 			errorMap.put("data empty", "Campo data vuoto");
 				
-				
+		
+		if (uRegistrazione!=null) {		
 		if (request.getParameter("codFiscale").length()!=16)
 			errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
 						
 		if (checkCF == true)
 			errorMap.put("codFiscale esistente", "Codice fiscale già registrato");
+		}
 						
+		
+		if (uUpdate!=null) {
+			
+			if (request.getParameter("codFiscaleUpdate").length()!=16)
+				errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
+		}
+		
+			
+		
+		
 		if (request.getParameter("indirizzo").isEmpty())
 			errorMap.put("indirizzo empty", "Campo indirizzo vuoto");
 		
@@ -115,11 +152,20 @@ public class ValidazioneUtenteFilter implements Filter {
 		if (!request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
 			errorMap.put("email nonValida", "E-mail non valida");
 		
+		
+		if (uRegistrazione!=null) {
+		
 		if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
 			errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
 		
 		if (checkUsername==true)
-			errorMap.put("username esistente", "Username già utilizzato!");
+			errorMap.put("username esistente", "Username già utilizzato!"); }
+		
+		if (uUpdate!=null) {
+			if (request.getParameter("usernameUpdate").length() >16 || request.getParameter("usernameUpdate").length()<6)
+				errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
+			
+		}
 		
 //		if (request.getParameter("password").isEmpty())
 //			errorMap.put("password empty", "Campo password vuoto");
@@ -140,8 +186,10 @@ public class ValidazioneUtenteFilter implements Filter {
 			chain.doFilter(request, response);
 		else {
 			request.setAttribute("errorMap", errorMap);
-			if (u!=null)
-				request.setAttribute("utente", u);
+			if (uRegistrazione!=null)
+				request.setAttribute("utenteRegistrazione", uRegistrazione);
+			request.setAttribute("utenteUpdate", uUpdate);
+			System.out.println(errorMap);
 			request.getRequestDispatcher(request.getParameter("from")).forward(request, response);
 		}
 	}
