@@ -28,6 +28,11 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		if(username==null && password==null) {
+			username = (String) request.getAttribute("username");
+			password = (String) request.getAttribute("password");
+		}
+		
 		try {
 			utente = daoUtente.findByUsernameAndPassword(username, password);
 		} catch (DAOException e) {

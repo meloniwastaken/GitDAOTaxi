@@ -66,7 +66,7 @@
 								<option value="4">4</option>
 								<option value="5">5</option>
 							</select>
-							<input type="submit" value="Lascia Feedback"/>
+							<button type="submit" class="btn btn-primary">Lascia Feedback</button>
 						</form>
 				<%} else if(v.getFeedback()!=null && v.getStato()==4) {%>
 					<%=v.getFeedback()%>
@@ -76,7 +76,7 @@
 				<td >
 					<form action="autista/avanzaStatoViaggio" method="POST">
 						<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
-						<input type="submit" value="Avanza Stato">
+						<button type="submit" class="btn btn-primary">Avanza Stato</button>
 					</form>
 				</td>
 				<%} else if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
@@ -97,7 +97,7 @@
 		<div class="row"><div class="col-md-4 label">Totale viaggi</div><div class="col-md-4 col-md-offset-2"><%=statistiche.get(0).intValue()%></div></div>
 		<div class="row"><div class="col-md-4 label">Totale kilometri</div><div class="col-md-4 col-md-offset-2"><%=statistiche.get(1)%></div></div>
 		<div class="row"><div class="col-md-4 label">Totale prezzo</div><div class="col-md-4 col-md-offset-2"><%=f.format(statistiche.get(2))%></div></div>
-		<div class="row"><div class="col-md-4 label">Media Feedback</div><div class="col-md-4 col-md-offset-2"><%=f.format(statistiche.get(3))%></div></div>
+		<div class="row"><div class="col-md-4 label">Media Feedback</div><div class="col-md-4 col-md-offset-2"><%if(statistiche.get(3)!=null && statistiche.get(3)!=0) out.print(f.format(statistiche.get(3)));%></div></div>
 		
 	</div></div></div></div></div>
 	<%} %>

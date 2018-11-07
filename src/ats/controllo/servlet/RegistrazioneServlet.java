@@ -44,7 +44,9 @@ public class RegistrazioneServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("index.html");
+		request.setAttribute("username", c.getUsername());
+		request.setAttribute("password", c.getPassword());
+		request.getRequestDispatcher("login").forward(request, response);
 		
 	}
 
