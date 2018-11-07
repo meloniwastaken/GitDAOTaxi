@@ -70,10 +70,12 @@
           <button type="button" class="btn btn-warning dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     	Elenchi <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="/GitDAOTaxi/admin/findAll">Tutti gli utenti</a></li>
-            <li><a href="/GitDAOTaxi/admin/findAllAutisti">Elenco Autisti</a></li>
+            <li><a href="/GitDAOTaxi/admin/findAll">Elenco Utenti</a></li>
+            <li><a href="/GitDAOTaxi/admin/findAllAmministratori">Elenco Amministratori</a></li>
             <li><a href="/GitDAOTaxi/admin/findAllClienti">Elenco Clienti</a></li>
+            <li><a href="/GitDAOTaxi/admin/findAllAutisti">Elenco Autisti</a></li>
             <li><a href="/GitDAOTaxi/admin/findAllTaxi">Elenco Taxi</a></li>
+
           </ul>
         </li>
         

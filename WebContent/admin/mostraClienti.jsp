@@ -19,10 +19,10 @@
 	<h1 class="first">Clienti</h1>
 	<br>
 	<% List<Cliente> clienti = (List<Cliente>) request.getAttribute("clienti"); %>
-	<div class="container first">
+	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-body">
-	<table style="width:100%">
+	<table>
   <tr>
     <th>ID</th>
     <th>Nome</th> 

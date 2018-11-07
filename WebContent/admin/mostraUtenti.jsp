@@ -23,7 +23,7 @@
 
 	<% List<Utente> utenti = (List<Utente>) request.getAttribute("utenti");%>
 	
-	<div class="container first">
+	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-body">
 					<table>

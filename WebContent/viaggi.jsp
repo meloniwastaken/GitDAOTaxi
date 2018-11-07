@@ -6,19 +6,28 @@
 <%@ page import="ats.modello.Viaggio" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@page import="java.text.DecimalFormat"%>
+<%@ page import="java.text.DecimalFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Viaggi</title>
 </head>
-<body>
-<%List<Viaggio> viaggi = (List<Viaggio>) request.getAttribute("viaggi");
-  List<Double> statistiche = (List<Double>) request.getAttribute("statistiche");
-  DecimalFormat f = new DecimalFormat("##.00");
-%>
-	<table style="width:100%">
+<body background="img/bg.jpg">
+
+	<jsp:include page="navBar.jsp"/>
+
+	<h1 class="first">Viaggi</h1>
+<% List<Viaggio> viaggi = (List<Viaggio>) request.getAttribute("viaggi");
+   List<Double> statistiche = (List<Double>) request.getAttribute("statistiche");
+   DecimalFormat f = new DecimalFormat("##.00"); %>
+   	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-body">
+	<table>
 		<thead>
 			<tr>
 				<%if((Integer) request.getSession().getAttribute("ruolo")!=2) {%> <th>Autista</th><%}%>
@@ -38,16 +47,16 @@
 		<tbody>
 		<%for(Viaggio v : viaggi) {%>
 			<tr>
-				<%if((Integer) request.getSession().getAttribute("ruolo")!=2) {%> <td style="text-align:center;"><%=v.getAutista().getNome()%> <%=v.getAutista().getCognome()%></td><%}%>
-				<%if((Integer) request.getSession().getAttribute("ruolo")!=3) {%> <td style="text-align:center;"><%=v.getCliente().getNome()%> <%=v.getCliente().getCognome()%></td><%}%>
-				<td style="text-align:center;"><%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>ID: <%=v.getTaxi().getId()%><%}%> <%=v.getTaxi().getMarca()%> <%=v.getTaxi().getModello()%></td>
-				<td style="text-align:center;"><%=v.getPartenza()%></td>
-				<td style="text-align:center;"><%=v.getDestinazione()%></td>
-				<td style="text-align:center;"><%=v.getData().toString()%></td>
-				<td style="text-align:center;"><%=v.getKilometri()%></td>
-				<td style="text-align:center;"><%=v.getPrezzo()%></td>
-				<%if(v.getStato()==1) {%><td style="text-align:center;">In attesa</td><%} else if(v.getStato()==2){%><td style="text-align:center;">Accettato</td><%} else if(v.getStato()==3){%><td style="text-align:center;">In corso</td><%} else {%><td style="text-align:center;">Completato</td>  <%}%>
-				<td style="text-align:center;"><%if(v.getFeedback()==null && v.getStato()==4 && (Integer)request.getSession().getAttribute("ruolo")==3) {%>
+				<%if((Integer) request.getSession().getAttribute("ruolo")!=2) {%> <td><%=v.getAutista().getNome()%> <%=v.getAutista().getCognome()%></td><%}%>
+				<%if((Integer) request.getSession().getAttribute("ruolo")!=3) {%> <td><%=v.getCliente().getNome()%> <%=v.getCliente().getCognome()%></td><%}%>
+				<td><%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>ID: <%=v.getTaxi().getId()%><%}%> <%=v.getTaxi().getMarca()%> <%=v.getTaxi().getModello()%></td>
+				<td><%=v.getPartenza()%></td>
+				<td><%=v.getDestinazione()%></td>
+				<td><%=v.getData().toString()%></td>
+				<td><%=v.getKilometri()%></td>
+				<td><%=v.getPrezzo()%></td>
+				<%if(v.getStato()==1) {%><td>In attesa</td><%} else if(v.getStato()==2){%><td>Accettato</td><%} else if(v.getStato()==3){%><td >In corso</td><%} else {%><td >Completato</td>  <%}%>
+				<td ><%if(v.getFeedback()==null && v.getStato()==4 && (Integer)request.getSession().getAttribute("ruolo")==3) {%>
 						<form method="POST" action="cliente/lasciaFeedback">
 							<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
 							<select name="feedback">
@@ -64,27 +73,36 @@
 				<%}%></td>
 
 				<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
-				<td style="text-align:center;">
+				<td >
 					<form action="autista/avanzaStatoViaggio" method="POST">
 						<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
 						<input type="submit" value="Avanza Stato">
 					</form>
 				</td>
 				<%} else if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
-					<td style="text-align:center;">Utente cancellato</td>
+					<td>Utente cancellato</td>
 				<%}%>
 				<%if((Integer) request.getSession().getAttribute("ruolo")==1 && v.getCliente().getUsername()==null) {%> <td>Utente cancellato</td><%}%>
 			</tr>
 		<%} %>
 		</tbody>
 	</table>
+</div></div></div>	
 	<%if(statistiche!=null && !statistiche.isEmpty()) {%>
-	<table>
-		<tr><th>Totale viaggi</th><td><%=statistiche.get(0).intValue()%></td></tr>
-		<tr><th>Totale kilometri</th><td><%=statistiche.get(1)%></td></tr>
-		<tr><th>Totale prezzo</th><td><%=f.format(statistiche.get(2))%></td></tr>
-		<tr><th>Media Feedback</th><td><%=f.format(statistiche.get(3))%></td></tr>
-	</table>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-body">
+		<div class="row"><div class="col-md-4 label">Totale viaggi</div><div class="col-md-4 col-md-offset-2"><%=statistiche.get(0).intValue()%></div></div>
+		<div class="row"><div class="col-md-4 label">Totale kilometri</div><div class="col-md-4 col-md-offset-2"><%=statistiche.get(1)%></div></div>
+		<div class="row"><div class="col-md-4 label">Totale prezzo</div><div class="col-md-4 col-md-offset-2"><%=f.format(statistiche.get(2))%></div></div>
+		<div class="row"><div class="col-md-4 label">Media Feedback</div><div class="col-md-4 col-md-offset-2"><%=f.format(statistiche.get(3))%></div></div>
+		
+	</div></div></div></div></div>
 	<%} %>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

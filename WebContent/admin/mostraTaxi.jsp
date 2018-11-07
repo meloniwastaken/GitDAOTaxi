@@ -20,7 +20,7 @@
 	<h1 class="first">Taxi</h1>
 
 	<% List<Taxi> elencoTaxi = (List<Taxi>) request.getAttribute("elencoTaxi"); %>
-	<div class="container first">
+	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-body">
 	<table>

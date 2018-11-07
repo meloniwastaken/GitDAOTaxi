@@ -20,7 +20,7 @@
 	<h1 class="first">Autisti</h1>
 
 	<% Map<Autista,Taxi> map = (Map<Autista,Taxi>) request.getAttribute("map"); %>
-	<div class="container first">
+	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<table>
