@@ -55,6 +55,22 @@
 			</div>
 		</div>
 	</div>
+
+	<%if(request.getSession().getAttribute("messaggio")!=null) {%>
+	<div class="container first">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p><%out.print((String) request.getSession().getAttribute("messaggio"));%></p>
+						<%request.getSession().removeAttribute("messaggio");%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%}%>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 </body>

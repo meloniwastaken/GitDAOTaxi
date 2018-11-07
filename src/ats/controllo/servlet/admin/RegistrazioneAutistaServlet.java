@@ -81,6 +81,7 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 			}
 
 		}
+		request.getSession().setAttribute("messaggio", "Autista inserito");
 		response.sendRedirect("../profile");
 
 	}

@@ -47,7 +47,7 @@ public class InserisciTaxiServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
+		request.getSession().setAttribute("messaggio", "Taxi inserito");
 		response.sendRedirect("../profile");
 	}
 
