@@ -7,49 +7,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/style.css">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Taxi</title>
 </head>
-<body>
-	<h1>Taxi</h1>
-	<br>
+<body background="../img/bg.jpg">
+
+	<jsp:include page="../navBar.jsp"/>
+
+	<h1 class="first">Taxi</h1>
+
 	<% List<Taxi> elencoTaxi = (List<Taxi>) request.getAttribute("elencoTaxi"); %>
-	
-	<table style="width:100%">
-  <tr>
-    <th>Modello</th> 
-    <th>Marca</th>
-    <th>Targa</th>
-    <th>Anno immatricolazione</th>
-    <th>Posti</th>
-    <th>Prezzo per Km</th>
-    <th>Autista</th>
-  </tr>
+	<div class="container first">
+		<div class="panel panel-default">
+			<div class="panel-body">
+	<table>
+		  <tr>
+		    <th>Modello</th> 
+		    <th>Marca</th>
+		    <th>Targa</th>
+		    <th>Anno immatricolazione</th>
+		    <th>Posti</th>
+		    <th>Prezzo per Km</th>
+		    <th>Autista</th>
+		  </tr>
   	<% 
   		for(Taxi taxi : elencoTaxi){ %>
   			<tr>
-  				<td style="text-align:center;"><%=taxi.getModello()%></td>
-  				<td style="text-align:center;"><%=taxi.getMarca()%></td>
-  				<td style="text-align:center;"><%=taxi.getTarga()%></td>
-  				<td style="text-align:center;"><%=taxi.getAnnoDiImmatricolazione()%></td>
-  	  			<td style="text-align:center;"><%=taxi.getPosti()%></td>
-  		 		<td style="text-align:center;"><%=taxi.getPrezzoPerKilometro() %></td>
-  		 		<td style="text-align:center;"><%if(taxi.getAutista() != null){out.print(taxi.getAutista().getNome() + " " + taxi.getAutista().getCognome());}
+  				<td><%=taxi.getModello()%></td>
+  				<td><%=taxi.getMarca()%></td>
+  				<td><%=taxi.getTarga()%></td>
+  				<td><%=taxi.getAnnoDiImmatricolazione()%></td>
+  	  			<td><%=taxi.getPosti()%></td>
+  		 		<td><%=taxi.getPrezzoPerKilometro() %></td>
+  		 		<td><%if(taxi.getAutista() != null){out.print(taxi.getAutista().getNome() + " " + taxi.getAutista().getCognome());}
   		 		else{out.print("Non assegnato");}%></td>
-  		 		<td style="text-align:center;">
-  		 		<form method="POST" action="deleteTaxi">
-					  <input type="hidden" name="id" value="<%=taxi.getId()%>">
-					  <input type="submit" value="Cancella">
-	 			</form>
+	 			<td>
+		 			<form method="POST" action="statisticheTaxi">
+						  <input type="hidden" name="id" value="<%=taxi.getId()%>">
+						  <button type="submit" class="btn btn-primary">Statistiche</button>
+		 			</form>
 	 			</td>
-	 			<td style="text-align:center;">
-	 			<form method="POST" action="statisticheTaxi">
-					  <input type="hidden" name="id" value="<%=taxi.getId()%>">
-					  <input type="submit" value="Statistiche">
-	 			</form>
+	 			<td>
+	  		 		<form method="POST" action="deleteTaxi">
+						  <input type="hidden" name="id" value="<%=taxi.getId()%>">
+						  <button type="submit" class="btn btn-danger">Cancella</button>
+		 			</form>
 	 			</td>
   			</tr>
   		<%}%>
 </table>
+</div></div></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+
 </body>
 </html>
