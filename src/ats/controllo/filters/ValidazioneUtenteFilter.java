@@ -159,7 +159,10 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
 		
 		if (checkUsername==true)
-			errorMap.put("username esistente", "Username già utilizzato!"); }
+			errorMap.put("username esistente", "Username già utilizzato!"); 
+		}
+		
+		
 		
 		if (uUpdate!=null) {
 			if (request.getParameter("usernameUpdate").length() >16 || request.getParameter("usernameUpdate").length()<6)
