@@ -51,7 +51,7 @@ public class UpdateUtenteServlet extends HttpServlet {
 			}
 			utente.setNome(request.getParameter("nome"));
 			utente.setCognome(request.getParameter("cognome"));
-			utente.setCodiceFiscale(request.getParameter("codFiscaleUpdate"));
+			utente.setCodiceFiscale(request.getParameter("codFiscale"));
 			try {
 				utente.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
 			} catch (ParseException e) {
@@ -60,7 +60,7 @@ public class UpdateUtenteServlet extends HttpServlet {
 			utente.setIndirizzo(request.getParameter("indirizzo"));
 			utente.setTelefono(request.getParameter("telefono"));
 			utente.setEmail(request.getParameter("email"));
-			utente.setUsername(request.getParameter("usernameUpdate"));
+			utente.setUsername(request.getParameter("username"));
 			utente.setPassword(request.getParameter("password"));
 			utente.setId(Long.parseLong(request.getParameter("id")));
 			daoUtente.update(utente);
