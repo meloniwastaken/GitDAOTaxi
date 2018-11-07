@@ -65,7 +65,16 @@ public class ValidazioneUtenteFilter implements Filter {
 			System.out.println(e.getMessage());
 		}
 		uRegistrazione.setEmail(request.getParameter("email"));
-		uRegistrazione.setUsername(request.getParameter("username"));	
+		uRegistrazione.setUsername(request.getParameter("username"));
+		
+		try {
+			checkCF = daoUtente.checkCodicefiscale(request.getParameter("codFiscale"));
+			checkUsername = daoUtente.checkUsername(request.getParameter("username"));
+		} catch (DAOException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 		}
 		
 		if (request.getParameter("from").equals("updateUtenteForm.jsp")) {
@@ -86,12 +95,11 @@ public class ValidazioneUtenteFilter implements Filter {
 		
 		}
 		
-		try {
-			checkCF = daoUtente.checkCodicefiscale(request.getParameter("codFiscale"));
-			checkUsername = daoUtente.checkUsername(request.getParameter("username"));
-		} catch (DAOException e) {
-			System.out.println(e.getMessage());
-		}
+		
+		
+		
+		
+		
 		Map<String,String> errorMap = new HashMap<String,String>();
 		
 		if (request.getParameter("nome").isEmpty())
