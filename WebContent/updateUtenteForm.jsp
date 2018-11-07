@@ -10,7 +10,6 @@
 <title>Registrazione utente</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<script src="js/bootstrap.min.js"></script>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 </head>
 <style>
@@ -33,8 +32,8 @@
 
 </style>
 <body background="img/bg.jpg">
-<h1>Modifica Account</h1>
-
+<h1 class="first">Modifica Account</h1>
+<jsp:include page="navBar.jsp"></jsp:include>
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");%>
 <% Utente u = (Utente)request.getAttribute("utenteUpdate"); 
 Integer gg = u.getDataDiNascita().getDate();
@@ -251,25 +250,26 @@ String data = anno+"-"+mese+"-"+giorno;
   	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			
-			<div class="col-md-6 mb-3">			
+			<div class="col-md-4 mb-3">			
   			<button class="btn btn-primary" type="submit">Conferma</button>
   			</div>
   			<input type="hidden" name="from" value="updateUtenteForm.jsp">
   			<input type="hidden" name="id" value="<%=u.getId()%>">  			
   			</form>
   			
-  			<div class="col-md-6 mb-3">
+			<div class="col-md-4 mb-3">
+			<form action="profile">
+			<button type="submit" class="btn btn-success">Annulla</button>
+			</form>
+			</div>
+			
+  			<div class="col-md-4 mb-3">
   			<form method="POST" action="delete">
 			<input type="hidden" name="id" value="<%=u.getId() %>">
 			<button type="submit" class="btn btn-danger">Cancella Account</button>
 			</form>
 			</div>
 			
-			<div class="col-md-6 mb-3">
-			<form action="profile">
-			<button type="submit" class="btn btn-success">Profilo</button>
-			</form>
-			</div>
 		</div>
 		</div>
   			
@@ -283,6 +283,7 @@ String data = anno+"-"+mese+"-"+giorno;
 </div>
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

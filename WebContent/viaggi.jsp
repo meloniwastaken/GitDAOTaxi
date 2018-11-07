@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="ats.modello.Autista" %>
 <%@ page import="ats.modello.Taxi" %>
 <%@ page import="ats.modello.Cliente" %>
@@ -96,7 +96,7 @@
 					<div class="panel-body">
 		<div class="row"><div class="col-md-4 label">Totale viaggi</div><div class="col-md-4 col-md-offset-2"><%=statistiche.get(0).intValue()%></div></div>
 		<div class="row"><div class="col-md-4 label">Totale kilometri</div><div class="col-md-4 col-md-offset-2"><%=statistiche.get(1)%></div></div>
-		<div class="row"><div class="col-md-4 label">Totale prezzo</div><div class="col-md-4 col-md-offset-2"><%=f.format(statistiche.get(2))%></div></div>
+		<div class="row"><div class="col-md-4 label">Totale prezzo [€]</div><div class="col-md-4 col-md-offset-2"><%=f.format(statistiche.get(2))%></div></div>
 		<div class="row"><div class="col-md-4 label">Media Feedback</div><div class="col-md-4 col-md-offset-2"><%if(statistiche.get(3)!=null && statistiche.get(3)!=0) out.print(f.format(statistiche.get(3)));%></div></div>
 		
 	</div></div></div></div></div>
