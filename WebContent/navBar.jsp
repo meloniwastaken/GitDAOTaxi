@@ -9,17 +9,31 @@
      clear: both;
      font-weight: 400;
      line-height: 1.42857143;
-     color: #333;
+     color: #ffff;
      white-space: nowrap;
 }
 
 
 .btn_href:hover{
-    color: #262626;
+    color: #000;
     text-decoration: none;
     background-color: #f5f5f5;
     
 }
+
+
+.dropdown-menu {
+      background-color: #333;
+}
+
+.dropdown-menu>li>a {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    color: #000000;
+
 </style>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
