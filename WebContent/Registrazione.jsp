@@ -41,7 +41,7 @@
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
 Utente u = (Utente)request.getAttribute("utenteRegistrazione");
 String data="";
-if (u!=null) {
+if (u!=null && u.getDataDiNascita()!=null) {
 Integer gg = u.getDataDiNascita().getDate();
 Integer mm = u.getDataDiNascita().getMonth() + 1;
 Integer yyyy = u.getDataDiNascita().getYear() + 1900;      				
@@ -274,5 +274,7 @@ data = anno+"-"+mese+"-"+giorno;  }
 </div>
 </div>
 <br><br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

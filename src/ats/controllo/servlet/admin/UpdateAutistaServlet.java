@@ -41,14 +41,14 @@ public class UpdateAutistaServlet extends HttpServlet {
 		Taxi t = new Taxi();
 
 		try {
-			daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("id")));
+			daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("idforUpdate")));
 
 			autista.setNome(request.getParameter("nome"));
 			autista.setCognome(request.getParameter("cognome"));
-			autista.setCodiceFiscale(request.getParameter("codiceFiscale"));
+			autista.setCodiceFiscale(request.getParameter("codFiscale"));
 			try {
 				autista.setDataDiNascita(
-						new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataDiNascita")));
+						new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
 			} catch (ParseException e) {
 				System.out.println(e.getMessage());
 			}
@@ -58,11 +58,11 @@ public class UpdateAutistaServlet extends HttpServlet {
 			autista.setUsername(request.getParameter("username"));
 			autista.setPassword(request.getParameter("password"));
 			autista.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
-			autista.setId(Long.parseLong(request.getParameter("id")));
+			autista.setId(Long.parseLong(request.getParameter("idforUpdate")));
 			daoAutista.update(autista);
 			
 			if (Long.parseLong(request.getParameter("taxi"))==0) 
-				daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("id")));
+				daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("idforUpdate")));
 			else {
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
 			t.setDisponibile(true);

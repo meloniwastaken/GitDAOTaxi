@@ -37,17 +37,19 @@ public class UpdateAutistaForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if (request.getParameter("id")!=null) {
 		Long id = Long.parseLong(request.getParameter("id"));
 		Autista autista = null;
 		IDAOAutista daoAutista = new DAOAutista();
-		
+						
 		try {
 			autista = daoAutista.findById(id);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		request.setAttribute("autista", autista);
-		
+		request.setAttribute("autistaUpdate", autista);
+		}
 		
 		IDAOTaxi daoTaxi = new DAOTaxi();
 		List<Taxi> listaTaxi= new ArrayList<Taxi>();

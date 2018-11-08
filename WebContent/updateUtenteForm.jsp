@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registrazione utente</title>
+<title>Modifica utente</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -35,7 +35,9 @@
 <h1 class="first">Modifica Account</h1>
 <jsp:include page="navBar.jsp"></jsp:include>
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");%>
-<% Utente u = (Utente)request.getAttribute("utenteUpdate"); 
+<% Utente u = (Utente)request.getAttribute("utenteUpdate");
+String data ="";
+if (u!=null && u.getDataDiNascita()!=null) {
 Integer gg = u.getDataDiNascita().getDate();
 Integer mm = u.getDataDiNascita().getMonth() + 1;
 Integer yyyy = u.getDataDiNascita().getYear() + 1900;      				
@@ -49,7 +51,7 @@ if (gg < 10)
 if (mm < 10)
 	mese = "0" + mese;
 	
-String data = anno+"-"+mese+"-"+giorno;  
+data = anno+"-"+mese+"-"+giorno;  }
 %>
 
 <div class="container">
@@ -114,13 +116,13 @@ String data = anno+"-"+mese+"-"+giorno;
     		<div class="col-md-6 mb-3">
       			<label for="validationServer04">Codice Fiscale</label>
       			<%if(errorMap!=null && errorMap.get("codFiscale length")!=null) {%>
-      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscaleUpdate">
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscale">
       				<div class="invalid-feedback">
         			<%=errorMap.get("codFiscale length")%>
       				</div>
       			 				
       			<%}else {%>
-      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscaleUpdate">
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getCodiceFiscale() %>"<%} %> name="codFiscale">
       			<%} %>   
       		</div>    		   
     	</div>
@@ -200,7 +202,7 @@ String data = anno+"-"+mese+"-"+giorno;
     		<div class="col-md-6 mb-3">
       			<label for="validationServerUsername">Username</label>
       			<%if(errorMap!=null && errorMap.get("username length")!=null) {%>
-      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="usernameUpdate">
+      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
       				<div class="invalid-feedback">
         			<%=errorMap.get("username length")%>
       				</div>
@@ -210,7 +212,7 @@ String data = anno+"-"+mese+"-"+giorno;
         			<%=errorMap.get("username esistente")%>
       				</div>     	 --%>			     				
       			<%}else {%>
-      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="usernameUpdate">
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
       			<%} %> 
       		</div>
     	</div>    
