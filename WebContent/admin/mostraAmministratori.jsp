@@ -20,7 +20,7 @@
 		<%List<Amministratore> amministratori = (List<Amministratore>) request.getAttribute("amministratori");%>
 		<div class="container">
 			<div class="panel panel-default">
-				<div class="panel-body">
+				<div class="panel-body scrollmenu">
 					<table>
 						<tr>
 					    	<th>ID</th>

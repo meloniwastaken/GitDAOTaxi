@@ -19,10 +19,6 @@ body {
 	padding-top: 100px;
 }
 
-.col-md-4 {
-	font-size: 18px;
-}
-
 .container {
 	width: 100%;
 }
@@ -51,8 +47,15 @@ body {
 h1 {
 	width: 100%;
 	text-align: center;
-	text-decoration: bold;
+	font-weight: 700;
 	font-size: 500%;
+}
+
+h2 {
+	width: 100%;
+	text-align: center;
+	font-weight: 700;
+	font-size: 200%;
 }
 
 table {
@@ -70,6 +73,22 @@ p {
 	width: 100%;
 	font-size: 150%;
 	text-align: center;
+}
+
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+th, td {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.btn-center {
+	margin-left: auto;
+	margin-right: auto;
+	display: inherit;
 }
 
 @media screen and (max-width:767px) {

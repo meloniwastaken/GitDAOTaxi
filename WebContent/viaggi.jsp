@@ -25,7 +25,7 @@
    		   DecimalFormat f = new DecimalFormat("##.00"); %>
    		<div class="container">
 			<div class="panel panel-default">
-				<div class="panel-body">
+				<div class="panel-body scrollmenu">
 					<table>
 						<thead>
 							<tr>
