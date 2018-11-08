@@ -65,7 +65,7 @@ data = anno+"-"+mese+"-"+giorno;  }
 <div class="container">
 <div class="row">
 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	<h1 class="text-center">Modifica Account</h1>
+	<h1 class="first text-center">Modifica Account</h1>
 	<div class="panel panel-default">
 	<div class="panel-body">
 	<form method="POST" action="update">
@@ -167,14 +167,8 @@ data = anno+"-"+mese+"-"+giorno;  }
     		</div>    	
     		<div class="col-md-4 col-sm-5">
       			<label for="validationServerUsername">Username</label>
-      			<%if(errorMap!=null && errorMap.get("username")!=null) {%>
-      			<input type="text" class="form-control is-invalid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
-      				<div class="invalid-feedback">
-        			<%=errorMap.get("username")%>
-      				</div>
-      			<%}else {%>
-      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username">
-      			<%} %> 
+      			<input type="text" class="form-control is-valid" <%if (u!=null){ %> value="<%=u.getUsername() %>"<%} %> name="username" readonly="readonly">
+      				
       		</div>
     </div>
            
@@ -212,9 +206,8 @@ data = anno+"-"+mese+"-"+giorno;  }
 			<div class="btn-toolbar pull-right" role="toolbar">
   				<div class="btn-group" role="group"><button class="btn btn-danger"><a class="a_button" href="profile">Annulla</a></button></div>
   				<div class="btn-group" role="group"><button class="btn btn-primary" type="submit">Conferma</button></div>
-					
-				</div>
-  			</div>
+			</div>
+  		</div>
   	</div>
   	
   		<input type="hidden" name="from" value="updateUtenteForm.jsp">

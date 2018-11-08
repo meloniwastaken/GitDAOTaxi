@@ -109,7 +109,7 @@ public class ValidazioneUtenteFilter implements Filter {
 			}
 			aRegistrazione.setEmail(request.getParameter("email"));
 			aRegistrazione.setUsername(request.getParameter("username"));
-			if (StringUtils.isNumeric(request.getParameter("stipendio")))
+			if (!request.getParameter("stipendio").equals(""))
 				aRegistrazione.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			else
 				aRegistrazione.setStipendio(-1D);
@@ -139,7 +139,7 @@ public class ValidazioneUtenteFilter implements Filter {
 			}
 			aUpdate.setEmail(request.getParameter("email"));
 			aUpdate.setUsername(request.getParameter("username"));
-			if (StringUtils.isNumeric(request.getParameter("stipendio")))
+			if (!request.getParameter("stipendio").equals(""))
 				aUpdate.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			else
 				aUpdate.setStipendio(-1D);
@@ -214,7 +214,7 @@ public class ValidazioneUtenteFilter implements Filter {
 		
 		if (aRegistrazione!=null || aUpdate!=null) {
 			if(request.getParameter("stipendio").isEmpty())
-		errorMap.put("stipendio empty", "Campo stipendio vuoto");
+		errorMap.put("stipendio", "Campo stipendio vuoto");
 		}
 		
 	
