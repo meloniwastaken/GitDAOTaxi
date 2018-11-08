@@ -204,12 +204,14 @@ data = anno+"-"+mese+"-"+giorno;  }
   <br><br>
   
   	<div class="row">
-		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-			<div class="float-right">			
-  			<button class="btn btn-primary" type="submit">Conferma</button>
-  			</div>
-  			</div>
-  			</div>  			
+		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
+			<div class="btn-toolbar pull-right" role="toolbar">
+  				<div class="btn-group" role="group"><button class="btn btn-warning" type="reset">Reset</button></div>
+  				<div class="btn-group" role="group"><button class="btn btn-primary" type="submit">Conferma</button></div>
+			</div>
+  		</div>
+  	</div>
+  			
   			
   		<input type="hidden" name="from" value="Registrazione.jsp">	
 	</form>
