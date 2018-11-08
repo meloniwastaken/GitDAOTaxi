@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -20,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ats.modello.Autista;
 import ats.modello.Cliente;
+import ats.modello.Taxi;
 import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
@@ -125,6 +127,30 @@ public class ValidazioneUtenteFilter implements Filter {
 				System.out.println(e.getMessage());
 			}
 			
+			
+			}
+		
+		//update autista
+		if (request.getParameter("from").equals("updateAutistaForm")) {
+			
+			aUpdate = new Autista();
+			aUpdate.setNome(request.getParameter("nome"));
+			aUpdate.setCognome(request.getParameter("cognome"));
+			aUpdate.setCodiceFiscale(request.getParameter("codFiscale"));
+			aUpdate.setIndirizzo(request.getParameter("indirizzo"));
+			aUpdate.setTelefono(request.getParameter("telefono"));
+			try {
+				aUpdate.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+			} catch (ParseException e) {
+				System.out.println(e.getMessage());
+			}
+			aUpdate.setEmail(request.getParameter("email"));
+			aUpdate.setUsername(request.getParameter("username"));
+			if (StringUtils.isNumeric(request.getParameter("stipendio")))
+				aUpdate.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
+			else
+				aUpdate.setStipendio(-1D);
+			System.out.println(request.getParameter("stipendio"));
 			
 			}
 				
@@ -270,8 +296,9 @@ public class ValidazioneUtenteFilter implements Filter {
 				request.setAttribute("utenteUpdate", uUpdate);
 			else if (aRegistrazione!=null)
 				request.setAttribute("autistaRegistrazione", aRegistrazione);
-			else if (aUpdate!=null)
+			else if (aUpdate!=null) {
 				request.setAttribute("autistaUpdate", aUpdate);
+			}
 			
 			System.out.println(errorMap);
 			request.getRequestDispatcher(request.getParameter("from")).forward(request, response);
