@@ -27,10 +27,6 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
 
-/**
- * Servlet Filter implementation class ValidazioneUtenteFilter
- */
-@WebFilter("/ValidazioneUtenteFilter")
 public class ValidazioneUtenteFilter implements Filter {
 
     public ValidazioneUtenteFilter() {
@@ -173,7 +169,7 @@ public class ValidazioneUtenteFilter implements Filter {
 			errorMap.put("data empty", "Campo data vuoto");
 				
 		
-		if (uRegistrazione!=null) {		
+		if (uRegistrazione!=null) {
 			if (request.getParameter("codFiscale").length()!=16)
 			errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
 						
@@ -189,12 +185,11 @@ public class ValidazioneUtenteFilter implements Filter {
 		}
 		
 		if (aRegistrazione!=null) {
-			
-		if (request.getParameter("codFiscale").length()!=16)
-			errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
-						
-		if (checkCF == true)
-			errorMap.put("codFiscale esistente", "Codice fiscale già registrato");
+			if (request.getParameter("codFiscale").length()!=16)
+				errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
+							
+			if (checkCF == true)
+				errorMap.put("codFiscale esistente", "Codice fiscale già registrato");
 		}
 		
 		
