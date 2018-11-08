@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -13,7 +12,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ats.modello.Autista;
 import ats.modello.Cliente;
-import ats.modello.Taxi;
 import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
@@ -154,123 +151,65 @@ public class ValidazioneUtenteFilter implements Filter {
 		Map<String,String> errorMap = new HashMap<String,String>();
 		
 		if (request.getParameter("nome").isEmpty())
-			errorMap.put("nome empty", "Campo nome vuoto");
+			errorMap.put("nome", "Campo nome vuoto");
 		
 		if (request.getParameter("nome").length() >35)
-			errorMap.put("nome length", "Nome troppo lungo");	
+			errorMap.put("nome", "Nome troppo lungo");	
 		
 		if (request.getParameter("cognome").isEmpty())
-			errorMap.put("cognome empty", "Campo cognome vuoto");
+			errorMap.put("cognome", "Campo cognome vuoto");
 		
 		if (request.getParameter("cognome").length() >35)
-			errorMap.put("cognome length", "Cognome troppo lungo");
+			errorMap.put("cognome", "Cognome troppo lungo");
 		
 		if (request.getParameter("data").isEmpty())
-			errorMap.put("data empty", "Campo data vuoto");
-				
-		
-		if (uRegistrazione!=null) {
-			if (request.getParameter("codFiscale").length()!=16)
-			errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
-						
-			if (checkCF == true)
-			errorMap.put("codFiscale esistente", "Codice fiscale già registrato");
-		}
-						
-		
-		if (uUpdate!=null) {
+			errorMap.put("data", "Campo data vuoto");
 			
-			if (request.getParameter("codFiscale").length()!=16)
-				errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
-		}
+		if (request.getParameter("codFiscale").length()!=16)
+			errorMap.put("codFiscale", "Lunghezza codice fiscale errata");
 		
-		if (aRegistrazione!=null) {
-			if (request.getParameter("codFiscale").length()!=16)
-				errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
-							
+		if (uRegistrazione!=null || aRegistrazione!=null) {
 			if (checkCF == true)
-				errorMap.put("codFiscale esistente", "Codice fiscale già registrato");
+			errorMap.put("codFiscale", "Codice fiscale già registrato");
 		}
-		
-		
-		if (aUpdate!=null) {
-			
-			if (request.getParameter("codFiscale").length()!=16)
-				errorMap.put("codFiscale length", "Lunghezza codice fiscale errata");
-							
-		}
-		
 						
-		
 		if (request.getParameter("indirizzo").isEmpty())
-			errorMap.put("indirizzo empty", "Campo indirizzo vuoto");
+			errorMap.put("indirizzo", "Campo indirizzo vuoto");
 		
 		if (request.getParameter("indirizzo").length() >50)
-			errorMap.put("indirizzo length", "Indirizzo troppo lungo");				
+			errorMap.put("indirizzo", "Indirizzo troppo lungo");				
 		
 		if(request.getParameter("telefono").isEmpty())
-			errorMap.put("telefono empty", "Campo telefono vuoto");
+			errorMap.put("telefono", "Campo telefono vuoto");
 		
 		if(request.getParameter("telefono").length()>20)
-			errorMap.put("telefono length", "Telefono troppo lungo");
+			errorMap.put("telefono", "Telefono troppo lungo");
 			
 		if (StringUtils.isNumeric(request.getParameter("telefono")) == false) 
-			errorMap.put("telefono nonValido", "Telefono non valido");
+			errorMap.put("telefono", "Telefono non valido");
 		
 		if(request.getParameter("email").isEmpty())
-			errorMap.put("email empty", "Campo e-mail vuoto");		
+			errorMap.put("email", "Campo e-mail vuoto");		
 		
 		if(request.getParameter("email").length()>35)
-			errorMap.put("email length", "E-mail troppo lunga");
+			errorMap.put("email", "E-mail troppo lunga");
 			
 		if (!request.getParameter("email").contains("@")|| !request.getParameter("email").contains("."))
-			errorMap.put("email nonValida", "E-mail non valida");
+			errorMap.put("email", "E-mail non valida");
 		
+		if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
+			errorMap.put("username", "L'username deve essere compreso fra 6 e 16 caratteri");
 		
-		if (uRegistrazione!=null) {
-		
-			if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
-			errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
-		
+		if (uRegistrazione!=null || aRegistrazione!=null) {		
 			if (checkUsername==true)
-			errorMap.put("username esistente", "Username già utilizzato!"); 
+			errorMap.put("username", "Username già utilizzato!"); 
 		}
-		
-				
-		if (uUpdate!=null) {
-			if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
-				errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
-			
-		}
-		
-		
-		
-		if (aRegistrazione!=null) {
-			
-			if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
-			errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
-		
-			if (checkUsername==true)
-			errorMap.put("username esistente", "Username già utilizzato!"); 
-		}
-		
-		
-		
-		
-		if (aUpdate!=null) {
-			if (request.getParameter("username").length() >16 || request.getParameter("username").length()<6)
-				errorMap.put("username length", "L'username deve essere compreso fra 6 e 16 caratteri");
-			
-		}
-		
-		
-
 		
 		if (request.getParameter("password").length() >16 || request.getParameter("password").length()<6)
-			errorMap.put("password length", "La password deve essere compresa fra 6 e 16 caratteri");
+			errorMap.put("password", "La password deve essere compresa fra 6 e 16 caratteri");
 		
 		if (!request.getParameter("password2").equals(request.getParameter("password")))
-			errorMap.put("password notEquals", "Le due password non coincidono!");
+			errorMap.put("password2", "Le due password non coincidono!");
 		
 		
 		if (aRegistrazione!=null || aUpdate!=null) {
@@ -279,7 +218,8 @@ public class ValidazioneUtenteFilter implements Filter {
 		}
 		
 	
-				
+		
+		
 		
 		if(errorMap.isEmpty())
 			chain.doFilter(request, response);
