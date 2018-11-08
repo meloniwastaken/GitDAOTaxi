@@ -49,10 +49,6 @@
 			<td><input type="text" id="prezzoPerKilometro" name="prezzoPerKilometro"></td>
 			<td><%if(errorMap!=null && errorMap.get("prezzoPerKilometro")!=null) {%><div style="color:red">Errore prezzo/kilometro</div><%}%></td>
 		</tr>
-		
-		
-		
-		
 	</tbody>
 </table>
 <input type="submit" value="INSERISCI">
