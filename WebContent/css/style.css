@@ -36,8 +36,15 @@ body {
 }
 
 .label {
+	font-size: 20px;
 	text-align: left;
 	text-decoration: bold;
+	color: white;
+}
+
+.content {
+	font-size: 20px;
+	text-align: left;
 	color: white;
 }
 
@@ -63,4 +70,10 @@ p {
 	width: 100%;
 	font-size: 150%;
 	text-align: center;
+}
+
+@media screen and (max-width:767px) {
+	h1 {
+		font-size: 300%;
+	}
 }

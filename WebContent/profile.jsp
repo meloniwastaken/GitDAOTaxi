@@ -30,20 +30,20 @@
 				utente = (Cliente) request.getAttribute("cliente");
 			}
 		%>
-		<div class="container first">
+		<div class="container-fluid first">
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="row"><div class="col-md-4 label">Nome:</div><div class="col-md-4 col-md-offset-2"><%=utente.getNome()%></div></div>
-							<div class="row"><div class="col-md-4 label">Cognome:</div><div class="col-md-4 col-md-offset-2"><%=utente.getCognome()%></div></div>
-							<div class="row"><div class="col-md-4 label">Codice fiscale:</div><div class="col-md-4 col-md-offset-2"><%=utente.getCodiceFiscale()%></div></div>
-							<div class="row"><div class="col-md-4 label">Data di nascita:</div><div class="col-md-4 col-md-offset-2"><%=utente.getDataDiNascita()%></div></div>
-							<div class="row"><div class="col-md-4 label">Indirizzo:</div><div class="col-md-4 col-md-offset-2"><%=utente.getIndirizzo()%></div></div>
-							<div class="row"><div class="col-md-4 label">Telefono:</div><div class="col-md-4 col-md-offset-2"><%=utente.getTelefono()%></div></div>
-							<div class="row"><div class="col-md-4 label">Email:</div><div class="col-md-4 col-md-offset-2"><%=utente.getEmail()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Nome:</div><div class="col-xs-6 content"><%=utente.getNome()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Cognome:</div><div class="col-xs-6 content"><%=utente.getCognome()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Codice fiscale:</div><div class="col-xs-6 content"><%=utente.getCodiceFiscale()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Data di nascita:</div><div class="col-xs-6 content"><%=utente.getDataDiNascita()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Indirizzo:</div><div class="col-xs-6 content"><%=utente.getIndirizzo()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Telefono:</div><div class="col-xs-6 content"><%=utente.getTelefono()%></div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Email:</div><div class="col-xs-6 content"><%=utente.getEmail()%></div></div>
 							<%if(stipendio!=null) {%>
-							<div class="row"><div class="col-md-4 label">Stipendio:</div><div class="col-md-4 col-md-offset-2"><%=stipendio%> €</div></div>
+							<div class="row"><div class="col-xs-4 col-xs-offset-1 label">Stipendio:</div><div class="col-xs-6 content"><%=stipendio%> €</div></div>
 							<%}%>
 						</div>
 					</div>
@@ -54,11 +54,11 @@
 		<%if(request.getSession().getAttribute("messaggio")!=null) {%>
 		<div class="container first">
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-xs-4 col-xs-offset-4 label">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<p><%out.print((String) request.getSession().getAttribute("messaggio"));%></p>
-							<%request.getSession().removeAttribute("messaggio");%>
+							   <%request.getSession().removeAttribute("messaggio");%>
 						</div>
 					</div>
 				</div>
