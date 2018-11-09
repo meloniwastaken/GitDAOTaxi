@@ -83,7 +83,7 @@ public class ValidazioneTaxiFilter implements Filter {
 			errorMap.put("posti", "Numero posti non valido (min 1, max 7)");
 		
 		if(request.getParameter("prezzoPerKilometro").isEmpty())
-			errorMap.put("prezzoPerKilometro", "Campo €/km vuoto");
+			errorMap.put("prezzoPerKilometro", "Campo prezzo €/km vuoto");
 		else if(Double.parseDouble(request.getParameter("prezzoPerKilometro")) <= 0)
 			errorMap.put("prezzoPerKilometro", "Prezzo non valido");
 		

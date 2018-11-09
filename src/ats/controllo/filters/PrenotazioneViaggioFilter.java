@@ -46,16 +46,19 @@ public class PrenotazioneViaggioFilter implements Filter {
 		Viaggio v = new Viaggio();
 		v.setPartenza(request.getParameter("partenza"));
 		v.setDestinazione(request.getParameter("destinazione"));
-		System.out.println(request.getParameter("data")+" "+request.getParameter("ora"));
+		System.out.println(request.getParameter("data")+" "+request.getParameter("time"));
 		
+	try {
+		if (!request.getParameter("data").equals("") && request.getParameter("time").equals(""))
+			v.setData(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
 		
-		if (!request.getParameter("ora").equals("")) {
-		try {
-			v.setData(new SimpleDateFormat("yyyy-MM-dd hh:mm").parse(request.getParameter("data"+" ora")));
-			System.out.println(v.getData());
+		else if (request.getParameter("data").equals("") && !request.getParameter("time").equals(""))
+			v.setData(new SimpleDateFormat("HH:mm").parse(request.getParameter("time")));
+		
+		else if (!request.getParameter("data").equals("") && !request.getParameter("time").equals(""))
+			v.setData(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("data")+" "+request.getParameter("time")));
 		} catch (ParseException e) {
 			System.out.println(e.getMessage());
-		}
 		}
 		
 		if (!request.getParameter("kilometri").equals(""))
@@ -85,8 +88,8 @@ public class PrenotazioneViaggioFilter implements Filter {
 		if(request.getParameter("data").isEmpty())
 			errorMap.put("data", "Campo data di partenza vuoto");
 		
-		if (request.getParameter("ora").isEmpty())
-			errorMap.put("ora", "Campo orario di partenza vuoto");
+		if (request.getParameter("time").isEmpty())
+			errorMap.put("time", "Campo orario di partenza vuoto");
 		
 		
 		if(errorMap.isEmpty())
