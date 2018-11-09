@@ -90,12 +90,12 @@ if (v!=null && v.getData()!=null && v.getData().getHours()!=0) {
     		<div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1">
       			<label for="validationServer02">Data di partenza</label>
       			<%if(errorMap!=null && errorMap.get("data")!=null) {%>
-      			<input type="date" class="form-control is-invalid" name="data">
+      			<input type="date" class="form-control is-invalid" name="data" min="<%=start%>">
       				<div class="invalid-feedback">
        			 	<%=errorMap.get("data")%>
       				</div>
       			<%}else {%>
-      			<input type="date" class="form-control is-valid" <%if (v!=null){ %> value="<%=data%>"<%} %> name="data">
+      			<input type="date" class="form-control is-valid" <%if (v!=null){ %> value="<%=data%>"<%} %> name="data" min="<%=start%>">
       			<%} %>
     		</div>    		
     		<div class="col-md-4 col-sm-5">
