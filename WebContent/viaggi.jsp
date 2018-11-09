@@ -74,6 +74,7 @@
 											<td><%=v.getFeedback()%></td>
 										<%}%>
 									<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
+									<td></td>
 									<td>
 										<form action="autista/avanzaStatoViaggio" method="POST">
 											<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>

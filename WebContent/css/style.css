@@ -5,6 +5,58 @@
 	src: url(../fonts/Quicksand_Book.otf);
 }
 
+.btn {
+	height: 30px;
+	border-radius: 15px;
+	line-height: 15px;
+}
+
+.btn-primary {
+	  background: -webkit-linear-gradient(bottom, #0040e0, #0000e0);
+	  background: -o-linear-gradient(bottom, #0040e0, #0000e0);
+	  background: -moz-linear-gradient(bottom, #0040e0, #0000e0);
+	  background: linear-gradient(bottom, #0040e0,  #0000e0);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;
+}
+
+
+.btn-danger {
+	  background: -webkit-linear-gradient(bottom, #ff0000, #e00000);
+	  background: -o-linear-gradient(bottom, #ff0000, #e00000);
+	  background: -moz-linear-gradient(bottom, #ff0000, #e00000);
+	  background: linear-gradient(bottom, #ff0000,  #e00000);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;
+}
+
+.btn-warning {
+	  background: -webkit-linear-gradient(bottom, #ffcc00, #ff6600);
+	  background: -o-linear-gradient(bottom, #ffcc00, #ff6600);
+	  background: -moz-linear-gradient(bottom, #ffcc00, #ff6600);
+	  background: linear-gradient(bottom, #ffcc00,  #ff6600);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;}
+
+.login-button {
+
+}
+
 body {
 	font-family: Quicksand;
 	background-repeat: no-repeat;
@@ -66,7 +118,12 @@ table {
 
 select {
 	background-color: rgb(32,32,32);
-	border-color: white;
+	border-color: rgb(8,8,8);
+}
+
+input {
+	background-color: rgb(32,32,32);
+	border-color: rgb(8,8,8);
 }
 
 p {
@@ -89,6 +146,12 @@ th, td {
 	margin-left: auto;
 	margin-right: auto;
 	display: inherit;
+}
+
+.description {
+	font-size: 22pt;
+	text-align: justify;
+    text-justify: inter-word;
 }
 
 @media screen and (max-width:767px) {
