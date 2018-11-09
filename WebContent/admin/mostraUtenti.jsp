@@ -21,7 +21,7 @@
 		<% List<Utente> utenti = (List<Utente>) request.getAttribute("utenti");%>	
 		<div class="container">
 			<div class="panel panel-default">
-				<div class="panel-body">
+				<div class="panel-body scrollmenu">
 					<table>
 						<tr>
 							<th>ID</th>
