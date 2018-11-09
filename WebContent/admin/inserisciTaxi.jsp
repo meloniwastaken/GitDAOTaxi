@@ -120,12 +120,12 @@ Taxi t = (Taxi)request.getAttribute("taxi");
     		<div class="col-md-4 col-sm-5">
       			<label for="validationServer06">Prezzo €/km</label>
       			<%if(errorMap!=null && errorMap.get("prezzoPerKilometro")!=null) {%>
-      			<input type="number" class="form-control is-invalid" <%if (t!=null){ if (t.getPrezzoPerKilometro()==-1) {%> value="" <%} else {%>value="<%=t.getPrezzoPerKilometro()%>" <%}} %> name="prezzoPerKilometro">
+      			<input type="number" step=".02" class="form-control is-invalid" <%if (t!=null){ if (t.getPrezzoPerKilometro()==-1) {%> value="" <%} else {%>value="<%=t.getPrezzoPerKilometro()%>" <%}} %> name="prezzoPerKilometro">
       				<div class="invalid-feedback">
         			<%=errorMap.get("prezzoPerKilometro")%>
       				</div>
       			<%}else {%>
-      			<input type="number" class="form-control is-valid" <%if (t!=null){ %>value="<%=t.getPrezzoPerKilometro()%>" <%} %> name="prezzoPerKilometro">
+      			<input type="number" step=".02" class="form-control is-valid" <%if (t!=null){ %>value="<%=t.getPrezzoPerKilometro()%>" <%} %> name="prezzoPerKilometro">
       			<%} %> 
       		</div>    		    
     </div>

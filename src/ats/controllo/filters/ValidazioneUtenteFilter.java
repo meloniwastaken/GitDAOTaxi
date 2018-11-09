@@ -90,6 +90,7 @@ public class ValidazioneUtenteFilter implements Filter {
 		}
 		uUpdate.setEmail(request.getParameter("email"));
 		uUpdate.setUsername(request.getParameter("username"));	
+		uUpdate.setPassword(request.getParameter("password"));
 		
 		}
 		
@@ -143,6 +144,7 @@ public class ValidazioneUtenteFilter implements Filter {
 				aUpdate.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			else
 				aUpdate.setStipendio(-1D);
+			aUpdate.setPassword(request.getParameter("password"));
 			System.out.println(request.getParameter("stipendio"));
 			
 			}
