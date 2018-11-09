@@ -144,12 +144,12 @@ if (v!=null && v.getData()!=null && v.getData().getHours()!=0) {
     		<div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1">
       			<label for="validationServer06">Kilometri</label>
       			<%if(errorMap!=null && errorMap.get("kilometri")!=null) {%>
-      			<input type="number" class="form-control is-invalid" <%if (v!=null){ if (v.getKilometri()==-1) {%> value="" <%} else {%>value="<%=v.getKilometri()%>" <%}} %> name="kilometri">
+      			<input type="number" step=".02" class="form-control is-invalid" <%if (v!=null){ if (v.getKilometri()==-1) {%> value="" <%} else {%>value="<%=v.getKilometri()%>" <%}} %> name="kilometri">
       				<div class="invalid-feedback">
         			<%=errorMap.get("kilometri")%>
       				</div>
       			<%}else {%>
-      			<input type="number" class="form-control is-valid" <%if (v!=null) { %> value="<%=v.getKilometri()%>" <%}%> name="kilometri">
+      			<input type="number" step=".02" class="form-control is-valid" <%if (v!=null) { %> value="<%=v.getKilometri()%>" <%}%> name="kilometri">
       			<%} %> 
       		</div>    	
     </div>

@@ -183,7 +183,7 @@ data = anno+"-"+mese+"-"+giorno;  }
         			<%=errorMap.get("password") %>
       				</div>
       			<%}else {%>
-      			<input type="password" class="form-control is-valid" id="password" name="password">
+      			<input type="password" class="form-control is-valid" id="password" value="<%=u.getPassword()%>" name="password">
       			<%} %> 
     		</div>
     		<div class="col-md-4 col-sm-5">
@@ -194,7 +194,7 @@ data = anno+"-"+mese+"-"+giorno;  }
         			<%=errorMap.get("password2")%>
       				</div>
       			<%}else {%>
-      			<input type="password" class="form-control is-valid" id="password2" name="password2">
+      			<input type="password" class="form-control is-valid" id="password2" value="<%=u.getPassword()%>" name="password2">
       			<%}%> 
     		</div>  
   	</div>
