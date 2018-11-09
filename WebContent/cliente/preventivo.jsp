@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="ats.modello.Viaggio" %>
-<%@page import="java.text.DecimalFormat"%>
+<%@ page import="java.text.DecimalFormat"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,8 @@
 		<jsp:include page="../navBar.jsp"/>
 <% Viaggio v = (Viaggio) request.getSession().getAttribute("viaggio");
 DecimalFormat f = new DecimalFormat("##.00");
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
 %>
 <div class="container">
 <h1 class="first"><%=v.getPartenza()%>-<%=v.getDestinazione()%></h1>
@@ -132,7 +135,7 @@ DecimalFormat f = new DecimalFormat("##.00");
 		Data
 	</div>
 	<div class="col-xs-4 col-xs-offset-1">
-		<%=v.getData()%>
+		<%=dateFormat.format(v.getData())+" alle ore "+hourFormat.format(v.getData())%>
 	</div>
 </div>
 <div class="row">

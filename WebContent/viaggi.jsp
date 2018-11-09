@@ -5,7 +5,8 @@
 <%@ page import="ats.modello.Viaggio" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.DecimalFormat"%>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 
 <!DOCTYPE html>
 
@@ -22,7 +23,9 @@
 		<h1 class="first">Viaggi</h1>
 		<% List<Viaggio> viaggi = (List<Viaggio>) request.getAttribute("viaggi");
    		   List<Double> statistiche = (List<Double>) request.getAttribute("statistiche");
-   		   DecimalFormat f = new DecimalFormat("##.00"); %>
+   		   DecimalFormat f = new DecimalFormat("##.00");
+   		   SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		   SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");%>
    		<div class="container">
 			<div class="panel panel-default">
 				<div class="panel-body scrollmenu">
@@ -38,7 +41,7 @@
 								<th>Kilometri</th>
 								<th>Prezzo</th>
 								<th>Stato</th>
-								<th>Feedback</th>
+								<th <%if((Integer) request.getSession().getAttribute("ruolo")==3) {out.print("colspan='2' class='text-center'");}%>>Feedback</th>
 								<%if((Integer) request.getSession().getAttribute("ruolo")==2) {%> <th>Cambia stato</th><%}%>
 								<%if((Integer) request.getSession().getAttribute("ruolo")==1) {%> <th>Note</th><%}%>
 							</tr>
@@ -51,26 +54,25 @@
 									<td><%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>ID: <%=v.getTaxi().getId()%><%}%> <%=v.getTaxi().getMarca()%> <%=v.getTaxi().getModello()%></td>
 									<td><%=v.getPartenza()%></td>
 									<td><%=v.getDestinazione()%></td>
-									<td><%=v.getData().toString()%></td>
+									<td><%=dateFormat.format(v.getData())+" "+hourFormat.format(v.getData())%></td>
 									<td><%=v.getKilometri()%></td>
 									<td><%=v.getPrezzo()%></td>
 									<%if(v.getStato()==1) {%><td>In attesa</td><%} else if(v.getStato()==2){%><td>Accettato</td><%} else if(v.getStato()==3){%><td >In corso</td><%} else {%><td >Completato</td>  <%}%>
-									<td><%if(v.getFeedback()==null && v.getStato()==4 && (Integer)request.getSession().getAttribute("ruolo")==3) {%>
+									<%if(v.getFeedback()==null && v.getStato()==4 && (Integer)request.getSession().getAttribute("ruolo")==3) {%>
 										<form method="POST" action="cliente/lasciaFeedback">
 											<input type="hidden" name="idViaggio" value="<%=v.getId()%>"/>
-											<select name="feedback">
+											<td><select name="feedback">
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
 												<option value="4">4</option>
 												<option value="5">5</option>
-											</select>
-											<button type="submit" class="btn btn-primary">Lascia Feedback</button>
+											</select></td>
+											<td><button type="submit" class="btn btn-primary">Lascia Feedback</button></td>
 										</form>
 										<%} else if(v.getFeedback()!=null && v.getStato()==4) {%>
-											<%=v.getFeedback()%>
+											<td><%=v.getFeedback()%></td>
 										<%}%>
-									</td>
 									<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
 									<td>
 										<form action="autista/avanzaStatoViaggio" method="POST">

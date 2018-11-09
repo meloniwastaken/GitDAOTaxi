@@ -168,7 +168,7 @@ public class DAOViaggio implements IDAOViaggio{
 				v.setAutista(a);
 				v.setTaxi(t);
 				v.setCliente(c);
-				v.setData(resultSet.getDate(5));
+				v.setData(resultSet.getTimestamp(5));
 				v.setPartenza(resultSet.getString(6));
 				v.setDestinazione(resultSet.getString(7));
 				v.setKilometri(resultSet.getDouble(8));
@@ -196,11 +196,35 @@ public class DAOViaggio implements IDAOViaggio{
 		
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement("UPDATE VIAGGIO SET AUTISTA = ?, TAXI = ?, CLIENTE = ?, DATA = ?, PARTENZA = ?, DESTINAZIONE = ?, KILOMETRI = ?, PREZZO = ?, STATO = ?, FEEDBACK = ? WHERE ID = ?");
+			statement = connection.prepareStatement("UPDATE VIAGGIO SET AUTISTA = ?, TAXI = ?, CLIENTE = ?, DATA = TO_DATE(?,'DD-MM-YYYY HH24:MI:SS'), PARTENZA = ?, DESTINAZIONE = ?, KILOMETRI = ?, PREZZO = ?, STATO = ?, FEEDBACK = ? WHERE ID = ?");
 			statement.setLong(1, v.getAutista().getId());
 			statement.setLong(2,v.getTaxi().getId());
 			statement.setLong(3, v.getCliente().getId());
-			statement.setDate(4, (Date) v.getData());
+			
+			Integer gg = v.getData().getDate();
+			Integer mm = v.getData().getMonth() + 1;
+			Integer aaaa = v.getData().getYear() + 1900;
+			Integer hh = v.getData().getHours();
+			Integer mi = v.getData().getMinutes();
+
+			String giorno = gg.toString();
+			String mese = mm.toString();
+			String anno = aaaa.toString();
+			String ore = hh.toString();
+			String minuti = mi.toString();
+
+			if (gg < 10)
+				giorno = "0" + giorno;
+			if (mm < 10)
+				mese = "0" + mese;
+			if(hh<10)
+				ore = "0" + ore;
+			if(mi<10)
+				minuti = "0" + minuti;
+
+			String s = giorno + "-" + mese + "-" + anno + " " + ore + ":" + minuti + ":00";
+			
+			statement.setString(4, s);
 			statement.setString(5, v.getPartenza());
 			statement.setString(6, v.getDestinazione());
 			statement.setDouble(7, v.getKilometri());
@@ -371,7 +395,7 @@ public class DAOViaggio implements IDAOViaggio{
 				v.setAutista(a);
 				v.setTaxi(t);
 				v.setCliente(c);
-				v.setData(resultSet.getDate(5));
+				v.setData(resultSet.getTimestamp(5));
 				v.setPartenza(resultSet.getString(6));
 				v.setDestinazione(resultSet.getString(7));
 				v.setKilometri(resultSet.getDouble(8));
@@ -460,7 +484,7 @@ public class DAOViaggio implements IDAOViaggio{
 				v.setAutista(a);
 				v.setTaxi(t);
 				v.setCliente(c);
-				v.setData(resultSet.getDate(5));
+				v.setData(resultSet.getTimestamp(5));
 				v.setPartenza(resultSet.getString(6));
 				v.setDestinazione(resultSet.getString(7));
 				v.setKilometri(resultSet.getDouble(8));
