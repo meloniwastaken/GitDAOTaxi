@@ -94,6 +94,14 @@
     <url-pattern>/admin/inserisciTaxi</url-pattern>
   </filter-mapping>
   <filter>
+    <filter-name>PrenotazioneViaggioFilter</filter-name>
+    <filter-class>ats.controllo.filters.PrenotazioneViaggioFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>PrenotazioneViaggioFilter</filter-name>
+    <url-pattern>/cliente/preventivo</url-pattern>
+  </filter-mapping>
+  <filter>
     <filter-name>ClienteFilter</filter-name>
     <filter-class>ats.controllo.filters.ClienteFilter</filter-class>
   </filter>

@@ -218,7 +218,7 @@ data = anno+"-"+mese+"-"+giorno;  }
     		<div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1">
 	    		<label for="validationServer02">Stipendio</label>
 	      			<%if(errorMap!=null && errorMap.get("stipendio")!=null) {%>
-	      			<input type="number" class="form-control is-invalid" <%if (u!=null){ if (u.getStipendio()==-1) {%> value="" <%} else {%>value="<%=u.getStipendio()%>"	<%}} %>	name="stipendio">
+	      			<input type="number" class="form-control is-invalid" <%if (u!=null){ if (u.getStipendio()==-1) {%> value="" <%} else {%>value="<%=u.getStipendio()%>" <%}} %>	name="stipendio">
 	      				<div class="invalid-feedback">
 	       			 	<%=errorMap.get("stipendio")%>
 	      				</div>

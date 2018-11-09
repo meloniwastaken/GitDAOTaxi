@@ -13,8 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
+import ats.modello.Taxi;
 
 /**
  * Servlet Filter implementation class ValidazioneTaxiFilter
@@ -22,47 +21,78 @@ import org.apache.commons.lang3.StringUtils;
 @WebFilter("/ValidazioneTaxiFilter")
 public class ValidazioneTaxiFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
+    
     public ValidazioneTaxiFilter() {
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see Filter#destroy()
-	 */
+	
 	public void destroy() {
-		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
+	
 	public void doFilter(ServletRequest request1, ServletResponse response1, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) request1;
 		HttpServletResponse response = (HttpServletResponse) response1;
 
 		request.removeAttribute("errorMap");
-		Map<String,Boolean> errorMap = new HashMap<String,Boolean>();
-		if(request.getParameter("marca")==null || request.getParameter("marca").isEmpty() || request.getParameter("marca").length()>20)
-			errorMap.put("marca", true);
-		if(request.getParameter("modello")==null ||  request.getParameter("modello").isEmpty() || request.getParameter("modello").length()>20)
-			errorMap.put("modello", true);
-		if(request.getParameter("targa")==null || request.getParameter("targa").length()!=7)
-			errorMap.put("targa", true);
-		if(request.getParameter("annoImmatricolazione")==null ||  request.getParameter("annoImmatricolazione").isEmpty() || request.getParameter("annoImmatricolazione").length()!=4 || StringUtils.isNumeric(request.getParameter("annoImmatricolazione")) == false) 
-			errorMap.put("annoImmatricolazione", true);
-		if(request.getParameter("posti")==null || request.getParameter("posti").length()<1 || request.getParameter("posti").length()>2 || Integer.parseInt(request.getParameter("posti")) <= 0 || StringUtils.isNumeric(request.getParameter("posti")) == false)
-			errorMap.put("posti",true);
-		if(request.getParameter("prezzoPerKilometro")==null || request.getParameter("prezzoPerKilometro").isEmpty() || Double.parseDouble(request.getParameter("prezzoPerKilometro")) <= 0)
-			errorMap.put("prezzoPerKilometro", true);
+		
+		Taxi t = new Taxi();
+		t.setMarca(request.getParameter("marca"));
+		t.setModello(request.getParameter("modello"));
+		t.setTarga(request.getParameter("targa"));
+		if (!request.getParameter("annoImmatricolazione").equals(""))
+			t.setAnnoDiImmatricolazione(Integer.parseInt(request.getParameter("annoImmatricolazione")));
+		else
+			t.setAnnoDiImmatricolazione(-1);
+		if (!request.getParameter("posti").equals(""))		
+			t.setPosti(Integer.parseInt(request.getParameter("posti")));
+		else
+			t.setPosti(-1);
+		if (!request.getParameter("prezzoPerKilometro").equals(""))
+			t.setPrezzoPerKilometro(Double.parseDouble(request.getParameter("prezzoPerKilometro")));
+		else
+			t.setPrezzoPerKilometro(-1D);
+		
+		
+		
+		Map<String,String> errorMap = new HashMap<String,String>();
+		
+		if(request.getParameter("marca").isEmpty())
+			errorMap.put("marca", "Campo marca vuoto");
+		if(request.getParameter("marca").length()>25)
+			errorMap.put("marca", "Lunghezza massima 25 caratteri");
+		
+		if(request.getParameter("modello").isEmpty())
+			errorMap.put("modello", "Campo modello vuoto");
+		if(request.getParameter("modello").length()>25)
+			errorMap.put("modello", "Lunghezza massima 25 caratteri");
+		
+		if(request.getParameter("targa").length()!=7)
+			errorMap.put("targa", "La targa deve essere di 7 caratteri");
+		
+		if(request.getParameter("annoImmatricolazione").isEmpty())
+			errorMap.put("annoImmatricolazione", "Campo anno immatricolazione vuoto");
+		if(request.getParameter("annoImmatricolazione").length()!=4)
+			errorMap.put("annoImmatricolazione", "Cifre non sufficienti");
+		
+		if(request.getParameter("posti").isEmpty())
+			errorMap.put("posti", "Campo posti vuoto");
+		else if(Integer.parseInt(request.getParameter("posti"))> 7 || Integer.parseInt(request.getParameter("posti")) <= 0)
+			errorMap.put("posti", "Numero posti non valido (min 1, max 7)");
+		
+		if(request.getParameter("prezzoPerKilometro").isEmpty())
+			errorMap.put("prezzoPerKilometro", "Campo €/km vuoto");
+		else if(Double.parseDouble(request.getParameter("prezzoPerKilometro")) <= 0)
+			errorMap.put("prezzoPerKilometro", "Prezzo non valido");
 		
 		if(errorMap.isEmpty())
 			chain.doFilter(request, response);
 		else {
 			request.setAttribute("errorMap", errorMap);
-			request.getRequestDispatcher("inserisciTaxi.jsp").forward(request, response);
+			request.setAttribute("taxi", t);
+			request.getRequestDispatcher(request.getParameter("from")).forward(request, response);
 		}
 	}
 
