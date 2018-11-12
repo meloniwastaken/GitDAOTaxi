@@ -54,6 +54,8 @@ public class ValidazioneTaxiFilter implements Filter {
 			t.setPrezzoPerKilometro(Double.parseDouble(request.getParameter("prezzoPerKilometro")));
 		else
 			t.setPrezzoPerKilometro(-1D);
+		if (request.getParameter("from").equals("updateTaxiForm.jsp"))
+			t.setId(Long.parseLong(request.getParameter("id")));
 		
 		
 		

@@ -46,10 +46,10 @@ Taxi t = (Taxi)request.getAttribute("taxi");
 <div class="container">
 <div class="row">
 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-	<h1 class="first text-center">Inserisci taxi</h1>
+	<h1 class="first text-center">Modifica taxi</h1>
 	<div class="panel panel-default">
 	<div class="panel-body">
-	 <form method="POST" action="inserisciTaxi">
+	 <form method="POST" action="updateTaxi">
 	<div class="row">
     		<div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1">
       			<label for="validationServer02">Marca</label>
@@ -142,8 +142,8 @@ Taxi t = (Taxi)request.getAttribute("taxi");
   		</div>
   	</div>
   			
-  			
-  		<input type="hidden" name="from" value="inserisciTaxi.jsp">	
+  		<input type="hidden" name="id" value="<%=t.getId() %>">
+  		<input type="hidden" name="from" value="updateTaxiForm.jsp">	
 	</form>
 	</div>
 	</div>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -171,7 +172,7 @@ public class DAOAutista implements IDAOAutista {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		Map<Autista,Taxi> map = new HashMap<Autista,Taxi>();
+		Map<Autista,Taxi> map = new LinkedHashMap<Autista,Taxi>();
 		
 
 		try {
