@@ -46,6 +46,12 @@
 		 						</form>
 	 						</td>
 	 						<td>
+	  		 					<form method="POST" action="updateTaxiForm">
+						  			<input type="hidden" name="id" value="<%=taxi.getId()%>">
+						  			<button type="submit" class="btn btn-warning">Modifica</button>
+		 						</form>
+	 						</td>
+	 						<td>
 	  		 					<form method="POST" action="deleteTaxi">
 						  			<input type="hidden" name="id" value="<%=taxi.getId()%>">
 						  			<button type="submit" class="btn btn-danger">Cancella</button>

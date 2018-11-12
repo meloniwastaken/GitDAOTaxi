@@ -93,6 +93,10 @@
     <filter-name>ValidazioneTaxiFilter</filter-name>
     <url-pattern>/admin/inserisciTaxi</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+  <filter-name>ValidazioneTaxiFilter</filter-name>
+  <url-pattern>/updateTaxi</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>PrenotazioneViaggioFilter</filter-name>
     <filter-class>ats.controllo.filters.PrenotazioneViaggioFilter</filter-class>
