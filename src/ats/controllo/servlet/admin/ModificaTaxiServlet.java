@@ -15,7 +15,7 @@ import ats.persistenza.interfacce.IDAOTaxi;
 /**
  * Servlet implementation class ModificaTaxiServlet
  */
-@WebServlet("/updateTaxi")
+@WebServlet("/admin/updateTaxi")
 public class ModificaTaxiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,7 +30,8 @@ public class ModificaTaxiServlet extends HttpServlet {
 		
 		try {
 			taxi = new Taxi();
-			taxi.setId(Long.parseLong(request.getParameter("idForUpdate")));
+			taxi = daoTaxi.findById(Long.parseLong(request.getParameter("id")));
+			taxi.setId(Long.parseLong(request.getParameter("id")));
 			taxi.setMarca(request.getParameter("marca"));
 			taxi.setModello(request.getParameter("modello"));
 			taxi.setAnnoDiImmatricolazione(Integer.parseInt(request.getParameter("annoImmatricolazione")));

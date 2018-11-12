@@ -18,7 +18,7 @@ import ats.persistenza.interfacce.IDAOUtente;
 /**
  * Servlet implementation class UpdateTaxiForm
  */
-@WebServlet("/updateTaxiForm")
+@WebServlet("/admin/updateTaxiForm")
 public class UpdateTaxiForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -95,7 +95,7 @@
   </filter-mapping>
   <filter-mapping>
   <filter-name>ValidazioneTaxiFilter</filter-name>
-  <url-pattern>/updateTaxi</url-pattern>
+  <url-pattern>/admin/updateTaxi</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>PrenotazioneViaggioFilter</filter-name>

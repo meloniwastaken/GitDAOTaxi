@@ -38,7 +38,7 @@
 
 
 <%Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
-Taxi t = (Taxi)request.getAttribute("taxiUpdate");
+Taxi t = (Taxi)request.getAttribute("taxi");
 
 %>
 <jsp:include page="../navBar.jsp"></jsp:include>
@@ -142,8 +142,8 @@ Taxi t = (Taxi)request.getAttribute("taxiUpdate");
   		</div>
   	</div>
   			
-  		<input type="hidden" name="idForUpdate" value="<%=t.getId() %>">
-  		<input type="hidden" name="from" value="updateTaxi.jsp">	
+  		<input type="hidden" name="id" value="<%=t.getId() %>">
+  		<input type="hidden" name="from" value="updateTaxiForm.jsp">	
 	</form>
 	</div>
 	</div>
