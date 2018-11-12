@@ -33,6 +33,7 @@
 							<th>Telefono</th>
 							<th>Email</th>
 							<th>Ruolo</th>
+							<th>Note</th>
 						</tr>
 				  		<% for(Utente utente : utenti){ %>
 			  			<tr>
@@ -53,6 +54,10 @@
 			  			
 			  				<%}%> 
 			  				</td>
+			  				<%if (utente.getUsername()==null && utente.getPassword()==null) {%>
+			  				<td>Utente cancellato</td>
+			  				<%} %>
+			  				
 			  			</tr>
 				  		<%}%>
 				 	</table>
