@@ -25,6 +25,20 @@
 	  transition: all 0.4s;
 }
 
+.btn-primary:hover {
+	  background: -webkit-linear-gradient(bottom, #000033, #000080);
+	  background: -o-linear-gradient(bottom, #000033, #000080);
+	  background: -moz-linear-gradient(bottom, #000033, #000080);
+	  background: linear-gradient(bottom, #000033,  #000080);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;
+}
+
 
 .btn-danger {
 	  background: -webkit-linear-gradient(bottom, #ff0000, #e00000);
@@ -40,11 +54,39 @@
 	  transition: all 0.4s;
 }
 
+.btn-danger:hover {
+	  background: -webkit-linear-gradient(bottom, #660000, #990000);
+	  background: -o-linear-gradient(bottom, #660000, #990000);
+	  background: -moz-linear-gradient(bottom, #660000, #990000);
+	  background: linear-gradient(bottom, #660000,  #990000);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;
+}
+
 .btn-warning {
-	  background: -webkit-linear-gradient(bottom, #ffcc00, #ff6600);
-	  background: -o-linear-gradient(bottom, #ffcc00, #ff6600);
-	  background: -moz-linear-gradient(bottom, #ffcc00, #ff6600);
-	  background: linear-gradient(bottom, #ffcc00,  #ff6600);
+	  background: -webkit-linear-gradient(bottom, #f0ad4e, #ff6600);
+	  background: -o-linear-gradient(bottom, #f0ad4e, #ff6600);
+	  background: -moz-linear-gradient(bottom, #f0ad4e, #ff6600);
+	  background: linear-gradient(bottom, #f0ad4e,  #ff6600);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;}
+
+
+ .btn-warning:hover {
+	  background: -webkit-linear-gradient(bottom, #cc5200, #993d00);
+	  background: -o-linear-gradient(bottom, #cc5200, #993d00);
+	  background: -moz-linear-gradient(bottom, #cc5200, #993d00);
+	  background: linear-gradient(bottom, #cc5200,  #993d00);
 	  position: relative;
 	  z-index: 1;
 	
@@ -153,6 +195,12 @@ th, td {
 	text-align: justify;
     text-justify: inter-word;
 }
+
+.a_button:hover {
+	color: #ffff;
+	text-decoration: none;
+}
+
 
 @media screen and (max-width:767px) {
 	h1 {
