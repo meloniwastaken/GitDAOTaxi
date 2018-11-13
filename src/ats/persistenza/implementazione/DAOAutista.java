@@ -117,7 +117,6 @@ public class DAOAutista implements IDAOAutista {
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
-		System.out.println(autista.getId());
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, autista.getId());

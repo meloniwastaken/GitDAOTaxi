@@ -11,7 +11,6 @@ public class DAOStipendio implements IDAOStipendio {
 	@Override
 	public void insert(Long id, Double s) throws DAOException {
 		String sql = "INSERT INTO STIPENDIO VALUES (?,?)";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -33,7 +32,6 @@ public class DAOStipendio implements IDAOStipendio {
 	@Override
 	public void update(Long id, Double s) throws DAOException {
 		String sql = "UPDATE STIPENDIO SET ID=?, STIPENDIO=?";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;

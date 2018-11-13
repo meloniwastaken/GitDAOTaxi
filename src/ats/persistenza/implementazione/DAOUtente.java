@@ -133,7 +133,6 @@ public class DAOUtente implements IDAOUtente {
 				mese = "0" + mese;
 
 			String s = giorno + "-" + mese + "-" + anno;
-			System.out.println(s);
 			statement.setString(4, s);
 			statement.setString(5, utente.getIndirizzo());
 			statement.setString(6, utente.getTelefono());
@@ -176,7 +175,6 @@ public class DAOUtente implements IDAOUtente {
 				mese = "0" + mese;
 
 			String s = giorno + "-" + mese + "-" + anno;
-			System.out.println(s);
 			statement.setString(4, s);
 			statement.setString(5, utente.getIndirizzo());
 			statement.setString(6, utente.getTelefono());

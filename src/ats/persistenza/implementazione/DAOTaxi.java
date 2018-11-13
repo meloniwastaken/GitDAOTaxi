@@ -17,7 +17,6 @@ public class DAOTaxi implements IDAOTaxi {
 	public List<Taxi> findAll() throws DAOException {
 		List<Taxi> listaTaxi = new ArrayList<Taxi>();
 		String sql = "SELECT * FROM TAXI LEFT JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -125,7 +124,6 @@ public class DAOTaxi implements IDAOTaxi {
 	@Override
 	public void insert(Taxi t) throws DAOException {
 		String sql = "INSERT INTO TAXI VALUES (SEQ_TAXI.NEXTVAL,?,?,?,?,?,?,?,NULL)";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -163,7 +161,6 @@ public class DAOTaxi implements IDAOTaxi {
 	@Override
 	public void update(Taxi t) throws DAOException {
 		String sql = "UPDATE TAXI SET MODELLO=?, MARCA=?, TARGA=?, ANNO_IMMATRICOLAZIONE=?, POSTI=?, PREZZO_PER_KILOMETRO=?, DISPONIBILE=?, AUTISTA=? WHERE ID=?";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -199,7 +196,6 @@ public class DAOTaxi implements IDAOTaxi {
 	@Override
 	public void deleteById(Long id) throws DAOException {
 		String sql = "DELETE FROM TAXI WHERE ID=?";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
@@ -219,7 +215,6 @@ public class DAOTaxi implements IDAOTaxi {
 	public List<Taxi> findAllDisponibili() throws DAOException {
 		List<Taxi> listaTaxi = new ArrayList<Taxi>();
 		String sql = "SELECT * FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA=UTENTE.ID WHERE RUOLO=2 AND DISPONIBILE=1";
-		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
 		PreparedStatement statement = null;
