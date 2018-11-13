@@ -202,7 +202,8 @@ th, td {
 }
 
 .navbar-btn {
-		margin: 5px;
+		margin-left: 10px;
+		margin-top: 10px;
 		height:100%;
 	}
 
@@ -212,6 +213,7 @@ th, td {
 	}
 	
 	.navbar-btn {
+		margin: 5px;
 		width: 250px;
 		height: 40px;
 	}
