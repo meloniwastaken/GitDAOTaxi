@@ -5,6 +5,7 @@
 <%@ page import="ats.modello.Autista" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
+<%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,26 +48,16 @@
 </style>
 <body background="../img/bg.jpg">
 <jsp:include page="../navBar.jsp"></jsp:include>
-<%List<Taxi> listaTaxi = (List<Taxi>)request.getAttribute("listaTaxi"); %>
-<%Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
+<%List<Taxi> listaTaxi = (List<Taxi>)request.getAttribute("listaTaxi"); 
+Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
 
 Autista u = (Autista)request.getAttribute("autistaRegistrazione");
 String data="";
 if (u!=null && u.getDataDiNascita()!=null) {
-Integer gg = u.getDataDiNascita().getDate();
-Integer mm = u.getDataDiNascita().getMonth() + 1;
-Integer yyyy = u.getDataDiNascita().getYear() + 1900;      				
-
-String giorno = gg.toString();
-String mese = mm.toString();
-String anno = yyyy.toString();
-	
-if (gg < 10)
-	giorno = "0" + giorno;
-if (mm < 10)
-	mese = "0" + mese;
-	
-data = anno+"-"+mese+"-"+giorno;  }
+	String patternData="yyyy-MM-dd";
+	SimpleDateFormat formattaData = new SimpleDateFormat(patternData);
+	data = formattaData.format(u.getDataDiNascita());
+}
 %>
 
 <div class="container">
