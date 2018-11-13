@@ -25,7 +25,7 @@ public class SessionFilter implements Filter {
 		HttpServletResponse risposta = (HttpServletResponse) response;
 
 		if (richiesta.getSession().getAttribute("id") == null) {
-			risposta.sendRedirect("index.html");
+			risposta.sendRedirect("index.jsp");
 		} else
 			chain.doFilter(request, response);
 	}
