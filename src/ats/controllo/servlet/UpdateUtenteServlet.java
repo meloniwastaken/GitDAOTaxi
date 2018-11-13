@@ -57,10 +57,8 @@ public class UpdateUtenteServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		if ((Integer) request.getSession().getAttribute("ruolo") == 1)
-			response.sendRedirect("/GitDAOTaxi/admin/findAllClienti");
-		else
-			response.sendRedirect("profile");
+		request.getSession().setAttribute("messaggio","Utente modificato");
+		response.sendRedirect("profile");
 	}
 
 }

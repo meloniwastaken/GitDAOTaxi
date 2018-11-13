@@ -38,7 +38,8 @@ public class ModificaTaxiServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("findAllTaxi");
+		request.getSession().setAttribute("messaggio","Taxi modificato");
+		response.sendRedirect("../profile");
 	}
 
 }

@@ -66,7 +66,8 @@ public class UpdateAutistaServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("findAllAutisti");
+		request.getSession().setAttribute("messaggio","Autista modificato");
+		response.sendRedirect("../profile");
 	}
 
 }
