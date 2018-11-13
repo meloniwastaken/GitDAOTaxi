@@ -201,9 +201,18 @@ th, td {
 	text-decoration: none;
 }
 
+.navbar-btn {
+		margin: 5px;
+		height:100%;
+	}
 
 @media screen and (max-width:767px) {
 	h1 {
 		font-size: 300%;
+	}
+	
+	.navbar-btn {
+		width: 250px;
+		height: 40px;
 	}
 }

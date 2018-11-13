@@ -54,7 +54,6 @@
 						<button class="btn btn-primary navbar-btn" type="submit">Visualizza Viaggi</button>
 					</form>
 		    	</li>
-		    	<li>&nbsp;</li>
     			 <%if((Integer) request.getSession().getAttribute("ruolo")==1) {%>
 				<li>
           			<button type="button" class="btn btn-warning dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,7 +67,6 @@
            				<li><a href="/GitDAOTaxi/admin/findAllTaxi">Elenco Taxi</a></li>
            			</ul>
         		</li>
-    			<li>&nbsp;</li>
     	 		<li>
           			<button type="button" class="btn btn-warning dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     					Aggiungi <span class="caret"></span>
@@ -84,7 +82,6 @@
 		          	</ul>
 	        	</li>
         		<%} if((Integer) request.getSession().getAttribute("ruolo")==3) {%>
-       			<li>&nbsp;</li>
 		       	<li>
 		    		<form method="POST" action="/GitDAOTaxi/cliente/formPrenotazione">
 						<input type="hidden" name="id" value="<%=request.getSession().getAttribute("id")%>"/>
