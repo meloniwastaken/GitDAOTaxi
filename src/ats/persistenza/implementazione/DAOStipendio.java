@@ -14,13 +14,12 @@ public class DAOStipendio implements IDAOStipendio {
 		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
-		PreparedStatement statement=null;
+		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, id);
 			statement.setDouble(2, s);
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
@@ -37,13 +36,12 @@ public class DAOStipendio implements IDAOStipendio {
 		System.out.println(sql);
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
-		PreparedStatement statement=null;
+		PreparedStatement statement = null;
 		try {
 			statement = connection.prepareStatement(sql);
 			statement.setLong(1, id);
 			statement.setDouble(2, s);
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
