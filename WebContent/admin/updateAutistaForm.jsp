@@ -238,22 +238,53 @@ if (u!=null && u.getDataDiNascita()!=null) {
 			<div class="btn-toolbar pull-right" role="toolbar">
   				<div class="btn-group" role="group"><button class="btn btn-danger"><a class="a_button" href="findAllAutisti">Annulla</a></button></div>
   				<div class="btn-group" role="group"><button class="btn btn-primary" type="submit">Conferma</button></div>
+  				<input type="hidden" name="from" value="updateAutistaForm">
+  				<input type="hidden" name="idforUpdate" value="<%=u.getId()%>">  					
 			</div>
+			
+			<div class="btn-toolbar pull-left" role="toolbar">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancella">Cancella Account</button>
+				</div>
+			</div>
+			
+			
   		</div>
   	</div>		
-  			<input type="hidden" name="from" value="updateAutistaForm">
-  			<input type="hidden" name="idforUpdate" value="<%=u.getId()%>">  					
   			</form>
   			
+  			
+  			<div class="modal fade" id="cancella" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+												  <div class="modal-dialog" role="document">
+												    <div class="panel panel-default">
+													<div class="panel-body">
+												      <div class="row">
+													      <h4><center>Vuoi davvero rimuovere l'account?</center></h4>
+													      </div>
+													  <div class=row>
+													  	<div class="col-xs-8 col-xs-offset-2">
+														      	<div class="btn-toolbar pull-left" role="toolbar">
+													  				<div class="btn-group" role="group">
+																		<form method="POST" action="delete">
+														        			<input type="hidden" name="id" value="<%=u.getId()%>"> 
+														        			<button type="submit" class="btn btn-danger">Rimuovi account</button>
+														        		</form>
+																	</div>
+																</div>
+																
+																<div class="btn-toolbar pull-right" role="toolbar">
+																	<div class="btn-group" role="group">
+																		<button type="button" class="btn btn-success" data-dismiss="modal">Indietro</button>
+																	</div>
+																</div>
+													    </div>
+													 </div>
+												  	 </div>
+													 </div>
+													</div>
+										</div>
 						
 			
-		</div>
-		</div>
-  					  			
-  			</div>
-  			</div>  			
-  			
-  	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
