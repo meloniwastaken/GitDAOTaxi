@@ -39,7 +39,7 @@ public class DeleteServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		if (id == (Long) request.getSession().getAttribute("id")) {
+		if (id.longValue() == ((Long) request.getSession().getAttribute("id")).longValue()) {
 			request.getSession().invalidate();
 			response.sendRedirect("/GitDAOTaxi/index.jsp");
 		} else {
