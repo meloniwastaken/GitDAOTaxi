@@ -19,30 +19,17 @@ import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-/**
- * Servlet implementation class RegistrazioneAutistaServlet
- */
 @WebServlet("/admin/registrazioneAutista")
 public class RegistrazioneAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public RegistrazioneAutistaServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IDAOAutista daoAutista = new DAOAutista();
 		Autista a = new Autista();
-
 		a.setNome(request.getParameter("nome"));
 		a.setCognome(request.getParameter("cognome"));
 		a.setCodiceFiscale(request.getParameter("codFiscale"));
@@ -57,15 +44,12 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 		a.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 		a.setUsername(request.getParameter("username"));
 		a.setPassword(request.getParameter("password"));
-
 		try {
 			daoAutista.insert(a);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-
 		if (Long.parseLong(request.getParameter("taxi")) != 0) {
-
 			IDAOTaxi daoTaxi = new DAOTaxi();
 			Taxi t = new Taxi();
 			try {
@@ -73,17 +57,14 @@ public class RegistrazioneAutistaServlet extends HttpServlet {
 				t.setDisponibile(true);
 				t.setAutista(a);
 				daoTaxi.update(t);
-
 			} catch (NumberFormatException e1) {
 				System.out.println(e1.getMessage());
 			} catch (DAOException e1) {
 				System.out.println(e1.getMessage());
 			}
-
 		}
 		request.getSession().setAttribute("messaggio", "Autista inserito");
 		response.sendRedirect("../profile");
-
 	}
 
 }

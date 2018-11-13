@@ -25,12 +25,8 @@ import ats.persistenza.interfacce.IDAOTaxi;
 public class UpdateAutistaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public UpdateAutistaServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,16 +35,13 @@ public class UpdateAutistaServlet extends HttpServlet {
 		IDAOAutista daoAutista = new DAOAutista();
 		IDAOTaxi daoTaxi = new DAOTaxi();
 		Taxi t = new Taxi();
-
 		try {
 			daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("idforUpdate")));
-
 			autista.setNome(request.getParameter("nome"));
 			autista.setCognome(request.getParameter("cognome"));
 			autista.setCodiceFiscale(request.getParameter("codFiscale"));
 			try {
-				autista.setDataDiNascita(
-						new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
+				autista.setDataDiNascita(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")));
 			} catch (ParseException e) {
 				System.out.println(e.getMessage());
 			}
@@ -60,16 +53,14 @@ public class UpdateAutistaServlet extends HttpServlet {
 			autista.setStipendio(Double.parseDouble(request.getParameter("stipendio")));
 			autista.setId(Long.parseLong(request.getParameter("idforUpdate")));
 			daoAutista.update(autista);
-			
-			if (Long.parseLong(request.getParameter("taxi"))==0) 
+			if (Long.parseLong(request.getParameter("taxi")) == 0)
 				daoTaxi.deleteAutistaFromTaxi(Long.parseLong(request.getParameter("idforUpdate")));
 			else {
-			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
-			t.setDisponibile(true);
-			t.setAutista(autista);
-			daoTaxi.update(t);
+				t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
+				t.setDisponibile(true);
+				t.setAutista(autista);
+				daoTaxi.update(t);
 			}
-
 		} catch (NumberFormatException e) {
 			System.out.println(e.getMessage());
 		} catch (DAOException e) {

@@ -12,25 +12,15 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOViaggio;
 import ats.persistenza.interfacce.IDAOViaggio;
 
-/**
- * Servlet implementation class LasciaFeedbackServlet
- */
 @WebServlet("/cliente/lasciaFeedback")
 public class LasciaFeedbackServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LasciaFeedbackServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LasciaFeedbackServlet() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Long idViaggio = Long.parseLong(request.getParameter("idViaggio"));
 		Integer feedback = Integer.parseInt(request.getParameter("feedback"));
 		IDAOViaggio daoViaggio = new DAOViaggio();

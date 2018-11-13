@@ -14,19 +14,15 @@ public class DAOCliente implements IDAOCliente {
 
 	public List<Cliente> findAll() throws DAOException {
 		List<Cliente> utenti = new ArrayList<Cliente>(0);
-
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE RUOLO = 3");
 			resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Cliente utente = new Cliente();
-
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -59,7 +55,6 @@ public class DAOCliente implements IDAOCliente {
 		ResultSet resultSet = null;
 		try {
 			statement = connection.prepareStatement(sql);
-
 			statement.setLong(1, id);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -74,7 +69,6 @@ public class DAOCliente implements IDAOCliente {
 				c.setEmail(resultSet.getString(8));
 				c.setUsername(resultSet.getString(9));
 				c.setPassword(resultSet.getString(10));
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

@@ -6,10 +6,8 @@ public class Autista extends Utente {
 	public Double getStipendio() {
 		return stipendio;
 	}
-
 	public void setStipendio(Double stipendio) {
 		this.stipendio = stipendio;
 	}
-	
-	
+
 }

@@ -15,25 +15,15 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-/**
- * Servlet implementation class StatisticheTaxi
- */
 @WebServlet("/admin/statisticheTaxi")
 public class StatisticheTaxi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public StatisticheTaxi() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public StatisticheTaxi() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
 		IDAOTaxi daoTaxi = new DAOTaxi();
 		List<Double> statistiche = new ArrayList<Double>(0);

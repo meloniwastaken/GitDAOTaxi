@@ -17,49 +17,36 @@ import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-/**
- * Servlet implementation class UpdateUtenteServlet
- */
 @WebServlet("/admin/updateAutistaForm")
 public class UpdateAutistaForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateAutistaForm() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
+	public UpdateAutistaForm() {
+		super();
+	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if (request.getParameter("id")!=null) {
-		Long id = Long.parseLong(request.getParameter("id"));
-		Autista autista = null;
-		IDAOAutista daoAutista = new DAOAutista();
-						
-		try {
-			autista = daoAutista.findById(id);
-		} catch (DAOException e) {
-			System.out.println(e.getMessage());
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+
+		if (request.getParameter("id") != null) {
+			Long id = Long.parseLong(request.getParameter("id"));
+			Autista autista = null;
+			IDAOAutista daoAutista = new DAOAutista();
+			try {
+				autista = daoAutista.findById(id);
+			} catch (DAOException e) {
+				System.out.println(e.getMessage());
+			}
+			request.setAttribute("autistaUpdate", autista);
 		}
-		request.setAttribute("autistaUpdate", autista);
-		}
-		
+
 		IDAOTaxi daoTaxi = new DAOTaxi();
-		List<Taxi> listaTaxi= new ArrayList<Taxi>();
+		List<Taxi> listaTaxi = new ArrayList<Taxi>();
 		try {
-			listaTaxi=daoTaxi.findAll();
+			listaTaxi = daoTaxi.findAll();
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
+
 		request.setAttribute("listaTaxi", listaTaxi);
 		request.getRequestDispatcher("updateAutistaForm.jsp").forward(request, response);
 	}

@@ -5,14 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import ats.modello.Autista;
 import ats.modello.Taxi;
-import ats.modello.Utente;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOTaxi;
 import ats.persistenza.interfacce.IDAOUtente;
@@ -27,13 +25,10 @@ public class DAOAutista implements IDAOAutista {
 
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection
-					.prepareStatement("SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID ORDER BY UTENTE.COGNOME");
+			statement = connection.prepareStatement("SELECT * FROM UTENTE RIGHT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID ORDER BY UTENTE.COGNOME");
 			resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Autista utente = new Autista();
-
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -82,7 +77,6 @@ public class DAOAutista implements IDAOAutista {
 				a.setUsername(resultSet.getString(9));
 				a.setPassword(resultSet.getString(10));
 				a.setStipendio(resultSet.getDouble(13));
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -99,7 +93,6 @@ public class DAOAutista implements IDAOAutista {
 	public void update(Autista autista) throws DAOException {
 		IDAOUtente daoUtente = new DAOUtente();
 		daoUtente.update(autista);
-
 		Connection connection = null;
 		PreparedStatement statement = null;
 		connection = DataSource.getInstance().getConnection();
@@ -123,7 +116,7 @@ public class DAOAutista implements IDAOAutista {
 		String sql = "INSERT INTO STIPENDIO VALUES (?,?)";
 		DataSource instance = DataSource.getInstance();
 		Connection connection = instance.getConnection();
-		PreparedStatement statement=null;
+		PreparedStatement statement = null;
 		System.out.println(autista.getId());
 		try {
 			statement = connection.prepareStatement(sql);
@@ -142,7 +135,6 @@ public class DAOAutista implements IDAOAutista {
 
 	@Override
 	public void delete(Long id) throws DAOException {
-		IDAOUtente daoUtente = new DAOUtente();
 		IDAOTaxi daoTaxi = new DAOTaxi();
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -152,19 +144,18 @@ public class DAOAutista implements IDAOAutista {
 			statement = connection.prepareStatement("SELECT TAXI.ID FROM TAXI INNER JOIN UTENTE ON TAXI.AUTISTA = UTENTE.ID WHERE UTENTE.ID = ?");
 			statement.setLong(1, id);
 			resultSet = statement.executeQuery();
-			if(resultSet.next()) {
+			if (resultSet.next()) {
 				Long taxiId = resultSet.getLong(1);
 				Taxi t = daoTaxi.findById(taxiId);
 				t.setDisponibile(false);
 				t.setAutista(null);
 				daoTaxi.update(t);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
+
 	}
 
 	@Override
@@ -172,15 +163,12 @@ public class DAOAutista implements IDAOAutista {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-		Map<Autista,Taxi> map = new LinkedHashMap<Autista,Taxi>();
-		
-
+		Map<Autista, Taxi> map = new LinkedHashMap<Autista, Taxi>();
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE LEFT JOIN TAXI ON UTENTE.ID = TAXI.AUTISTA LEFT JOIN STIPENDIO ON UTENTE.ID = STIPENDIO.ID WHERE UTENTE.RUOLO = 2");
 			resultSet = statement.executeQuery();
-			
-			while(resultSet.next()) {
+			while (resultSet.next()) {
 				Autista a = new Autista();
 				Taxi t = null;
 				a.setId(resultSet.getLong(1));
@@ -194,8 +182,7 @@ public class DAOAutista implements IDAOAutista {
 				a.setUsername(resultSet.getString(9));
 				a.setPassword(resultSet.getString(10));
 				a.setStipendio(resultSet.getDouble(22));
-				
-				if(resultSet.getLong(12)!=0) {
+				if (resultSet.getLong(12) != 0) {
 					t = new Taxi();
 					t.setId(resultSet.getLong(12));
 					t.setModello(resultSet.getString(13));
@@ -210,13 +197,11 @@ public class DAOAutista implements IDAOAutista {
 					else if (disponibile == 1)
 						t.setDisponibile(true);
 				}
-				
 				map.put(a, t);
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}
-		finally {
+		} finally {
 			DataSource.getInstance().close(resultSet);
 			DataSource.getInstance().close(statement);
 			DataSource.getInstance().close(connection);

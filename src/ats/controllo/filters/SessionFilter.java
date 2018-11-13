@@ -12,27 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 
 public class SessionFilter implements Filter {
 
-    public SessionFilter() {
-        
-    }
+	public SessionFilter() {
+
+	}
 
 	public void destroy() {
-		
+
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest richiesta = (HttpServletRequest) request;
 		HttpServletResponse risposta = (HttpServletResponse) response;
-		
-		if(richiesta.getSession().getAttribute("id") == null) {
+
+		if (richiesta.getSession().getAttribute("id") == null) {
 			risposta.sendRedirect("index.html");
-		}
-		else
+		} else
 			chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		
+
 	}
 
 }

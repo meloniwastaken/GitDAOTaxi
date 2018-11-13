@@ -30,13 +30,11 @@ public class DAOUtente implements IDAOUtente {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE ID = ?");
 			statement.setLong(1, id);
 			resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				Integer ruolo = resultSet.getInt("RUOLO");
 				if (ruolo == 1)
@@ -45,7 +43,6 @@ public class DAOUtente implements IDAOUtente {
 					utente = new Autista();
 				else
 					utente = new Cliente();
-
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -56,7 +53,6 @@ public class DAOUtente implements IDAOUtente {
 				utente.setEmail(resultSet.getString(8));
 				utente.setUsername(resultSet.getString(9));
 				utente.setPassword(resultSet.getString(10));
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -72,18 +68,15 @@ public class DAOUtente implements IDAOUtente {
 	@Override
 	public Utente findByUsernameAndPassword(String username, String password) throws DAOException {
 		Utente utente = null;
-
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE USERNAME = ? AND PASSWORD = ?");
 			statement.setString(1, username);
 			statement.setString(2, password);
 			resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				Integer ruolo = resultSet.getInt("RUOLO");
 				if (ruolo == 1)
@@ -92,7 +85,6 @@ public class DAOUtente implements IDAOUtente {
 					utente = new Autista();
 				else
 					utente = new Cliente();
-
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -123,8 +115,7 @@ public class DAOUtente implements IDAOUtente {
 
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement(
-					"UPDATE UTENTE SET NOME = ?, COGNOME = ?, CODICE_FISCALE = ?, DATA_DI_NASCITA = TO_DATE(?,'DD-MM-YYYY'), INDIRIZZO = ?, TELEFONO = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?");
+			statement = connection.prepareStatement("UPDATE UTENTE SET NOME = ?, COGNOME = ?, CODICE_FISCALE = ?, DATA_DI_NASCITA = TO_DATE(?,'DD-MM-YYYY'), INDIRIZZO = ?, TELEFONO = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?");
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getCodiceFiscale());
@@ -151,7 +142,6 @@ public class DAOUtente implements IDAOUtente {
 			statement.setString(9, utente.getPassword());
 			statement.setLong(10, utente.getId());
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -166,12 +156,9 @@ public class DAOUtente implements IDAOUtente {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
-			statement = connection.prepareStatement(
-					"INSERT INTO UTENTE VALUES (SEQ_UTENTE.NEXTVAL, ? , ? , ? , TO_DATE(?,'DD-MM-YYYY'), ? , ? , ? , ? , ?, ?)",
-					new String[] { "ID" });
+			statement = connection.prepareStatement("INSERT INTO UTENTE VALUES (SEQ_UTENTE.NEXTVAL, ? , ? , ? , TO_DATE(?,'DD-MM-YYYY'), ? , ? , ? , ? , ?, ?)", new String[] { "ID" });
 			statement.setString(1, utente.getNome());
 			statement.setString(2, utente.getCognome());
 			statement.setString(3, utente.getCodiceFiscale());
@@ -198,12 +185,10 @@ public class DAOUtente implements IDAOUtente {
 			statement.setString(9, utente.getPassword());
 			statement.setInt(10, ruolo);
 			statement.executeUpdate();
-
 			resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
 				utente.setId(resultSet.getLong(1));
 			}
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -216,16 +201,13 @@ public class DAOUtente implements IDAOUtente {
 
 	@Override
 	public void deleteById(Long id) throws DAOException {
-
 		Connection connection = null;
 		PreparedStatement statement = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("DELETE FROM UTENTE WHERE ID = ?");
 			statement.setLong(1, id);
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -237,17 +219,14 @@ public class DAOUtente implements IDAOUtente {
 
 	@Override
 	public Boolean checkCodicefiscale(String codiceFiscale) throws DAOException {
-
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE CODICE_FISCALE = ?");
 			statement.setString(1, codiceFiscale);
 			resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				return true;
 			} else {
@@ -268,13 +247,11 @@ public class DAOUtente implements IDAOUtente {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE USERNAME = ?");
 			statement.setString(1, username);
 			resultSet = statement.executeQuery();
-
 			if (resultSet.next()) {
 				return true;
 			} else {

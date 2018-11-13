@@ -10,22 +10,18 @@ import java.util.List;
 import ats.modello.Amministratore;
 import ats.persistenza.interfacce.IDAOAmministratore;
 
-public class DAOAmministratore implements IDAOAmministratore{
+public class DAOAmministratore implements IDAOAmministratore {
 	public List<Amministratore> findAll() throws DAOException {
 		List<Amministratore> utenti = new ArrayList<Amministratore>(0);
-
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
-
 		try {
 			connection = DataSource.getInstance().getConnection();
 			statement = connection.prepareStatement("SELECT * FROM UTENTE WHERE RUOLO = 1");
 			resultSet = statement.executeQuery();
-
 			while (resultSet.next()) {
 				Amministratore utente = new Amministratore();
-
 				utente.setId(resultSet.getLong(1));
 				utente.setNome(resultSet.getString(2));
 				utente.setCognome(resultSet.getString(3));
@@ -48,7 +44,7 @@ public class DAOAmministratore implements IDAOAmministratore{
 		}
 		return utenti;
 	}
-	
+
 	public Amministratore findById(Long id) throws DAOException {
 		Amministratore a = null;
 		String sql = "SELECT * FROM UTENTE WHERE RUOLO=1 AND ID=?";
@@ -72,7 +68,6 @@ public class DAOAmministratore implements IDAOAmministratore{
 				a.setEmail(resultSet.getString(8));
 				a.setUsername(resultSet.getString(9));
 				a.setPassword(resultSet.getString(10));
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

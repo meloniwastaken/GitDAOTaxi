@@ -15,27 +15,18 @@ import ats.persistenza.implementazione.DAOAutista;
 import ats.persistenza.implementazione.DAOCliente;
 import ats.persistenza.implementazione.DAOException;
 
-/**
- * Servlet implementation class ProfileServlet
- */
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProfileServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ProfileServlet() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Long id = (Long) request.getSession().getAttribute("id");
-		if((Integer) request.getSession().getAttribute("ruolo")==1) {
+		if ((Integer) request.getSession().getAttribute("ruolo") == 1) {
 			DAOAmministratore daoAmministratore = new DAOAmministratore();
 			Amministratore admin;
 			try {
@@ -44,9 +35,8 @@ public class ProfileServlet extends HttpServlet {
 			} catch (DAOException e) {
 				System.out.println(e.getMessage());
 			}
-
 		}
-		if((Integer) request.getSession().getAttribute("ruolo")==2) {
+		if ((Integer) request.getSession().getAttribute("ruolo") == 2) {
 			DAOAutista daoAutista = new DAOAutista();
 			Autista autista;
 			try {
@@ -55,9 +45,8 @@ public class ProfileServlet extends HttpServlet {
 			} catch (DAOException e) {
 				System.out.println(e.getMessage());
 			}
-
 		}
-		if((Integer) request.getSession().getAttribute("ruolo")==3) {
+		if ((Integer) request.getSession().getAttribute("ruolo") == 3) {
 			DAOCliente daoCliente = new DAOCliente();
 			Cliente cliente;
 			try {
@@ -66,16 +55,13 @@ public class ProfileServlet extends HttpServlet {
 			} catch (DAOException e) {
 				System.out.println(e.getMessage());
 			}
-
 		}
 		request.getRequestDispatcher("profile.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

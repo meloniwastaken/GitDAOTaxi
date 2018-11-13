@@ -1,7 +1,6 @@
 package ats.controllo.servlet.admin;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -22,17 +21,10 @@ import ats.persistenza.interfacce.IDAOAutista;
 public class FindAllAutistiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public FindAllAutistiServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<Autista,Taxi> map = new LinkedHashMap<Autista,Taxi>();
 		IDAOAutista daoAutista = new DAOAutista();

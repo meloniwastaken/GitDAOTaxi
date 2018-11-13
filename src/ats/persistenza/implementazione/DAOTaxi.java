@@ -39,7 +39,6 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setDisponibile(false);
 				else if (disponibile == 1)
 					t.setDisponibile(true);
-				
 				if(resultSet.getLong(9)!=0) {
 					Autista a = new Autista();
 					a.setId(resultSet.getLong(9));
@@ -58,7 +57,6 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setAutista(null);
 				listaTaxi.add(t);
 			}
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
@@ -68,7 +66,6 @@ public class DAOTaxi implements IDAOTaxi {
 			instance.close(connection);
 		}
 		return listaTaxi;
-
 	}
 
 	@Override
@@ -97,7 +94,6 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setDisponibile(false);
 				else if (disponibile == 1)
 					t.setDisponibile(true);
-
 				Autista a = new Autista();
 				if(resultSet.getLong(9)!=0) {
 					a.setId(resultSet.getLong(9));
@@ -124,7 +120,6 @@ public class DAOTaxi implements IDAOTaxi {
 			instance.close(connection);
 		}
 		return t;
-
 	}
 
 	@Override
@@ -148,7 +143,6 @@ public class DAOTaxi implements IDAOTaxi {
 				statement.setInt(7, 1);
 			else
 				statement.setInt(7, 0);
-						
 			statement.executeUpdate();
 			resultSet = statement.getGeneratedKeys();
 			if (resultSet.next()) {
@@ -193,7 +187,6 @@ public class DAOTaxi implements IDAOTaxi {
 				statement.setLong(8, t.getAutista().getId()); //FK autista
 			statement.setLong(9, t.getId());
 			statement.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
@@ -248,7 +241,6 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setDisponibile(false);
 				else if (disponibile == 1)
 					t.setDisponibile(true);
-
 				Autista a = new Autista();
 				a.setId(resultSet.getLong(9));
 				a.setNome(resultSet.getString(11));
@@ -263,7 +255,6 @@ public class DAOTaxi implements IDAOTaxi {
 				t.setAutista(a);
 				listaTaxi.add(t);
 			}
-
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
@@ -349,7 +340,6 @@ public class DAOTaxi implements IDAOTaxi {
 					t.setDisponibile(false);
 				else if (disponibile == 1)
 					t.setDisponibile(true);
-
 				Autista a = new Autista();
 				if(resultSet.getLong(9)!=0) {
 					a.setId(resultSet.getLong(9));
@@ -378,8 +368,5 @@ public class DAOTaxi implements IDAOTaxi {
 		return t;
 
 	}
-	
-	
-	
 
 }
