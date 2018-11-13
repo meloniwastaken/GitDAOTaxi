@@ -45,8 +45,8 @@
 <body background="img/bg.jpg">
 <jsp:include page="navBar.jsp"></jsp:include>
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");%>
-<% Utente u = (Utente)request.getAttribute("utenteUpdate");
-String data ="";
+<% Utente u = (Utente) request.getAttribute("utenteUpdate");
+String data = "";
 if (u!=null && u.getDataDiNascita()!=null) {
 	String patternData = "yyyy-MM-dd";
 	SimpleDateFormat formattaData = new SimpleDateFormat(patternData);

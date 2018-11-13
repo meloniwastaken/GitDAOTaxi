@@ -41,7 +41,7 @@ public class DeleteServlet extends HttpServlet {
 		
 		if (id == (Long) request.getSession().getAttribute("id")) {
 			request.getSession().invalidate();
-			response.sendRedirect("index.html");
+			response.sendRedirect("/GitDAOTaxi/index.jsp");
 		} else {
 			request.getSession().setAttribute("messaggio", "Utente cancellato");
 			response.sendRedirect("/GitDAOTaxi/profile");
