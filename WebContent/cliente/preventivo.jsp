@@ -148,13 +148,13 @@ SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
 </div>
 <div class="row">
 	<div class="col-xs-6">
-		<form method="POST" action="prenota">
-			<button type="submit" class="btn btn-success btn-center">Conferma</button>
+		<form action="/GitDAOTaxi/profile">
+			<button type="submit" class="btn btn-danger btn-center">Annulla</button>
 		</form>
 	</div>
 	<div class="col-xs-6">
-		<form action="/GitDAOTaxi/profile">
-			<button type="submit" class="btn btn-danger btn-center">Annulla</button>
+		<form method="POST" action="prenota">
+			<button type="submit" class="btn btn-success btn-center">Conferma</button>
 		</form>
 	</div>
 </div>

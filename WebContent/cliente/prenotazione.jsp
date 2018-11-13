@@ -170,8 +170,8 @@ if (v!=null && v.getData()!=null && v.getData().getHours()!=0) {
   	<div class="row">
 		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 			<div class="btn-toolbar pull-right" role="toolbar">
-  				<div class="btn-group" role="group"><button class="btn btn-warning" type="reset">Reset</button></div>
   				<div class="btn-group" role="group"><button class="btn btn-danger"><a class="a_button" href="../profile">Annulla</a></button></div>
+  				<div class="btn-group" role="group"><button class="btn btn-warning" type="reset">Reset</button></div>
   				<div class="btn-group" role="group"><button class="btn btn-primary" type="submit">Prenota</button></div>
 			</div>
   		</div>
