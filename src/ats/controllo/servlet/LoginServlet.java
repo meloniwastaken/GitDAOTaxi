@@ -35,8 +35,10 @@ public class LoginServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		if(utente==null)
-			response.sendRedirect("errorpage.jsp");
+		if(utente==null) {
+			request.getSession().setAttribute("messaggio", "Username/Password non corretti");
+			response.sendRedirect("index.jsp");
+		}
 		else {
 			request.getSession().setAttribute("id", utente.getId());
 			if(utente instanceof Amministratore)
