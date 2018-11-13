@@ -73,7 +73,7 @@
 										<%} else if(v.getFeedback()!=null && v.getStato()==4) {%>
 											<td><%=v.getFeedback()%></td>
 										<%}%>
-									<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
+									<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getCliente().getUsername()!=null && ((v.getStato()!=4 && v.getTaxi().getDisponibile()==true) || (v.getTaxi().getDisponibile()==false && v.getStato()==3))) {%>
 									<td></td>
 									<td>
 										<form action="autista/avanzaStatoViaggio" method="POST">
@@ -81,7 +81,8 @@
 											<button type="submit" class="btn btn-primary">Avanza Stato</button>
 										</form>
 									</td>
-									<%} else if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getStato()!=4 && v.getCliente().getUsername()!=null) {%>
+									<%} else if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getCliente().getUsername()==null) {%>
+									<td></td>
 									<td>Utente cancellato</td>
 									<%}%>
 									<%if((Integer) request.getSession().getAttribute("ruolo")==1 && v.getCliente().getUsername()==null) {%> <td>Utente cancellato</td><%}%>

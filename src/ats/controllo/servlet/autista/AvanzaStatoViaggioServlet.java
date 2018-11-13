@@ -37,7 +37,7 @@ public class AvanzaStatoViaggioServlet extends HttpServlet {
 			if (v.getStato() == 2) {
 				Long id = (Long) request.getSession().getAttribute("id");
 				Taxi t = daoTaxi.findByIdAutista(id);
-				t.setDisponibile(true);
+				//t.setDisponibile(true);
 				System.out.println("stato 2");
 				System.out.println(t);
 				daoTaxi.update(t);

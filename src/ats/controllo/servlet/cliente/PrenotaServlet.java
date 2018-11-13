@@ -28,6 +28,7 @@ public class PrenotaServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
+		request.getSession().setAttribute("messaggio", "Viaggio prenotato");
 		response.sendRedirect("/GitDAOTaxi/profile");
 	}
 
