@@ -28,7 +28,8 @@ public class VisualizzaViaggiServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		IDAOUtente daoUtente = new DAOUtente();
 		IDAOViaggio daoViaggio = new DAOViaggio();
 		Utente u = null;
@@ -55,6 +56,10 @@ public class VisualizzaViaggiServlet extends HttpServlet {
 		request.setAttribute("viaggi", listaViaggi);
 		request.setAttribute("statistiche", statistiche);
 		request.getRequestDispatcher("viaggi.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+		this.doGet(request, response);
 	}
 
 }
