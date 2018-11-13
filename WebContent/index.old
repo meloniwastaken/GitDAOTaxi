@@ -2,6 +2,15 @@
 <html>
 <head>
 <style>
+body {
+    background-position: center;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+    background-size: cover;
+}
+ 
 #logo {
 	text-align:center;
     position: relative;
@@ -15,6 +24,61 @@
     100% {padding-right:0%; top:0px;}
 }
 
+p {
+    font-family:  Lucida Handwriting;
+    font-size: 30px;
+	text-align: center; 
+	color :rgb(60, 60, 60);
+}
+
+.login100-form {
+  width: 50%;
+  border-radius: 10px;
+  background-color: rgba(240,240,240,0.8);
+  min-width:500px;
+  max-width:200px;
+  min-height:250px;
+  max-height:500px;
+}
+
+.login100-form-logo {
+  font-size: 60px; 
+  color: #333333;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.container-login100 {
+  font-family:Lucida Handwriting; 
+  font-size: 25px;
+  color: #ffa500; 
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+  
+}
+
+.focus-input100 {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+ 
+}
 .icon-user:before {
 contest:"\e971";
 }
@@ -109,78 +173,39 @@ a {
 	text-decoration: none;
 }
 </style>
-
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-	<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-	<meta charset="ISO-8859-1">
-
 </head>
 
 <body background="img/bg.jpg">
-	<div class="container">
-		<div class="row">
-			<div class="logoPrincipale" id="logo">
-				<img src="img/logo.png">
-			</div>
-		</div>
-		<div class="row first">
-			<div class="col-md-6">
-				<div class="panel-default panel">
-					<div class="panel-body">
-						<div class="row text-center">
-							<h2>PRENOTA IL TUO VIAGGIO</h2>
-						</div>
-						
-						<div class="row" style="margin-top:50px">
-							<div class="col-md-5 text-center">
-								&#x1f464 Username
-							</div>
-							<div class="col-md-5 text-center">
-								&#x1f512 Password
-							</div>
-						</div>
+	<div class="logoPrincipale" id="logo"><img src="img/logo.png"></div>
+
+	<div class="container-login100">
+		<div class="wrap-login100 p-t-30 p-b-50">
+			<span class="login100-form-title p-b-41"></span>
+				<div class="wrap-input100 validate-input">
+					<div class="login100-form validate-form p-b-33 p-t-5">
+						<p>Prenota il tuo viaggio</p>
 						<form action="login" method="POST">
-							<div class="row">
-								<div class="col-md-5">
-									<input style="width:100%" type="text" name="username" placeholder="Username">
-								</div>
-								<div class="col-md-5">
-									<input style="width:100%" type="password" name="password" placeholder="Password">
-								</div>
-								<div class="col-md-2">
-									<button type="submit" class="btn btn-warning btn-center login-button">Login</button>
-								</div>
+							<input class="input100" type="text" name="username" placeholder=" Username">
+							<input class="input100" type="password" name="password" placeholder="&#x1f512 Password">
+							<div class="button_container">
+								<button class="login100-form-btn">Login</button>
 							</div>
 						</form>
+						<div class="button_container">
+							<a href="Registrazione.jsp">
+								<button class="login100-form-btn">Registrazione</button>
+							</a>
+						</div>
+						<div class="button_container">
+							<a href="chisiamo.html">
+								<button class="login100-form-btn">Chi Siamo</button>
+							</a>
+						</div>
+						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2"></div>
-			<div class="col-md-3">
-				<div class="panel-default panel">
-					<div class="panel-body">
-						<div class="row text-center">
-							<h2>DAOTaxi</h2>
-							<p>"Il piacere del viaggio senza la fatica di viaggiare" ©</p>
-						</div>
-						<div class="row">
-							<div class="col-md-4 col-md-offset-1">
-								<a href="Registrazione.jsp">
-									<button class="btn btn-center btn-warning">Registrazione</button>
-								</a>
-							</div>
-							<div class="col-md-4 col-md-offset-1">
-								<a href="chisiamo.html">
-									<button class="btn btn-center btn-warning">Chi Siamo</button>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
-		
 	</div>
+	
 </body>
 </html>
