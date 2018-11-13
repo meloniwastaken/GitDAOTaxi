@@ -12,23 +12,15 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOViaggio;
 import ats.persistenza.interfacce.IDAOViaggio;
 
-/**
- * Servlet implementation class PrenotaServlet
- */
 @WebServlet("/cliente/prenota")
 public class PrenotaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PrenotaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
+	public PrenotaServlet() {
+		super();
+	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Viaggio v = (Viaggio) request.getSession().getAttribute("viaggio");
 		IDAOViaggio daoViaggio = new DAOViaggio();
 		try {

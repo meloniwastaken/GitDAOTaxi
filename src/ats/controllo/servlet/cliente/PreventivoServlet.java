@@ -20,26 +20,14 @@ import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOCliente;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-/**
- * Servlet implementation class PreventivoServlet
- */
 @WebServlet("/cliente/preventivo")
 public class PreventivoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public PreventivoServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Viaggio v = new Viaggio();
 		Cliente c = new Cliente();
@@ -51,7 +39,6 @@ public class PreventivoServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		try {
 			t = daoTaxi.findById(Long.parseLong(request.getParameter("taxi")));
 		} catch (NumberFormatException e) {
@@ -60,36 +47,25 @@ public class PreventivoServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		v.setPartenza(request.getParameter("partenza"));
 		v.setDestinazione(request.getParameter("destinazione"));
 		v.setKilometri(Double.parseDouble(request.getParameter("kilometri")));
 		v.setAutista(t.getAutista());
-		
-		System.out.println(request.getParameter("data")+" "+request.getParameter("time"));
-		
 		try {
 			v.setData(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(request.getParameter("data")+" "+request.getParameter("time")));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		v.setCliente(c);
 		v.setTaxi(t);
-		System.out.println("time: "+request.getParameter("time"));
 		Double prezzo= v.getKilometri()*t.getPrezzoPerKilometro();
 		v.setPrezzo(prezzo);
 		v.setStato(1);
 		v.setFeedback(null);
-				
-		
 		
 		request.getSession().setAttribute("viaggio", v);
 		RequestDispatcher rd = request.getRequestDispatcher("preventivo.jsp");
 		rd.forward(request, response);
-		
-		
 	}
 
 }
