@@ -69,9 +69,9 @@ if (v!=null && v.getData()!=null && v.getData().getDate()!=0) {
 }
 
 String orario ="";
-if (v!=null && v.getData()!=null && v.getData().getHours()!=0) {
+if (v!=null && v.getData()!=null /* && v.getData().getHours()!=0) */ ){
 	orario = formattaOra.format(v.getData()); 
-}
+} 
 
 %>
 
@@ -90,23 +90,23 @@ if (v!=null && v.getData()!=null && v.getData().getHours()!=0) {
     		<div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1">
       			<label for="validationServer02">Data di partenza</label>
       			<%if(errorMap!=null && errorMap.get("data")!=null) {%>
-      			<input type="date" class="form-control is-invalid" name="data" min="<%=start%>">
+      			<input type="date" class="form-control is-invalid" name="data" min="<%=start%>" required="required">
       				<div class="invalid-feedback">
        			 	<%=errorMap.get("data")%>
       				</div>
       			<%}else {%>
-      			<input type="date" class="form-control is-valid" <%if (v!=null){ %> value="<%=data%>"<%} %> name="data" min="<%=start%>">
+      			<input type="date" class="form-control is-valid" <%if (v!=null){ %> value="<%=data%>"<%} %> name="data" min="<%=start%>" required="required">
       			<%} %>
     		</div>    		
     		<div class="col-md-4 col-sm-5">
       			<label for="validationServer02">Orario di partenza</label>
       			<%if(errorMap!=null && errorMap.get("time")!=null) {%>
-      			<input type="time" class="form-control is-invalid" <%if (v!=null){ %> value="<%=orario%>"<%} %> name="time">
+      			<input type="time" class="form-control is-invalid" <%if (v!=null){ %> value="<%=orario%>"<%} %> name="time" required="required">
       				<div class="invalid-feedback">
        			 	<%=errorMap.get("time")%>
       				</div>
       			<%}else {%>
-      			<input type="time" class="form-control is-valid" <%if (v!=null){ %> value="<%=orario%>"<%} %> name="time">
+      			<input type="time" class="form-control is-valid" <%if (v!=null){ %> value="<%=orario%>"<%} %> name="time" required="required">
       			<%} %>
     		</div>
     </div>

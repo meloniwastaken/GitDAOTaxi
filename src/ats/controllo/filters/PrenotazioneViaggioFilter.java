@@ -3,6 +3,7 @@ package ats.controllo.filters;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,8 @@ public class PrenotazioneViaggioFilter implements Filter {
 	public void destroy() {
 	}
 
-	public void doFilter(ServletRequest request1, ServletResponse response1, FilterChain chain)	throws IOException, ServletException {
+	public void doFilter(ServletRequest request1, ServletResponse response1, FilterChain chain)
+			throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) request1;
 		HttpServletResponse response = (HttpServletResponse) response1;
 
@@ -34,7 +36,12 @@ public class PrenotazioneViaggioFilter implements Filter {
 		Viaggio v = new Viaggio();
 		v.setPartenza(request.getParameter("partenza"));
 		v.setDestinazione(request.getParameter("destinazione"));
-		System.out.println(request.getParameter("data") + " " + request.getParameter("time"));
+
+		String patternData = "yyyy-MM-dd";
+		String patternOra = "HH:mm";
+		SimpleDateFormat formattaData = new SimpleDateFormat(patternData);
+		SimpleDateFormat formattaOra = new SimpleDateFormat(patternOra);
+		Boolean erroreOra = false;
 
 		try {
 			if (!request.getParameter("data").equals("") && request.getParameter("time").equals(""))
@@ -43,9 +50,34 @@ public class PrenotazioneViaggioFilter implements Filter {
 			else if (request.getParameter("data").equals("") && !request.getParameter("time").equals(""))
 				v.setData(new SimpleDateFormat("HH:mm").parse(request.getParameter("time")));
 
-			else if (!request.getParameter("data").equals("") && !request.getParameter("time").equals(""))
+			else if (!request.getParameter("data").equals("") && !request.getParameter("time").equals("")) {
 				v.setData(new SimpleDateFormat("yyyy-MM-dd HH:mm")
 						.parse(request.getParameter("data") + " " + request.getParameter("time")));
+				System.out.println(request.getParameter("time"));
+
+				if (request.getParameter("data").equals(formattaData.format(new Date()))) {
+
+					String orarioUtente = request.getParameter("time");
+					String oreUtente = "" + orarioUtente.charAt(0) + orarioUtente.charAt(1);
+					String minutiUtente = "" + orarioUtente.charAt(3) + orarioUtente.charAt(4);
+
+					String orarioAttuale = formattaOra.format(new Date());
+					String oreAttuali = "" + orarioAttuale.charAt(0) + orarioAttuale.charAt(1);
+					String minutiAttuali = "" + orarioAttuale.charAt(3) + orarioAttuale.charAt(4);
+					if (oreUtente.equals(oreAttuali)) {
+						if (Integer.parseInt(minutiAttuali) > Integer.parseInt(minutiUtente))
+							erroreOra = true;
+						else
+							erroreOra = false;
+					} 
+					
+					else if (Integer.parseInt(oreAttuali) > Integer.parseInt(oreUtente))
+						erroreOra = true;
+					else
+						erroreOra = false;
+
+				}
+			}
 		} catch (ParseException e) {
 			System.out.println(e.getMessage());
 		}
@@ -72,6 +104,8 @@ public class PrenotazioneViaggioFilter implements Filter {
 			errorMap.put("data", "Campo data di partenza vuoto");
 		if (request.getParameter("time").isEmpty())
 			errorMap.put("time", "Campo orario di partenza vuoto");
+		if (erroreOra==true)
+			errorMap.put("time", "Orario già trascorso");
 		if (errorMap.isEmpty())
 			chain.doFilter(request, response);
 		else {
