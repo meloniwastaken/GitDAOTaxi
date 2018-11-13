@@ -5,6 +5,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
+<%@page import="java.text.SimpleDateFormat"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,20 +54,10 @@ Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap
 
 String data="";
 if (u!=null && u.getDataDiNascita()!=null) {
-Integer gg = u.getDataDiNascita().getDate();
-Integer mm = u.getDataDiNascita().getMonth() + 1;
-Integer yyyy = u.getDataDiNascita().getYear() + 1900;      				
-
-String giorno = gg.toString();
-String mese = mm.toString();
-String anno = yyyy.toString();
-	
-if (gg < 10)
-	giorno = "0" + giorno;
-if (mm < 10)
-	mese = "0" + mese;
-	
-data = anno+"-"+mese+"-"+giorno;  }
+	String patternData="yyyy-MM-dd";
+	SimpleDateFormat formattaData = new SimpleDateFormat(patternData);
+	data = formattaData.format(u.getDataDiNascita());
+}
 	%>
 <jsp:include page="../navBar.jsp"></jsp:include>
 
