@@ -25,7 +25,6 @@ public class DeleteServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
-
 		IDAOUtente daoUtente = new DAOUtente();
 		try {
 			Utente u = daoUtente.findById(id);
@@ -40,7 +39,7 @@ public class DeleteServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
-		if (id.longValue() == ((Long) request.getSession().getAttribute("id")).longValue()) {
+		if (id == (Long) request.getSession().getAttribute("id")) {
 			request.getSession().invalidate();
 			response.sendRedirect("/GitDAOTaxi/index.jsp");
 		} else {
