@@ -68,7 +68,7 @@
            			</ul>
         		</li>
     	 		<li>
-          			<button type="button" class="btn btn-warning dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          			<button type="button" class="btn btn-success dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     					Aggiungi <span class="caret"></span>
     				</button>
 	         		<ul class="dropdown-menu">

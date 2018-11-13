@@ -79,7 +79,8 @@
 	  -webkit-transition: all 0.4s;
 	  -o-transition: all 0.4s;
 	  -moz-transition: all 0.4s;
-	  transition: all 0.4s;}
+	  transition: all 0.4s;
+}
 
 
  .btn-warning:hover {
@@ -93,7 +94,40 @@
 	  -webkit-transition: all 0.4s;
 	  -o-transition: all 0.4s;
 	  -moz-transition: all 0.4s;
-	  transition: all 0.4s;}
+	  transition: all 0.4s;
+}
+
+
+.btn-success {
+	  background: -webkit-linear-gradient(bottom, #33cc33, #40bf40);
+	  background: -o-linear-gradient(bottom, #33cc33, #40bf40);
+	  background: -moz-linear-gradient(bottom, #33cc33, #40bf40);
+	  background: linear-gradient(bottom, #33cc33,  #40bf40);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;
+}
+
+.btn-success:hover {
+	  background: -webkit-linear-gradient(bottom, #009933, #006600);
+	  background: -o-linear-gradient(bottom, #009933, #006600);
+	  background: -moz-linear-gradient(bottom, #009933, #006600);
+	  background: linear-gradient(bottom, #009933,  #006600);
+	  position: relative;
+	  z-index: 1;
+	
+	  -webkit-transition: all 0.4s;
+	  -o-transition: all 0.4s;
+	  -moz-transition: all 0.4s;
+	  transition: all 0.4s;
+}
+
+
+
 
 .login-button {
 
