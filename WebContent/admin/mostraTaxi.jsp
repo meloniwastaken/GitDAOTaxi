@@ -40,7 +40,7 @@
 			  	  			<td><%=taxi.getPosti()%></td>
 			  		 		<td><%=taxi.getPrezzoPerKilometro() %></td>
 			  		 		<td><%if(taxi.getAutista() != null){out.print(taxi.getAutista().getNome() + " " + taxi.getAutista().getCognome());}
-  		 					else{out.print("Non assegnato");}%></td>
+  		 					else{out.print("-------");}%></td>
 	 						<td>
 		 						<form method="POST" action="statisticheTaxi">
 						  			<input type="hidden" name="id" value="<%=taxi.getId()%>">
