@@ -21,20 +21,22 @@
 			<div class="panel panel-default">
 				<div class="panel-body scrollmenu">
 					<table>
-						<tr>
-							<th>ID</th>
-							<th>Nome</th>
-							<th>Cognome</th>
-							<th>Codice Fiscale</th>
-							<th>Data di Nascita</th>
-							<th>Telefono</th>
-							<th>Email</th>
-							<th>Stipendio [€]</th>
-							<th>Taxi</th>
-							<th></th>
-							<th></th>
-							<th></th>
-						</tr>
+						<thead style="font-size: 120%">
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+								<th>Cognome</th>
+								<th>Codice Fiscale</th>
+								<th>Data di Nascita</th>
+								<th>Telefono</th>
+								<th>Email</th>
+								<th>Stipendio [€]</th>
+								<th>Taxi</th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
 	  					<%for(Autista autista : map.keySet()){ %>
 	  					<tr>
 	  						<td><%=autista.getId()%></td>

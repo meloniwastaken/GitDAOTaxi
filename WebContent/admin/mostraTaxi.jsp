@@ -20,19 +20,21 @@
 			<div class="panel panel-default">
 				<div class="panel-body scrollmenu">
 					<table>
-		 				<tr>
-						    <th>Modello</th> 
-						    <th>Marca</th>
-						    <th>Targa</th>
-						    <th>Anno immatricolazione</th>
-						    <th>Posti</th>
-						    <th>Prezzo per Km</th>
-						    <th>Autista</th>
-		  				</tr>
+						<thead style="font-size:120%">
+		 					<tr>
+							    <th>Marca</th>
+							    <th>Modello</th> 
+							    <th>Targa</th>
+							    <th>Anno immatricolazione</th>
+							    <th>Posti</th>
+							    <th>Prezzo per Km</th>
+							    <th>Autista</th>
+		  					</tr>
+		  				</thead>
   						<%for(Taxi taxi : elencoTaxi){ %>
   						<tr>
-			  				<td><%=taxi.getModello()%></td>
 			  				<td><%=taxi.getMarca()%></td>
+			  				<td><%=taxi.getModello()%></td>
 			  				<td><%=taxi.getTarga()%></td>
 			  				<td><%=taxi.getAnnoDiImmatricolazione()%></td>
 			  	  			<td><%=taxi.getPosti()%></td>

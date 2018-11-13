@@ -23,18 +23,20 @@
 			<div class="panel panel-default">
 				<div class="panel-body scrollmenu">
 					<table>
-						<tr>
-							<th>ID</th>
-							<th>Nome</th>
-							<th>Cognome</th>
-							<th>Codice Fiscale</th>
-							<th>Data di Nascita</th>
-							<th>Indirizzo</th>
-							<th>Telefono</th>
-							<th>Email</th>
-							<th>Ruolo</th>
-							<th>Note</th>
-						</tr>
+						<thead style="font-size:120%">
+							<tr>
+								<th>ID</th>
+								<th>Nome</th>
+								<th>Cognome</th>
+								<th>Codice Fiscale</th>
+								<th>Data di Nascita</th>
+								<th>Indirizzo</th>
+								<th>Telefono</th>
+								<th>Email</th>
+								<th>Ruolo</th>
+								<th>Note</th>
+							</tr>
+						</thead>
 				  		<% for(Utente utente : utenti){ %>
 			  			<tr>
 			  				<td><%=utente.getId()%></td>

@@ -30,7 +30,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body scrollmenu">
 					<table>
-						<thead>
+						<thead style="font-size:120%">
 							<tr>
 								<%if((Integer) request.getSession().getAttribute("ruolo")!=2) {%> <th>Autista</th><%}%>
 								<%if((Integer) request.getSession().getAttribute("ruolo")!=3) {%> <th>Cliente</th><%}%>
