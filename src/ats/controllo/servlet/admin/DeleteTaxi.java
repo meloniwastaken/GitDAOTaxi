@@ -27,7 +27,8 @@ public class DeleteTaxi extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		response.sendRedirect("/GitDAOTaxi/admin/findAllTaxi");
+		request.getSession().setAttribute("messaggio", "Taxi cancellato");
+		response.sendRedirect("../profile");
 	}
 
 }

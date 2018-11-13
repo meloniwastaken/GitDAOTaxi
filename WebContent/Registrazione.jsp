@@ -32,6 +32,18 @@
     border-color: #28a745;
 }
 
+.a_button {
+	color: #fff;
+    text-decoration: none;
+
+}
+
+.a_button:hover {
+	color: #ffff;
+	text-decoration: none;
+}
+
+
 
 
 </style>
@@ -197,6 +209,7 @@ if (u!=null && u.getDataDiNascita()!=null) {
   	<div class="row">
 		<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 			<div class="btn-toolbar pull-right" role="toolbar">
+				<div class="btn-group" role="group"><button class="btn btn-danger"><a class="a_button" href="index.html">Annulla</a></button></div>
   				<div class="btn-group" role="group"><button class="btn btn-warning" type="reset">Reset</button></div>
   				<div class="btn-group" role="group"><button class="btn btn-primary" type="submit">Conferma</button></div>
 			</div>
