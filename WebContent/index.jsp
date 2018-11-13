@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -180,7 +182,20 @@ a {
 				</div>
 			</div>
 		</div>
-		
+		<%if(request.getSession().getAttribute("messaggio")!=null) {%>
+		<div class="container first">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 label">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<p><%out.print((String) request.getSession().getAttribute("messaggio"));%></p>
+							   <%request.getSession().removeAttribute("messaggio");%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<%}%>
 	</div>
 </body>
 </html>
