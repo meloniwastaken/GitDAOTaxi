@@ -17,31 +17,23 @@ import ats.persistenza.interfacce.IDAOAmministratore;
 @WebServlet("/admin/findAllAmministratori")
 public class FindAllAmministratoriServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FindAllAmministratoriServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	public FindAllAmministratoriServlet() {
+		super();
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Amministratore> amministratori = null;
 		IDAOAmministratore daoAmministratore = new DAOAmministratore();
-		
+
 		try {
 			amministratori = daoAmministratore.findAll();
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 		request.setAttribute("amministratori", amministratori);
 		request.getRequestDispatcher("mostraAmministratori.jsp").forward(request, response);
 	}
-
 
 }

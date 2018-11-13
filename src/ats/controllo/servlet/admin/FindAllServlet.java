@@ -25,13 +25,11 @@ public class FindAllServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Utente> utenti = null;
 		IDAOUtente daoUtente = new DAOUtente();
-		
 		try {
 			utenti = daoUtente.findAll();
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		request.setAttribute("utenti", utenti);
 		request.getRequestDispatcher("mostraUtenti.jsp").forward(request, response);
 	}

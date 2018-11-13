@@ -12,22 +12,18 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.interfacce.IDAOTaxi;
 
-/**
- * Servlet implementation class ModificaTaxiServlet
- */
 @WebServlet("/admin/updateTaxi")
 public class ModificaTaxiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public ModificaTaxiServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ModificaTaxiServlet() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Taxi taxi = null;
 		IDAOTaxi daoTaxi = new DAOTaxi();
-		
+
 		try {
 			taxi = new Taxi();
 			taxi = daoTaxi.findById(Long.parseLong(request.getParameter("id")));
@@ -39,8 +35,7 @@ public class ModificaTaxiServlet extends HttpServlet {
 			taxi.setPrezzoPerKilometro(Double.parseDouble(request.getParameter("prezzoPerKilometro")));
 			taxi.setPosti(Integer.parseInt(request.getParameter("posti")));
 			daoTaxi.update(taxi);
-		}
-		catch (DAOException e) {
+		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
 		response.sendRedirect("findAllTaxi");
