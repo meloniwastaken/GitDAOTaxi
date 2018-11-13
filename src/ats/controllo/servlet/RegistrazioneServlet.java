@@ -24,7 +24,6 @@ public class RegistrazioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IDAOUtente idaoUtente = new DAOUtente();
 		Cliente c = new Cliente();
-		
 		c.setNome(request.getParameter("nome"));
 		c.setCognome(request.getParameter("cognome"));
 		c.setCodiceFiscale(request.getParameter("codFiscale"));
@@ -38,7 +37,6 @@ public class RegistrazioneServlet extends HttpServlet {
 		c.setEmail(request.getParameter("email"));
 		c.setUsername(request.getParameter("username"));
 		c.setPassword(request.getParameter("password"));
-		
 		try {
 			idaoUtente.insert(c,3);
 		} catch (DAOException e) {

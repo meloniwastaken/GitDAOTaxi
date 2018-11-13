@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,35 +17,24 @@ import ats.persistenza.implementazione.DAOException;
 import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOUtente;
 
-
 public class UpdateUtenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateUtenteServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
+	public UpdateUtenteServlet() {
+		super();
+	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Utente utente = null;
 		IDAOUtente daoUtente = new DAOUtente();
-		
+
 		try {
 			Utente vecchioUtente = daoUtente.findById(Long.parseLong(request.getParameter("id")));
-			if(vecchioUtente instanceof Amministratore) {
+			if (vecchioUtente instanceof Amministratore) {
 				utente = new Amministratore();
-			}
-			else if(vecchioUtente instanceof Autista) {
+			} else if (vecchioUtente instanceof Autista) {
 				utente = new Autista();
-			}
-			else {
+			} else {
 				utente = new Cliente();
 			}
 			utente.setNome(request.getParameter("nome"));
@@ -69,8 +57,7 @@ public class UpdateUtenteServlet extends HttpServlet {
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
-		if((Integer) request.getSession().getAttribute("ruolo")==1)
+		if ((Integer) request.getSession().getAttribute("ruolo") == 1)
 			response.sendRedirect("/GitDAOTaxi/admin/findAllClienti");
 		else
 			response.sendRedirect("profile");

@@ -24,21 +24,17 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IDAOUtente daoUtente = new DAOUtente();
 		Utente utente = null;
-		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
 		if(username==null && password==null) {
 			username = (String) request.getAttribute("username");
 			password = (String) request.getAttribute("password");
 		}
-		
 		try {
 			utente = daoUtente.findByUsernameAndPassword(username, password);
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		if(utente==null)
 			response.sendRedirect("errorpage.jsp");
 		else {
@@ -52,7 +48,6 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("nomeUtente", utente.getNome());
 			request.getRequestDispatcher("profile").forward(request, response);
 		}
-		System.out.println(request.getRequestURI());
 	}
 
 }

@@ -15,47 +15,36 @@ import ats.persistenza.implementazione.DAOUtente;
 import ats.persistenza.interfacce.IDAOAutista;
 import ats.persistenza.interfacce.IDAOUtente;
 
-/**
- * Servlet implementation class DeleteAutistaServlet
- */
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public DeleteServlet() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		Long id = Long.parseLong(request.getParameter("id"));
-		if(id==(Long) request.getSession().getAttribute("id")) {
+		if (id == (Long) request.getSession().getAttribute("id")) {
 			request.getSession().invalidate();
 			response.sendRedirect("index.html");
-		}else
+		} else
 			response.sendRedirect("/GitDAOTaxi/profile");
-		
+
 		IDAOUtente daoUtente = new DAOUtente();
 		try {
 			Utente u = daoUtente.findById(id);
-			if(u instanceof Autista) {
+			if (u instanceof Autista) {
 				IDAOAutista daoAutista = new DAOAutista();
 				daoAutista.delete(id);
 			}
 			u.setUsername(null);
 			u.setPassword(null);
 			daoUtente.update(u);
-
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 }
