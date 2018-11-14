@@ -236,7 +236,8 @@ th, td {
 }
 
 .navbar-btn {
-		margin-left: 10px;
+		margin-left: 5px;
+		margin-right: 5px;
 		margin-top: 10px;
 		height:100%;
 	}
