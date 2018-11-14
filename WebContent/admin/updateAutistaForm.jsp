@@ -224,7 +224,7 @@ if (u!=null && u.getDataDiNascita()!=null) {
       		<label for="validationServer09">Taxi</label>
 		  		<select id="taxi" name="taxi">
 		  			<%for (Taxi t:listaTaxi){ %>
-		  			<option value="<%=t.getId()%>"><%=t.getMarca() %> <%=t.getModello() %>, <%=t.getTarga() %>, <%if (t.getAutista()==null){%> Non assegnato <%} else { %> Assegnato <%} %></option> <%} %>
+		  			<option value="<%=t.getId()%>" <%if(t.getAutista()!=null && t.getAutista().getId() == u.getId()) {%> selected="selected" <%}%>><%=t.getMarca() %> <%=t.getModello() %>, <%=t.getTarga()%>, <%if (t.getAutista()==null){%> Non assegnato <%} else { %> Assegnato <%} %></option> <%} %>
 		  			<option value="0">---Nessuno---</option>
 		  		</select>
   			</div>

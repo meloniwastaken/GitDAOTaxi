@@ -127,7 +127,7 @@ a {
 			</div>
 		</div>
 		<div class="row first">
-			<div class="col-md-6">
+			<div class="col-md-6 col-xs-12">
 				<div class="panel-default panel">
 					<div class="panel-body">
 						<div class="row text-center">
@@ -135,31 +135,33 @@ a {
 						</div>
 						
 						<div class="row" style="margin-top:50px">
-							<div class="col-md-5 text-center">
+							<div class="col-xs-6 text-center">
 								&#x1f464 Username
 							</div>
-							<div class="col-md-5 text-center">
+							<div class="col-xs-6 text-center">
 								&#x1f512 Password
 							</div>
 						</div>
 						<form action="login" method="POST">
 							<div class="row">
-								<div class="col-md-5">
+								<div class="col-xs-6">
 									<input style="width:100%" type="text" name="username" placeholder="Username">
 								</div>
-								<div class="col-md-5">
+								<div class="col-xs-6">
 									<input style="width:100%" type="password" name="password" placeholder="Password">
 								</div>
-								<div class="col-md-2">
-									<button type="submit" class="btn btn-warning btn-center login-button">Login</button>
+							</div>
+							<div class="row" style="padding-top:20px">
+								<div class="col-xs-12">
+									<button type="submit" class="btn btn-success btn-center login-button" style="width:60%">Login</button>
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2"></div>
-			<div class="col-md-3">
+			<div class="col-md-1"></div>
+			<div class="col-md-4 col-xs-12">
 				<div class="panel-default panel">
 					<div class="panel-body">
 						<div class="row text-center">
@@ -167,14 +169,14 @@ a {
 							<p>"Il piacere del viaggio senza la fatica di viaggiare" ©</p>
 						</div>
 						<div class="row">
-							<div class="col-md-4 col-md-offset-1">
+							<div class="col-xs-4 col-xs-offset-1">
 								<a href="Registrazione.jsp">
-									<button class="btn btn-center btn-warning">Registrazione</button>
+									<button class="btn btn-center btn-primary">Registrazione</button>
 								</a>
 							</div>
-							<div class="col-md-4 col-md-offset-1">
+							<div class="col-xs-4 col-xs-offset-1">
 								<a href="chisiamo.html">
-									<button class="btn btn-center btn-warning">Chi Siamo</button>
+									<button class="btn btn-center btn-warning"> Chi Siamo </button>
 								</a>
 							</div>
 						</div>
