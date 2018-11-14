@@ -161,4 +161,8 @@
   	<filter-name>TaxiControlFilter</filter-name>
   	<url-pattern>/admin/deleteTaxi</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+  	<filter-name>TaxiControlFilter</filter-name>
+  	<url-pattern>/admin/registrazioneAutista</url-pattern>
+  </filter-mapping>
 </web-app>
