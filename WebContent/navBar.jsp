@@ -1,26 +1,4 @@
 <style>
-.btn_href{
-     border:none; 
-     font: inherit;         
-     cursor: pointer;     
-     display: block;
-     padding: 3px 20px;
-     clear: both;
-     font-weight: 400;
-     line-height: 1.42857143;
-     color: #ffff;
-     white-space: nowrap;
-}
-
-
-.btn_href:hover{
-    color: #ffff;
-    text-decoration: none;
-    background-color: #080808;
-    
-}
-
-
 .dropdown-menu {
       background-color: #333;
 }
