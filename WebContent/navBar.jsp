@@ -91,6 +91,11 @@
         		<%} %>  
       		</ul>      
     		<ul class="nav navbar-nav navbar-right">
+    			<li>
+		    		<form method="POST" action="/GitDAOTaxi/chisiamo.html">
+						<button class="btn btn-primary navbar-btn" type="submit">Chi siamo</button>
+					</form>
+		    	</li>
         		<li class="active">
         			<a href="#"><%=request.getSession().getAttribute("nomeUtente") %>
         				<span class="sr-only">(current)</span>
