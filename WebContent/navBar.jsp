@@ -71,7 +71,7 @@
     		<ul class="nav navbar-nav navbar-right">
     			<li>
 		    		<form method="POST" action="/GitDAOTaxi/chisiamo.html">
-						<button class="btn btn-primary navbar-btn" type="submit">Chi siamo</button>
+						<button class="btn btn-warning navbar-btn" type="submit">Chi siamo</button>
 					</form>
 		    	</li>
         		<li class="active">
