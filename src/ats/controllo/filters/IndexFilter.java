@@ -7,26 +7,28 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SessionFilter implements Filter {
+public class IndexFilter implements Filter {
 
-	public SessionFilter() {
+    public IndexFilter() {
 
-	}
+    }
 
 	public void destroy() {
 
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest richiesta = (HttpServletRequest) request;
-		HttpServletResponse risposta = (HttpServletResponse) response;
-
-		if (richiesta.getSession().getAttribute("id") == null) {
-			risposta.sendRedirect("/GitDAOTaxi/index.jsp");
-		} else
+	public void doFilter(ServletRequest request1, ServletResponse response1, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest request = (HttpServletRequest) request1;
+		HttpServletResponse response = (HttpServletResponse) response1;
+		
+		if(request.getSession().getAttribute("id")!=null) {
+			response.sendRedirect("/GitDAOTaxi/profile");
+		}
+		else
 			chain.doFilter(request, response);
 	}
 
