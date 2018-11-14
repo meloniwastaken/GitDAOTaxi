@@ -57,6 +57,26 @@
     <filter-name>SessionFilter</filter-name>
     <url-pattern>/profile</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/visualizzaViaggi</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/autista/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/cliente/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <url-pattern>/formUpdate</url-pattern>
+  </filter-mapping>
   <filter>
     <filter-name>AdminFilter</filter-name>
     <filter-class>ats.controllo.filters.AdminFilter</filter-class>
@@ -64,6 +84,18 @@
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
     <url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>IndexFilter</filter-name>
+    <filter-class>ats.controllo.filters.IndexFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>IndexFilter</filter-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>IndexFilter</filter-name>
+    <url-pattern>/Registrazione.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>ValidazioneUtenteFilter</filter-name>
@@ -94,8 +126,8 @@
     <url-pattern>/admin/inserisciTaxi</url-pattern>
   </filter-mapping>
   <filter-mapping>
-  <filter-name>ValidazioneTaxiFilter</filter-name>
-  <url-pattern>/admin/updateTaxi</url-pattern>
+    <filter-name>ValidazioneTaxiFilter</filter-name>
+    <url-pattern>/admin/updateTaxi</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>PrenotazioneViaggioFilter</filter-name>
