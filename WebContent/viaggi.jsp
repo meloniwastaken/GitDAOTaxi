@@ -73,9 +73,9 @@
 										<%} else if(v.getFeedback()!=null && v.getStato()==4) {%>
 											<td><%=v.getFeedback()%></td>
 										<%} else {%>
-											<td></td>
+											
 										<%}%>
-									<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getCliente().getUsername()!=null && ((v.getStato()!=4 && v.getTaxi().getDisponibile()==true) || (v.getTaxi().getDisponibile()==false && v.getStato()==3))) {%>
+									<%if((Integer) request.getSession().getAttribute("ruolo")==2 && v.getCliente().getUsername()!=null && v.getStato()!=4 && (v.getTaxi().getDisponibile() || !v.getTaxi().getDisponibile() && v.getStato()==3)) {%>
 									<td></td>
 									<td>
 										<form action="autista/avanzaStatoViaggio" method="POST">

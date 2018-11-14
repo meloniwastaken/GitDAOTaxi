@@ -143,7 +143,7 @@ SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm");
 		Prezzo
 	</div>
 	<div class="col-xs-4 col-xs-offset-1">
-		<%=v.getPrezzo()%>
+		<%=f.format(v.getPrezzo())%>
 	</div>
 </div>
 <div class="row">
