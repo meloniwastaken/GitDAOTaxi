@@ -364,4 +364,29 @@ public class DAOTaxi implements IDAOTaxi {
 
 	}
 
+	@Override
+	public Boolean canDeleteTaxi(Long id) throws DAOException {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = DataSource.getInstance().getConnection();
+			statement = connection.prepareStatement("SELECT COUNT(*) FROM VIAGGIO WHERE TAXI = ? AND STATO <> 4 GROUP BY TAXI");
+			statement.setLong(1, id);
+			resultSet = statement.executeQuery();
+			if(resultSet.next()) {
+				if(resultSet.getInt(1)!=0)
+					return false;
+			}
+		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			DataSource.getInstance().close(resultSet);
+			DataSource.getInstance().close(statement);
+			DataSource.getInstance().close(connection);
+		}
+		return true;
+	}
+
 }

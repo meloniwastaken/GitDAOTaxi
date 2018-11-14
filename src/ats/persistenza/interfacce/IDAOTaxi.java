@@ -17,5 +17,6 @@ public interface IDAOTaxi {
 	public abstract List<Double> findStatistiche(Long id) throws DAOException;
 	public abstract void deleteAutistaFromTaxi(Long id) throws DAOException;
 	public abstract Taxi findByIdAutista(Long id) throws DAOException;
+	public abstract Boolean canDeleteTaxi(Long id) throws DAOException;
 
 }

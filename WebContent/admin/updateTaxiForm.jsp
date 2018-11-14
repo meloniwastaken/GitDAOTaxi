@@ -143,6 +143,7 @@ Taxi t = (Taxi)request.getAttribute("taxi");
   	</div>
   			
   		<input type="hidden" name="id" value="<%=t.getId() %>">
+  		<input type="hidden" name="taxi" value="<%=t.getId() %>">
   		<input type="hidden" name="from" value="updateTaxiForm.jsp">	
 	</form>
 	</div>

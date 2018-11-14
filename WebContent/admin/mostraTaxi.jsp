@@ -55,7 +55,7 @@
 	 						</td>
 	 						<td>
 	  		 					<form method="POST" action="deleteTaxi">
-						  			<input type="hidden" name="id" value="<%=taxi.getId()%>">
+						  			<input type="hidden" name="taxi" value="<%=taxi.getId()%>">
 						  			<button type="submit" class="btn btn-danger">Cancella</button>
 		 						</form>
 	 						</td>

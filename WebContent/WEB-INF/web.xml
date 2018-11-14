@@ -145,4 +145,20 @@
     <filter-name>ClienteFilter</filter-name>
     <url-pattern>/cliente/*</url-pattern>
   </filter-mapping>
+  <filter>
+  	<filter-name>TaxiControlFilter</filter-name>
+  	<filter-class>ats.controllo.filters.TaxiControlFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>TaxiControlFilter</filter-name>
+  	<url-pattern>/admin/updateAutista</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>TaxiControlFilter</filter-name>
+  	<url-pattern>/admin/updateTaxi</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>TaxiControlFilter</filter-name>
+  	<url-pattern>/admin/deleteTaxi</url-pattern>
+  </filter-mapping>
 </web-app>

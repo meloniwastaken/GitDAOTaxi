@@ -20,7 +20,7 @@ public class DeleteTaxi extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("id"));
+		Long id = Long.parseLong(request.getParameter("taxi"));
 		IDAOTaxi daoTaxi = new DAOTaxi();
 		try {
 			daoTaxi.deleteById(id);
