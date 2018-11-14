@@ -134,6 +134,7 @@ public class ValidazioneUtenteFilter implements Filter {
 			else
 				aUpdate.setStipendio(-1D);
 			aUpdate.setPassword(request.getParameter("password"));
+			aUpdate.setId(Long.parseLong(request.getParameter("idforUpdate")));
 		}
 
 		Map<String, String> errorMap = new HashMap<String, String>();
