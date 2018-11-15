@@ -166,6 +166,7 @@ public class DAOViaggio implements IDAOViaggio {
 		return v;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void update(Viaggio v) throws DAOException {
 		Connection connection = null;

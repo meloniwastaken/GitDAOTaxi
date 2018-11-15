@@ -1,18 +1,3 @@
-<style>
-.dropdown-menu {
-      background-color: #333;
-}
-
-.dropdown-menu>li>a {
-    background-color: #333;
-    color: #ffffff;
-}
-
-.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
-    color: #ffff;
-    background-color: #080808;
-</style>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
     	<div class="navbar-header">
@@ -75,7 +60,7 @@
 					</form>
 		    	</li>
         		<li class="active">
-        			<a href="#"><%=request.getSession().getAttribute("nomeUtente") %>
+        			<a href="/GitDAOTaxi/profile"><%=request.getSession().getAttribute("nomeUtente") %>
         				<span class="sr-only">(current)</span>
         			</a>
         		</li>

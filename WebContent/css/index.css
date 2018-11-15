@@ -1,0 +1,23 @@
+#logo {
+	text-align:center;
+    position: relative;
+    animation-name: example;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;    
+}
+
+@keyframes example {
+    0%   {padding-right:100%; top:0px;}
+    100% {padding-right:0%; top:0px;}
+}
+
+.icon-user:before {
+contest:"\e971";
+}
+.icon-lock:before {
+  content: "\1f512";
+}
+
+a {
+	text-decoration: none;
+}
