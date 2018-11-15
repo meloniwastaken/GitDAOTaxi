@@ -1,5 +1,36 @@
 @charset "ISO-8859-1";
 
+@font-face {
+	font-family: Quicksand;
+	src: url(../fonts/Quicksand_Book.otf);
+}
+
+.invalid-feedback {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.form-control.is-valid {
+    border-color: #28a745;
+}
+
+.a_button {
+	color: #fff;
+    text-decoration: none;
+
+}
+
+.a_button:hover {
+	color: #ffff;
+	text-decoration: none;
+}
+
 .dropdown-menu {
       background-color: #333;
 }
@@ -14,10 +45,6 @@
     background-color: #080808;
 }
 
-@font-face {
-	font-family: Quicksand;
-	src: url(../fonts/Quicksand_Book.otf);
-}
 
 .btn_href{
      border:none; 

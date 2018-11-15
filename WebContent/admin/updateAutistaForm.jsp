@@ -16,35 +16,6 @@
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 
 </head>
-<style>
-.invalid-feedback {
-    width: 100%;
-    margin-top: .25rem;
-    font-size: 80%;
-    color: #dc3545;
-}
-
-.form-control.is-invalid {
-    border-color: #dc3545;
-}
-
-.form-control.is-valid {
-    border-color: #28a745;
-}
-
-.a_button {
-	color: #fff;
-    text-decoration: none;
-
-}
-
-.a_button:hover {
-	color: #ffff;
-	text-decoration: none;
-}
-
-
-</style>
 <body background="../img/bg.jpg">
 </head>
 <body>
@@ -60,11 +31,6 @@ if (u!=null && u.getDataDiNascita()!=null) {
 }
 	%>
 <jsp:include page="../navBar.jsp"></jsp:include>
-
-
-
-
-
 <div class="container">
 <div class="row">
 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">

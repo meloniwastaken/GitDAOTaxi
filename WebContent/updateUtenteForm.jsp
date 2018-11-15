@@ -13,37 +13,9 @@
 <link rel="stylesheet" href="css/style.css">
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
 </head>
-<style>
-.invalid-feedback {
-    width: 100%;
-    margin-top: .25rem;
-    font-size: 80%;
-    color: #dc3545;
-}
-
-.form-control.is-invalid {
-    border-color: #dc3545;
-}
-
-.form-control.is-valid {
-    border-color: #28a745;
-}
-
-.a_button {
-	color: #fff;
-    text-decoration: none;
-
-}
-
-.a_button:hover {
-	color: #ffff;
-	text-decoration: none;
-}
-
-
-</style>
 <body background="img/bg.jpg">
 <jsp:include page="navBar.jsp"></jsp:include>
+
 <% Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");%>
 <% Utente u = (Utente) request.getAttribute("utenteUpdate");
 String data = "";
@@ -51,8 +23,7 @@ if (u!=null && u.getDataDiNascita()!=null) {
 	String patternData = "yyyy-MM-dd";
 	SimpleDateFormat formattaData = new SimpleDateFormat(patternData);
 	data = formattaData.format(u.getDataDiNascita());  
-	}
-%>
+	}%>
 
 <div class="container">
 	<div class="row">

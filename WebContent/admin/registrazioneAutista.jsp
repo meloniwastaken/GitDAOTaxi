@@ -14,43 +14,12 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/style.css">
 <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'>
-
 </head>
-<style>
-.invalid-feedback {
-    width: 100%;
-    margin-top: .25rem;
-    font-size: 80%;
-    color: #dc3545;
-}
-
-.form-control.is-invalid {
-    border-color: #dc3545;
-}
-
-.form-control.is-valid {
-    border-color: #28a745;
-}
-
-
-.a_button {
-	color: #fff;
-    text-decoration: none;
-
-}
-
-.a_button:hover {
-	color: #ffff;
-	text-decoration: none;
-}
-
-
-</style>
 <body background="../img/bg.jpg">
 <jsp:include page="../navBar.jsp"></jsp:include>
+
 <%List<Taxi> listaTaxi = (List<Taxi>)request.getAttribute("listaTaxi"); 
 Map<String,String> errorMap = (Map<String,String>)request.getAttribute("errorMap");
-
 Autista u = (Autista)request.getAttribute("autistaRegistrazione");
 String data="";
 if (u!=null && u.getDataDiNascita()!=null) {
