@@ -93,7 +93,7 @@
 		<%}%>
 		<div class="container first">
 			<div class="row">
-				<div class="col-xs-8 col-xs-offset-2">
+				<div class="col-md-4 col-xs-12">
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row">
@@ -103,9 +103,7 @@
 								<div class="col-xs-12 col-md-6">
 									<div class="row">
 										<div class="col-xs-12 text-center">
-											<h2>
 												La tua escursione a portata di click!
-											</h2>
 										</div>
 									</div>
 									<div class="row">
