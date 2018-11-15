@@ -91,6 +91,37 @@
 			</div>
 		</div>
 		<%}%>
+		<div class="container first">
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-xs-12 col-md-4">
+									<img class="banner-img img-circle" src="img/logo_escursioni.png">
+								</div>
+								<div class="col-xs-12 col-md-6">
+									<div class="row">
+										<div class="col-xs-12 text-center">
+											<h2>
+												La tua escursione a portata di click!
+											</h2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-12 text-center">
+											<a href="http://172.22.184.67:8081/ProgettoEscursioni">
+												<button class="btn btn-center btn-warning">Prenota subito</button>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

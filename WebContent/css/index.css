@@ -21,3 +21,15 @@ contest:"\e971";
 a {
 	text-decoration: none;
 }
+
+.banner-img {
+	width:140px;
+	heigth:140px;
+}
+
+@media screen and (max-width:991px) {
+	.banner-img {
+		margin: 0 auto;
+		display: block;
+	}
+}
