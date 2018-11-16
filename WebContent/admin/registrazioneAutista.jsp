@@ -196,7 +196,7 @@ if (u!=null && u.getDataDiNascita()!=null) {
 		  		<select id="taxi" name="taxi">
 		  			<%for (Taxi t:listaTaxi){ %>
 		  			<option value="<%=t.getId()%>"><%=t.getMarca() %> <%=t.getModello() %>, <%=t.getTarga() %>, <%if (t.getAutista()==null){%> Non assegnato <%} else { %> Assegnato <%} %></option> <%} %>
-		  			<option value="0">---Nessuno---</option>
+		  			<option value="0" selected="selected">---Nessuno---</option>
 		  		</select>
   			</div>
   </div>
