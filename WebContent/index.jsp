@@ -103,7 +103,7 @@
 								<div class="col-xs-12 col-md-6">
 									<div class="row">
 										<div class="col-xs-12 text-center">
-												La tua escursione a portata di click!
+											La tua escursione a portata di click!
 										</div>
 									</div>
 									<div class="row">
