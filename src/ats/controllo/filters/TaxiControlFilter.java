@@ -50,16 +50,18 @@ public class TaxiControlFilter implements Filter {
 			}
 			
 		}
+		
 		if(request.getAttribute("taxi")!=null) {
 			idTaxi = ((Taxi) request.getAttribute("taxi")).getId();
 		}
-		if(request.getParameter("taxi")!=null) {
+		else if(request.getParameter("taxi")!=null) {
 			idTaxi = Long.parseLong(request.getParameter("taxi"));
 		}
+		else
+			idTaxi = -1L;
 		
 		try {
-			System.out.println("Posso modifiare? "+daoTaxi.canDeleteTaxi(idTaxi));
-			if(daoTaxi.canDeleteTaxi(idTaxi) && other || !daoTaxi.canDeleteTaxi(idTaxi) && !other && idTaxi.longValue() == t.getId().longValue()) {
+			if(idTaxi.longValue()==-1 || (daoTaxi.canDeleteTaxi(idTaxi) && other || !daoTaxi.canDeleteTaxi(idTaxi) && !other && idTaxi.longValue() == t.getId().longValue())) {
 				chain.doFilter(request, response);
 			}
 			else {

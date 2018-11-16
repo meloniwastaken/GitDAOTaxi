@@ -7,9 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ats.modello.Autista;
+import ats.modello.Taxi;
 import ats.modello.Utente;
 import ats.persistenza.implementazione.DAOException;
+import ats.persistenza.implementazione.DAOTaxi;
 import ats.persistenza.implementazione.DAOUtente;
+import ats.persistenza.interfacce.IDAOTaxi;
 import ats.persistenza.interfacce.IDAOUtente;
 
 @WebServlet("/formUpdate")
@@ -24,8 +28,10 @@ public class FormUpdate extends HttpServlet {
 		Long id = Long.parseLong(request.getParameter("id"));
 		Utente utente = null;
 		IDAOUtente daoUtente = new DAOUtente();
+		IDAOTaxi daoTaxi = new DAOTaxi();
 		try {
 			utente = daoUtente.findById(id);
+				
 		} catch (DAOException e) {
 			System.out.println(e.getMessage());
 		}

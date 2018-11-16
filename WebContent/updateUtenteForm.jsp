@@ -23,7 +23,8 @@ if (u!=null && u.getDataDiNascita()!=null) {
 	String patternData = "yyyy-MM-dd";
 	SimpleDateFormat formattaData = new SimpleDateFormat(patternData);
 	data = formattaData.format(u.getDataDiNascita());  
-	}%>
+	}
+	%>
 
 <div class="container">
 	<div class="row">
@@ -197,7 +198,7 @@ if (u!=null && u.getDataDiNascita()!=null) {
 														      	<div class="btn-toolbar pull-left" role="toolbar">
 													  				<div class="btn-group" role="group">
 																		<form method="POST" action="delete">
-														        			<input type="hidden" name="id" value="<%=u.getId()%>"> 
+														        			<input type="hidden" name="id" value="<%=u.getId()%>">
 														        			<button type="submit" class="btn btn-danger">Rimuovi account</button>
 														        		</form>
 																	</div>

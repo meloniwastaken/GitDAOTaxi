@@ -64,6 +64,7 @@
 	  						<td>
 	  							<form method="POST" action="../delete">
 		  							<input type="hidden" name="id" value="<%=autista.getId()%>">
+		  							<input type="hidden" name="taxi" <%if(map.get(autista)!=null){%> value="<%=map.get(autista).getId()%>" <%} else { %> value="-1" <%} %>>
 									<button type="submit" class="btn btn-danger">Cancella</button>
 	  							</form>
 	  						</td>
